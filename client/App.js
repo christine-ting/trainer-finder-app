@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'react-native';
 import axios from 'axios';
 import Profile from './Profile';
+import Footer from './Footer';
 
 const backgroundimg = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
 
@@ -71,8 +72,8 @@ const App = () => {
         </ScrollView>
       </View>
       </ImageBackground>
-      <View style={styles.footerView}>
-        <Text>Footer</Text>
+      <View style={styles.footerContainer}>
+        <Footer />
       </View>
     </View>
   );
@@ -102,9 +103,11 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 20
   },
-  footerView: {
+  footerContainer: {
     flex: 2.5,
+    // justifyContent: 'center'
     // backgroundColor: 'black',
+    paddingTop: 7
   }
 });
 
