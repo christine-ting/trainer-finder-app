@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'rea
 import axios from 'axios';
 import Profile from './Profile';
 
+const headerBackground = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
 
 const App = () => {
   // const [name, setName] = useState('useEffect() in hooks');
@@ -15,7 +16,7 @@ const App = () => {
     weight: '130 lbs',
     age: 27,
     gender: 'Female',
-    dob: '12/25/1992',
+    dateOfBirth: '12/25/1992',
     zip: 90045,
     goal_w: '120 lbs',
     weekly_goal: 'Lose 0.5 lbs per week',
@@ -60,24 +61,28 @@ const App = () => {
 
   return (
     <View style={styles.profilePage}>
-      <View style={styles.headerView}>
-        <Text style={styles.headerText}>{profile.first_name}'s Profile</Text>
-      </View>
+      <ImageBackground source={headerBackground} style={styles.headerBackground}>
+        <View style={styles.headerView}>
+          <Text style={styles.headerText}>{profile.first_name}'s Profile</Text>
+        </View>
+      </ImageBackground>
       <View style={styles.scrollProfile}>
         <ScrollView>
           <Profile profile={profile}/>
         </ScrollView>
       </View>
+      <ImageBackground source={headerBackground} style={styles.headerBackground}>
       <View style={styles.footerView}>
         <Text>Footer</Text>
       </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   profilePage: {
-    backgroundColor: 'whitesmoke',
+    backgroundColor: 'rgb(80,80,80)',
     flexDirection: 'column',
     height: '100%',
   },
@@ -85,18 +90,23 @@ const styles = StyleSheet.create({
     flex: 20
   },
   headerView: {
-    flex: 1,
+    // flex: 1,
     paddingTop: 50,
     paddingLeft: 20,
-    backgroundColor: 'black'
+    // backgroundColor: 'black'
   },
   headerText: {
     fontSize: 20,
-    color: 'white'
+    color: 'black',
+    fontWeight: 'bold'
+  },
+  headerBackground: {
+    width: '100%',
+    flex: 3
   },
   footerView: {
     flex: 3,
-    backgroundColor: 'black'
+    // backgroundColor: 'black',
   }
 });
 

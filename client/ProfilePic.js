@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { StyleSheet, Text, View, Button, ScrollView, Image } from 'react-native';
+import { yellow } from 'color-name';
 
 const ProfilePic = ({ profile }) => {
   return (
-    <View>
-      <Image source={profile.image} style={styles.profilePic}/>
+    <View style={styles.profilePicContainer}>
+      <View style={styles.profilePicBackground}>
+        <Image source={profile.image} style={styles.profilePic}/>
+      </View>
     </View>
   )
 }
@@ -98,13 +101,25 @@ const ProfilePic = ({ profile }) => {
 // }
 
 const styles = StyleSheet.create({
+  profilePicContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  profilePicBackground: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 160,
+    width: 160,
+    borderRadius: 700/ 6,
+    backgroundColor: 'rgb(80,80,80)',
+    borderColor: 'rgb(150,150,150)',
+    borderWidth: 2,
+    marginTop: -50
+  },
   profilePic: {
     height: 150,
     width: 150,
-    borderRadius: 700/ 7,
-    borderWidth: 5,
-    borderColor: 'white',
-    marginTop: -50
+    borderRadius: 700/ 7
   }
 });
 
