@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'rea
 import axios from 'axios';
 import Profile from './Profile';
 
-const headerBackground = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
+const backgroundimg = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
 
 const App = () => {
   // const [name, setName] = useState('useEffect() in hooks');
@@ -61,21 +61,19 @@ const App = () => {
 
   return (
     <View style={styles.profilePage}>
-      <ImageBackground source={headerBackground} style={styles.headerBackground}>
         <View style={styles.headerView}>
           <Text style={styles.headerText}>{profile.first_name}'s Profile</Text>
         </View>
-      </ImageBackground>
+      <ImageBackground source={backgroundimg} style={styles.backgroundimg}>
       <View style={styles.scrollProfile}>
         <ScrollView>
           <Profile profile={profile}/>
         </ScrollView>
       </View>
-      <ImageBackground source={headerBackground} style={styles.headerBackground}>
+      </ImageBackground>
       <View style={styles.footerView}>
         <Text>Footer</Text>
       </View>
-      </ImageBackground>
     </View>
   );
 }
@@ -90,22 +88,22 @@ const styles = StyleSheet.create({
     flex: 20
   },
   headerView: {
-    // flex: 1,
+    flex: 1,
     paddingTop: 50,
     paddingLeft: 20,
-    // backgroundColor: 'black'
+    backgroundColor: 'rgb(80,80,80)'
   },
   headerText: {
     fontSize: 20,
     color: 'black',
     fontWeight: 'bold'
   },
-  headerBackground: {
+  backgroundimg: {
     width: '100%',
-    flex: 3
+    flex: 20
   },
   footerView: {
-    flex: 3,
+    flex: 2.5,
     // backgroundColor: 'black',
   }
 });

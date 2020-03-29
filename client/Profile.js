@@ -17,19 +17,27 @@ const Profile = ({ profile }) => {
         <BasicProfile profile={profile}/>
       </View>
       <View style={{alignItems: 'center'}}>
-        <Lines />
       </View>
-      <View style={styles.BMR}>
+      <View style={styles.BMRContainer}>
         <BMR profile={profile}/>
       </View>
-      <View style={{alignItems: 'center'}}>
-        <Lines />
-      </View>
+      <Lines />
       <View style={styles.personalDetailsContainer}>
+        <View style={styles.personalDetailsHeader}>
+          <Text style={{fontSize: 20}}>Personal Details</Text>
+        </View>
         <PersonalDetails profile={profile}/>
       </View>
+      <Lines />
+      <View style={styles.fitnessGoalsHeader}>
+          <Text style={{fontSize: 20}}>Fitness Goals</Text>
+      </View>
       <View style={styles.fitnessGoalsContainer}>
-        <FitnessGoals />
+        <FitnessGoals profile={profile}/>
+      </View>
+      <Lines />
+      <View style={styles.workoutPlansHeader}>
+          <Text style={{fontSize: 20}}>Workout Plans</Text>
       </View>
       <View style={styles.workoutPlansContainer}>
         <WorkoutPlans />
@@ -46,28 +54,40 @@ const styles = StyleSheet.create({
     height: 150
   },
   basicProfile: {
-    paddingBottom: 20
+    // paddingBottom: 20
   },
-  BMR: {
+  BMRContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 30
+    paddingHorizontal: 10,
+    paddingVertical: 20
   },
   personalDetailsContainer: {
-    // backgroundColor: 'yellow',
-    justifyContent: 'center',
-    alignItems: 'center'
+    // justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
+  personalDetailsHeader: {
+    paddingVertical: 10,
+    width: '90%'
   },
   fitnessGoalsContainer: {
     // backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center'
   },
+  fitnessGoalsHeader: {
+    paddingVertical: 10,
+    // width: '90%'
+  },
   workoutPlansContainer: {
     // backgroundColor: 'green',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  workoutPlansHeader: {
+    paddingVertical: 10,
+    // width: '90%'
   }
 });
 

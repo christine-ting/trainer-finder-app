@@ -11,7 +11,7 @@ const WorkoutPlans = () => {
 
 const styles = StyleSheet.create({
   workoutPlans: {
-    backgroundColor: 'lightsalmon',
+    backgroundColor: 'steelblue',
     opacity: 0.6,
     padding: 50,
     borderRadius: 700/ 70,

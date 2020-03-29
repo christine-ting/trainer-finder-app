@@ -54,7 +54,7 @@ class BMR extends React.Component {
     let { profile } = this.props;
     let { BMR, verb, target } = this.state;
     return (
-      <View className="ct_BMR">
+      <View style={styles.BMR}>
         <Text id="ct_BMR_statement">
           "In order to {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)},&nbsp;
           { verb === 'maintain' ? (
@@ -72,5 +72,17 @@ class BMR extends React.Component {
     );
   };
 };
+
+const styles = StyleSheet.create({
+  BMR: {
+    // backgroundColor: 'rgb(230,230,230)',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    width: '100%',
+    borderRadius: 700 / 150,
+    borderColor: 'rgb(80,80,80)',
+    borderWidth: 1
+  }
+});
 
 export default BMR;

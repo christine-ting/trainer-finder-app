@@ -1,4 +1,6 @@
 import React from "react";
+// import zipcodes from 'zipcodes';
+
 import {
   StyleSheet,
   Text,
@@ -21,6 +23,8 @@ const BasicProfile = ({ profile }) => {
           {profile.first_name} {profile.last_name}
         </Text>
         <Text>{profile.email}</Text>
+        <Text>{profile.age} years old</Text>
+        {/* <Text>{zipcodes.lookup(profile.zip).city}, {zipcodes.lookup(profile.zip).state}</Text> */}
       </View>
     </View>
   );
