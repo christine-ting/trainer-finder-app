@@ -1,108 +1,102 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'react-native';
 import axios from 'axios';
+import Profile from './Profile';
+
 
 const App = () => {
-  const [name, setName] = useState('useEffect() in hooks');
+  // const [name, setName] = useState('useEffect() in hooks');
+  const profile = {
+    id: 0,
+    email: 'christine@yahoo.com',
+    first_name: 'Christine',
+    last_name: 'Ting',
+    height: '5/5',
+    weight: '130 lbs',
+    age: 27,
+    gender: 'Female',
+    dob: '12/25/1992',
+    zip: 90045,
+    goal_w: '120 lbs',
+    weekly_goal: 'Lose 0.5 lbs per week',
+    activity_lvl: 'Active',
+    workouts_per_wk: 3,
+    min_per_workout: 60,
+    image: { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583453260746.JPG' }
+  };
 
-  useEffect(() => {
-    loadData();
-  }, [])
+  // useEffect(() => {
+  //   loadData();
+  // }, [])
 
-  const loadData = () => {
-    const query = `
-    {
-      profiles(id:0) {
-        username
-        first_name
-        last_name
-        height
-        weight
-        age
-        gender
-        dob
-        zip
-        current_w
-        goal_w
-        weekly_goal
-        activity_lvl
-        workouts_per_wk
-        min_per_workout
-        image
-      }
-    }`;
-    axios
-      .post('http://192.168.1.14:8070/ct/graphql', { query })
-      .then((result) => setName(result.data.data.profiles[0].first_name))
-      .catch(err => console.error(err));
-  }
+  // const loadData = () => {
+  //   const query = `
+  //   {
+  //     profiles(id:0) {
+  //       username
+  //       first_name
+  //       last_name
+  //       height
+  //       weight
+  //       age
+  //       gender
+  //       dob
+  //       zip
+  //       current_w
+  //       goal_w
+  //       weekly_goal
+  //       activity_lvl
+  //       workouts_per_wk
+  //       min_per_workout
+  //       image
+  //     }
+  //   }`;
+  //   axios
+  //     .post('http://192.168.1.14:8070/ct/graphql', { query })
+  //     .then((result) => setName(result.data.data.profiles[0].first_name))
+  //     .catch(err => console.error(err));
+  // }
 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text>{name}'s profile</Text>
-        {/* <Button title="load" onPress={loadData} /> */}
+    <View style={styles.profilePage}>
+      <View style={styles.headerView}>
+        <Text style={styles.headerText}>{profile.first_name}'s Profile</Text>
       </View>
-      <ScrollView>
-      <View>
-        <Text style={styles.basicProfile}>Basic Profile</Text>
+      <View style={styles.scrollProfile}>
+        <ScrollView>
+          <Profile profile={profile}/>
+        </ScrollView>
       </View>
-      <View>
-        <Text style={styles.personalDetails}>Personal Details</Text>
+      <View style={styles.footerView}>
+        <Text>Footer</Text>
       </View>
-      <View>
-        <Text style={styles.goals}>Goals</Text>
-      </View>
-      <View>
-        <Text style={styles.fitnessGoals}>Fitness Goals</Text>
-      </View>
-      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
+  profilePage: {
     backgroundColor: 'whitesmoke',
-    alignItems: 'center',
     flexDirection: 'column',
-    height: 300
-    // justifyContent: 'center',
+    height: '100%',
   },
-  header: {
-    backgroundColor: 'grey',
-    flex: 1,
-    justifyContent: 'flex-start',
-    marginTop: 50,
-    width: '100%',
-    alignItems: 'center',
-    textAlign: 'center'
+  scrollProfile: {
+    flex: 20
   },
-  basicProfile: {
-    backgroundColor: 'blue',
+  headerView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    paddingTop: 50,
+    paddingLeft: 20,
+    backgroundColor: 'black'
   },
-  personalDetails: {
-    backgroundColor: 'yellow',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  headerText: {
+    fontSize: 20,
+    color: 'white'
   },
-  goals: {
-    backgroundColor: 'red',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  fitnessGoals: {
-    backgroundColor: 'green',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  footerView: {
+    flex: 3,
+    backgroundColor: 'black'
   }
 });
 
