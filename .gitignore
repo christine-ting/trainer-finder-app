@@ -1,0 +1,8 @@
+## MAC files ##
+.DS_Store
+
+## NPM ##
+node_modules
+
+## security key ##
+server/env/key.js
