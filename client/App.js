@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 2.5,
     // justifyContent: 'center'
     // backgroundColor: 'black',
-    paddingTop: 7
+    paddingTop: 7 
   }
 });
 
