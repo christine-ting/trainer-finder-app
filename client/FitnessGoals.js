@@ -9,6 +9,7 @@ const workout_min = [...Array(361).keys()];
 const FitnessGoals = (props) => {
   return (
     <View>
+      
       <RNPickerSelect
           onValueChange={(value) => console.log(value)}
           items={weekly_workouts}
