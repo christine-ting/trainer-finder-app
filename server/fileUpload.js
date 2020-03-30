@@ -51,12 +51,14 @@ const fileUpload = (req, res) => {
    * @access public
    */
   profileImgUpload( req, res, ( error ) => {
-    // console.log( 'requestOkokok', req.file );
+    console.log( 'req.file:', req.file );
+    console.log('req.body:', req.body);
     // console.log( 'error', error );
     if ( error ) {
       console.log( 'errors', error );
       res.json( { error: error } );
     } else {
+      console.log('req.file:', req.file)
     // If File not found
       if ( req.file === undefined ) {
         console.log( 'Error: No File Selected!' );

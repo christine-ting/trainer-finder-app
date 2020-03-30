@@ -8,7 +8,8 @@ const models = {
     return Info.create(info);
   },
   put: (content) => {
-    return Info.update(content, { where: { id: 0 } });
+    console.log('content:', content)
+    return Info.update({ image: content }, { where: { id: 0 } });
   },
   delete: (id) => {
     return Info.destroy({ where: { id } });

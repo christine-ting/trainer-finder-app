@@ -175,6 +175,9 @@ const Mutation = new GraphQLObjectType({
           },
           min_per_workout: {
             type: GraphQLInt
+          },
+          image: {
+            type: GraphQLString
           }
         },
         resolve(_, args) {
