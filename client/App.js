@@ -24,7 +24,7 @@ const App = () => {
     activity_lvl: 'Active',
     workouts_per_wk: 3,
     min_per_workout: 60,
-    image: { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583453260746.JPG' }
+    image: { uri: 'https://mvpuploadimg.s3.amazonaws.com/uploads%2F70C0AD5A-EDF0-4564-9C6F-F9B0883F35D4.jpg' }
   };
 
   // useEffect(() => {
