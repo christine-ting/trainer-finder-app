@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'react-native';
 
-class BMR extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      BMR: 0,
-      target: 0,
-      keyword: '',
-      verb: ''
-    };
-  }
+const BMR = ({ profile }) => {
+  const [BMRvalue, updateBMR] = useState(0);
+  const [targetValue, updateTarget] = useState(0);
+  const [verb, updateVerb] = useState('');
 
-  componentDidMount() {
-    let { profile } = this.props;
+  useEffect(() => {
+    calculateBMR();
+  }, []);
+
+  const calculateBMR = () => {
     let BMR, target;
     let W = Number(profile.weight.split(' ')[0]) * 0.453592;
     let H = Number(profile.height.split('/')[0]) * 30.48 + Number(profile.height.split('/')[1]) * 2.54;
@@ -38,39 +35,36 @@ class BMR extends React.Component {
     }
     if (keyword === 'Lose') {
       target = BMR - diff * 500;
-      this.setState({ verb: 'reduce', target });
+      updateVerb('reduce');
+      updateTarget(target);
     }
     if (keyword === 'Gain') {
       target = BMR + diff * 500;
-      this.setState({ verb: 'increase', target });
+      updateVerb('increase');
+      updateTarget(target);
     }
     if (keyword === 'Maintain') {
-      this.setState({ verb: 'maintain' });
+      updateVerb('maintain');
     }
-    this.setState({ BMR });
+    updateBMR(BMR);
   }
-
-  render() {
-    let { profile } = this.props;
-    let { BMR, verb, target } = this.state;
-    return (
-      <View style={styles.BMR}>
-        <Text id="ct_BMR_statement">
-          "In order to {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)},&nbsp;
-          { verb === 'maintain' ? (
-            <Text>
-              your daily calorie intake will be {BMR} calories per day."
-            </Text>
-          ) : (
-            <Text>
-              you will need to {verb} your daily calorie intake 
-              from your normal maintenance level of {BMR} calories per day, to {target} calories per day."
-            </Text>
-          ) }
-        </Text>
-      </View>
-    );
-  };
+  return (
+    <View style={styles.BMR}>
+      <Text id="ct_BMR_statement">
+        "In order to {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)},&nbsp;
+        { verb === 'maintain' ? (
+          <Text>
+            your daily calorie intake will be {BMRvalue} calories per day."
+          </Text>
+        ) : (
+          <Text>
+            you will need to {verb} your daily calorie intake 
+            from your normal maintenance level of {BMRvalue} calories per day, to {targetValue} calories per day."
+          </Text>
+        ) }
+      </Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
