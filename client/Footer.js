@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
         <Text style={{color: 'white'}}>Home</Text>
       </View>
       <View style={styles.icon}>
-        <Icon name="search" size={25} color="whitesmoke" />
+        <Icon name="search1" size={25} color="whitesmoke" />
         <Text style={{color: 'white'}}>Search</Text>
       </View>
       <View style={styles.icon}>

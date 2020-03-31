@@ -1,5 +1,7 @@
 import React from "react";
 // import zipcodes from 'zipcodes';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 import {
   StyleSheet,
@@ -18,6 +20,7 @@ const BasicProfile = ({ profile }) => {
       <View style={styles.profilePicContainer}>
         <ProfilePic profile={profile} />
       </View>
+      <Icon name="edit" size={25} color="black" />
       <View style={styles.profileText}>
         <Text style={{ fontSize: 25 }}>
           {profile.first_name} {profile.last_name}
