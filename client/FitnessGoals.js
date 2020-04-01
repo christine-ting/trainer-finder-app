@@ -1,23 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground, Picker } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+// import RNPickerSelect from 'react-native-picker-select';
 
 
-const weekly_workouts = [...Array(29).keys()].map((qty) => ({ label: `${qty}`, value: `${qty}` }));
-const workout_min = [...Array(361).keys()];
-
-const FitnessGoals = (props) => {
+const FitnessGoals = ({ profile }) => {
+  const title = ['Current Weight', 'Goal Weight', 'Weekly Goal', 'Activity Level'];
+  const dbTitle = ['weight', 'goal_w', 'weekly_goal', 'activity_lvl'];
   return (
-    <View>
-      
-      <RNPickerSelect
-          onValueChange={(value) => console.log(value)}
-          items={weekly_workouts}
-          placeholder={{label: `${props.workouts_per_wk}`, value: `${props.workouts_per_wk}`}}
-          placeholderTextColor="red"
-      />
+    <View style={styles.fitnessGoals}>
+      { title.map((title, index) => (
+        <View style={styles.row} key={index}>
+          <Text>{title}</Text>
+          <Text>{profile[dbTitle[index]]}</Text>
+        </View>
+      ))}
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  fitnessGoals: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    backgroundColor: 'rgb(132,148,164)',
+    padding: 10,
+    width: '90%',
+    borderRadius: 700 / 150,
+    flexWrap: 'wrap'
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '60%'
+  }
+});
 export default FitnessGoals;

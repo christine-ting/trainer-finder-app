@@ -20,13 +20,13 @@ const BasicProfile = ({ profile }) => {
       <View style={styles.profilePicContainer}>
         <ProfilePic profile={profile} />
       </View>
-      <Icon name="edit" size={25} color="black" />
-      <View style={styles.profileText}>
-        <Text style={{ fontSize: 25 }}>
+      {/* <Icon name="edit" size={25} color="black" /> */}
+      <View style={styles.profileView}>
+        <Text style={styles.profileName}>
           {profile.first_name} {profile.last_name}
         </Text>
-        <Text>{profile.email}</Text>
-        <Text>{profile.age} years old</Text>
+        <Text style={styles.profileText}>{profile.email}</Text>
+        <Text style={styles.profileText}>{profile.age} years old</Text>
         {/* <Text>{zipcodes.lookup(profile.zip).city}, {zipcodes.lookup(profile.zip).state}</Text> */}
       </View>
     </View>
@@ -38,18 +38,26 @@ export default BasicProfile;
 const styles = StyleSheet.create({
   basicProfile: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "stretch",
     flexDirection: "row",
-    width: "100%"
+    width: "100%",
+    backgroundColor: 'rgb(43,49,54)'
   },
   profilePicContainer: {
     // backgroundColor: 'grey',
-    paddingRight: 30
+    // paddingRight: 20
+  },
+  profileView: {
+    justifyContent: "center",
+  },
+  profileName: {
+    fontSize: 25,
+    color: 'rgb(240,240,240)',
   },
   profileText: {
     // backgroundColor: 'blue',
-    justifyContent: "center",
-    paddingRight: 20
+    color: 'rgb(240,240,240)',
+    // paddingRight: 20
   }
 });

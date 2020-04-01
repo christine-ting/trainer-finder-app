@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'rea
 import axios from 'axios';
 import Profile from './Profile';
 import Footer from './Footer';
+import Icon from 'react-native-vector-icons/Feather';
 
 const backgroundimg = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
 
 const App = () => {
   // const [name, setName] = useState('useEffect() in hooks');
+  const [fontLoaded, loadFont] = useState(false);
   const profile = {
     id: 0,
     email: 'christine@yahoo.com',
@@ -26,6 +28,28 @@ const App = () => {
     min_per_workout: 60,
     image: { uri: 'https://mvpuploadimg.s3.amazonaws.com/uploads%2F70C0AD5A-EDF0-4564-9C6F-F9B0883F35D4.jpg' }
   };
+  // useEffect(() => {
+  //   // Using an IIFE
+  //   const someFunc = async () => {
+  //     const result = await Expo.Font.loadAsync({
+  //       'pixel-font': require('../assets/fonts/Allan\-Regular.ttf'),
+  //     });
+  //   }
+      
+  //   loadFont(true);
+  //   }, []);
+
+  async function loadmyFont() {
+    let response = await Expo.Font.loadAsync({
+      'pixel-font': require('../assets/fonts/Muli\-Bold.ttf'),
+    });
+    loadFont(true);
+  }
+
+  useEffect(() => {
+    loadmyFont();
+  }, []);
+
 
   // useEffect(() => {
   //   loadData();
@@ -62,16 +86,21 @@ const App = () => {
 
   return (
     <View style={styles.profilePage}>
-        <View style={styles.headerView}>
-          <Text style={styles.headerText}>{profile.first_name}'s Profile</Text>
-        </View>
-      <ImageBackground source={backgroundimg} style={styles.backgroundimg}>
+        {
+          fontLoaded ? (
+            <View style={styles.headerView}>
+              <Text style={styles.headerText}>{profile.first_name} {profile.last_name}</Text>
+              <Icon name="edit" size={25} color="black" style={styles.editIcon} />
+            </View>
+          ) : null
+        }
+      {/* <ImageBackground source={backgroundimg} style={styles.backgroundimg}> */}
       <View style={styles.scrollProfile}>
         <ScrollView>
           <Profile profile={profile}/>
         </ScrollView>
       </View>
-      </ImageBackground>
+      {/* </ImageBackground> */}
       <View style={styles.footerContainer}>
         <Footer />
       </View>
@@ -81,23 +110,37 @@ const App = () => {
 
 const styles = StyleSheet.create({
   profilePage: {
-    backgroundColor: 'rgb(80,80,80)',
     flexDirection: 'column',
     height: '100%',
+    backgroundColor: 'rgb(32,39,43)'
   },
   scrollProfile: {
     flex: 20
   },
   headerView: {
-    flex: 1,
-    paddingTop: 50,
-    paddingLeft: 20,
-    backgroundColor: 'rgb(80,80,80)'
+    flex: 3,
+    flexDirection: 'row',
+    // paddingTop: 50,
+    // paddingBottom: 3,
+    // paddingLeft: 20,
+    width: '100%',
+    // justifyContent: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgb(62,69,73)'
   },
   headerText: {
-    fontSize: 20,
-    color: 'black',
-    fontWeight: 'bold'
+    fontSize: 22,
+    color: 'rgb(240,240,240)',
+    fontWeight: 'bold',
+    fontFamily: 'pixel-font',
+    marginLeft: 20,
+    marginBottom: 10
+  },
+  editIcon: {
+    color: 'rgb(220,220,220)',
+    marginRight: 10,
+    marginBottom: 10
   },
   backgroundimg: {
     width: '100%',
@@ -106,9 +149,33 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 2.5,
     // justifyContent: 'center'
-    // backgroundColor: 'black',
+    backgroundColor: 'rgb(80,80,80)',
     paddingTop: 7 
   }
 });
 
 export default App;
+// export default class App extends React.Component {
+//   state = {
+//     fontLoaded: false,
+//   }
+//   async componentWillMount() {
+//     await Expo.Font.loadAsync({
+//       'pixel-font': require('../assets/fonts/Allan\-Regular.ttf'),
+//     });
+//     this.setState({ fontLoaded: true });
+//   }
+//   render() {
+//     return (
+//       <View>
+//         {
+//           this.state.fontLoaded ? (
+//             <Text style={{ fontFamily: 'pixel-font', fontSize: 56 }}>
+//               Hello, world!
+//             </Text>
+//           ) : null
+//         }
+//       </View>
+//     )
+//   }
+// }

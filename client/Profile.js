@@ -40,7 +40,7 @@ const Profile = ({ profile }) => {
           <Text style={{fontSize: 20}}>Workout Plans</Text>
       </View>
       <View style={styles.workoutPlansContainer}>
-        <WorkoutPlans />
+        <WorkoutPlans profile={profile}/>
       </View>
     </View>
   )
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   coverPhoto: {
     width: '100%',
-    height: 150
+    height: 140
   },
   basicProfile: {
     // paddingBottom: 20

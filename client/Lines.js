@@ -5,9 +5,9 @@ const Lines = () => {
   return (
     <View
       style={{
-        borderBottomColor: 'rgb(80,80,80)',
-        borderBottomWidth: 1,
-        width: '100%',
+        borderBottomColor: 'rgb(150,150,150)',
+        borderBottomWidth: 7,
+        width: '100%'
       }}
   />
   )

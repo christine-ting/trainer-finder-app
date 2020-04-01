@@ -73,9 +73,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
     width: '100%',
-    borderRadius: 700 / 150,
-    borderColor: 'rgb(80,80,80)',
-    borderWidth: 1
+    // borderRadius: 700 / 150,
+    backgroundColor: 'rgb(160,160,160)'
   }
 });
 

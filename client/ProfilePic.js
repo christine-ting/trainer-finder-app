@@ -20,7 +20,7 @@ const ProfilePic = ({ profile }) => {
       return;
     }
 
-    let pickerResult = await ImagePicker.launchCameraAsync();
+    let pickerResult = await ImagePicker.launchCameraAsync({allowsEditing: true});
     if (pickerResult.cancelled === true) {
       return;
     }
@@ -65,8 +65,8 @@ const ProfilePic = ({ profile }) => {
       <View style={styles.profilePicBackground}>
         <Image source={selectedImage} style={styles.profilePic}/>
       </View>
-      <Button title="edit" onPress={openImagePickerAsync}/>
-      <Button title="upload" onPress={imageUpload}/>
+      {/* <Button title="edit" onPress={openImagePickerAsync}/>
+      <Button title="upload" onPress={imageUpload}/> */}
     </View>
   )
 }
