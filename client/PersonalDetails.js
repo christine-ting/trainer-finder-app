@@ -9,21 +9,21 @@ import {
 } from "react-native";
 
 const PersonalDetails = ({ profile }) => {
-  const title = ["Height", "Weight", "Age", "Gender", "DOB", "Zip Code"];
-  const dbTitle = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
+  const titles = [['Height', 'Gender'], ['Weight', 'Date of Birth'], ['Age', 'Zip Code']];
+  const dbTitles = [['height', 'gender'], ['weight', 'dateOfBirth'], ['age', 'zip']];
+
   return (
     <View style={styles.personalDetails}>
-      {title.map((title, index) => (
-        <View style={styles.row} key={index}>
-          <Text>{title}</Text>
-          {dbTitle[index] === "height" ? (
-            <Text>
-              {profile[dbTitle[index]].split("/")[0]}ft{" "}
-              {profile[dbTitle[index]].split("/")[1]}in
-            </Text>
-          ) : (
-            <Text>{profile[dbTitle[index]]}</Text>
-          )}
+      { titles.map((title, index) => (
+        <View style={styles.column} key={index}>
+          <View style={styles.entry}>
+            <Text style={styles.itemsTitle}>{title[0]}</Text>
+            <Text style={styles.itemsText}>{profile[dbTitles[index][0]]}</Text>
+          </View>
+          <View style={styles.entry}>
+            <Text style={styles.itemsTitle}>{title[1]}</Text>
+            <Text style={styles.itemsText}>{profile[dbTitles[index][1]]}</Text>
+          </View>
         </View>
       ))}
     </View>
@@ -32,19 +32,34 @@ const PersonalDetails = ({ profile }) => {
 
 const styles = StyleSheet.create({
   personalDetails: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-    backgroundColor: 'rgb(132,148,164)',
-    padding: 10,
-    width: '90%',
-    borderRadius: 700 / 150,
-    flexWrap: 'wrap'
-  },
-  row: {
+    backgroundColor: 'rgb(62,69,73)',
+    paddingHorizontal: 50,
+    paddingBottom: 15,
+    paddingTop: 20,
+    width: '100%',
     flexDirection: 'row',
+    justifyContent: 'center',
+    borderBottomColor: 'rgb(230,94,80)',
+    borderBottomWidth: 1
+  },
+  column: {
+    // backgroundColor: 'blue',
     justifyContent: 'space-between',
-    width: '60%'
+    // alignItems: 'flex-start',
+    // padding: 10,
+    paddingHorizontal: 20,
+  },
+  entry: {
+    // paddingTop: 5
+  },
+  itemsTitle: {
+    color: 'rgb(190,190,190)'
+  },
+  itemsText: {
+    color: 'rgb(240,240,240)',
+    paddingTop: 8,
+    paddingBottom: 15,
+    marginLeft: 3
   }
 });
 
