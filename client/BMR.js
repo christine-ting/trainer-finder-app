@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(62,69,73)'
   },
   BMRstatement: {
-    color: 'rgb(240,240,240)'
+    color: 'rgb(240,240,240)',
+    lineHeight: 20
   },
   number: {
     color: 'rgb(230,94,80)',
