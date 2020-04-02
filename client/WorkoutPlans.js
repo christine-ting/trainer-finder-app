@@ -18,9 +18,9 @@ const WorkoutPlans = ({ profile }) => {
   }));
   return (
     <View style={styles.workoutPlans}>
-      <View style={styles.workoutsPerWeek}>
-        <Text>Workouts/Week</Text>
-        <Text>{profile.workouts_per_wk}</Text>
+        <View style={styles.entry}>
+          <Text style={styles.itemsTitle}>Workouts/Week</Text>
+          <Text style={styles.itemsText}>{profile.workouts_per_wk}</Text>
         {/* <RNPickerSelect
           onValueChange={value => console.log(value)}
           items={numOfWorkoutsPerWeek}
@@ -33,9 +33,9 @@ const WorkoutPlans = ({ profile }) => {
           useNativeAndroidPickerStyle={true}
           /> */}
       </View>
-      <View style={styles.minutesPerWorkout}>
-      <Text>Minutes/Workout</Text>
-      <Text>{profile.min_per_workout}</Text>
+        <View style={styles.entry}>
+          <Text style={styles.itemsTitle}>Minutes/Workout</Text>
+          <Text style={styles.itemsText}>{profile.min_per_workout}</Text>
       {/* <RNPickerSelect
         onValueChange={value => console.log(value)}
         items={workoutMinutes}
@@ -54,23 +54,27 @@ const WorkoutPlans = ({ profile }) => {
 
 const styles = StyleSheet.create({
   workoutPlans: {
-    backgroundColor: "steelblue",
-    opacity: 0.6,
-    padding: 50,
-    borderRadius: 700 / 70,
-    marginTop: 10,
-    marginBottom: 20
-  },
-  workoutsPerWeek: {
+    backgroundColor: 'rgb(62,69,73)',
+    paddingHorizontal: 50,
+    paddingBottom: 15,
+    paddingTop: 20,
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '60%'
+    justifyContent: 'flex-start',
+    borderBottomColor: 'rgb(230,94,80)',
+    borderBottomWidth: 1  
   },
-  minutesPerWorkout: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '60%'
+  itemsTitle: {
+    color: 'rgb(190,190,190)'
   },
+  entry: {
+    paddingRight: 40
+  }, 
+  itemsText: {
+    color: 'rgb(240,240,240)',
+    paddingTop: 8,
+    marginLeft: 3
+  }
 });
 
 export default WorkoutPlans;
