@@ -5,7 +5,6 @@ import Profile from './Profile';
 import Footer from './Footer';
 import Icon from 'react-native-vector-icons/Feather';
 
-const backgroundimg = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/concrete.jpg' }
 
 const App = () => {
   // const [name, setName] = useState('useEffect() in hooks');
@@ -15,7 +14,7 @@ const App = () => {
     email: 'christine@yahoo.com',
     first_name: 'Christine',
     last_name: 'Ting',
-    height: '5/5',
+    height: '5\'5"',
     weight: '130 lbs',
     age: 27,
     gender: 'Female',
@@ -44,7 +43,7 @@ const App = () => {
       'pixel-font': require('../assets/fonts/Muli\-Bold.ttf'),
     });
     loadFont(true);
-  }
+  };
 
   useEffect(() => {
     loadmyFont();
@@ -94,13 +93,11 @@ const App = () => {
             </View>
           ) : null
         }
-      {/* <ImageBackground source={backgroundimg} style={styles.backgroundimg}> */}
       <View style={styles.scrollProfile}>
         <ScrollView>
           <Profile profile={profile}/>
         </ScrollView>
       </View>
-      {/* </ImageBackground> */}
       <View style={styles.footerContainer}>
         <Footer />
       </View>
@@ -112,7 +109,7 @@ const styles = StyleSheet.create({
   profilePage: {
     flexDirection: 'column',
     height: '100%',
-    backgroundColor: 'rgb(32,39,43)'
+    backgroundColor: 'rgb(37,44,48)'
   },
   scrollProfile: {
     flex: 20
@@ -127,7 +124,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    backgroundColor: 'rgb(62,69,73)'
+    backgroundColor: 'rgb(32,39,43)'
   },
   headerText: {
     fontSize: 22,
@@ -142,14 +139,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginBottom: 10
   },
-  backgroundimg: {
-    width: '100%',
-    flex: 20
-  },
   footerContainer: {
     flex: 2.5,
     // justifyContent: 'center'
-    backgroundColor: 'rgb(80,80,80)',
+    backgroundColor: 'rgb(32,39,43)',
     paddingTop: 7 
   }
 });

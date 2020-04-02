@@ -166,13 +166,13 @@ const styles = StyleSheet.create({
   profilePicBackground: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 160,
-    width: 160,
+    height: 165,
+    width: 165,
     borderRadius: 700/ 6,
-    backgroundColor: 'rgb(80,80,80)',
-    borderColor: 'rgb(150,150,150)',
+    backgroundColor: 'rgb(62,69,73)',
+    borderColor: 'rgb(220,220,220)',
     borderWidth: 2,
-    marginTop: -50
+    marginTop: -80
   },
   profilePic: {
     height: 150,
