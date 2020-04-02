@@ -13,7 +13,9 @@ const BMR = ({ profile }) => {
   const calculateBMR = () => {
     let BMR, target;
     let W = Number(profile.weight.split(' ')[0]) * 0.453592;
-    let H = Number(profile.height.split('/')[0]) * 30.48 + Number(profile.height.split('/')[1]) * 2.54;
+    let HeightFt = profile.height.split("'")[0];
+    let HeightIn = profile.height.split("'")[1];
+    let H = Number(HeightFt) * 30.48 + Number(HeightIn.slice(0, HeightIn.length - 1)) * 2.54;
     let keyword = profile.weekly_goal.split(' ')[0];
     let diff = Number(profile.weekly_goal.split(' ')[1]);
     if (profile.gender === 'Female') {
@@ -50,16 +52,35 @@ const BMR = ({ profile }) => {
   }
   return (
     <View style={styles.BMR}>
-      <Text id="ct_BMR_statement">
-        "In order to {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)},&nbsp;
+      <Text style={styles.BMRstatement}>
+        "In order to&nbsp;
+        <Text style={styles.number}>
+          {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)}
+        </Text>,&nbsp;
         { verb === 'maintain' ? (
           <Text>
-            your daily calorie intake will be {BMRvalue} calories per day."
+            your daily calorie intake will be&nbsp;
+              <Text style={styles.number}>
+                {BMRvalue}
+              </Text> 
+              &nbsp;calories per day."
           </Text>
         ) : (
           <Text>
-            you will need to {verb} your daily calorie intake 
-            from your normal maintenance level of {BMRvalue} calories per day, to {targetValue} calories per day."
+            you will need to&nbsp;
+            <Text style={styles.number}>
+              {verb} 
+            </Text>
+            &nbsp;your daily calorie intake 
+            from your normal maintenance level of&nbsp;
+            <Text style={styles.number}>
+              {BMRvalue} 
+            </Text>
+            &nbsp;calories per day, to&nbsp;
+            <Text style={styles.number}>
+              {targetValue} 
+            </Text>
+            &nbsp;calories per day."
           </Text>
         ) }
       </Text>
@@ -69,12 +90,17 @@ const BMR = ({ profile }) => {
 
 const styles = StyleSheet.create({
   BMR: {
-    // backgroundColor: 'rgb(230,230,230)',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
     width: '100%',
-    // borderRadius: 700 / 150,
-    backgroundColor: 'rgb(160,160,160)'
+    backgroundColor: 'rgb(62,69,73)'
+  },
+  BMRstatement: {
+    color: 'rgb(240,240,240)'
+  },
+  number: {
+    color: 'rgb(230,94,80)',
+    fontWeight: 'bold'
   }
 });
 
