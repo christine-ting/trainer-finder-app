@@ -4,14 +4,20 @@ import { StyleSheet, Text, View, Button, ScrollView, ImageBackground, Picker } f
 
 
 const FitnessGoals = ({ profile }) => {
-  const title = ['Current Weight', 'Goal Weight', 'Weekly Goal', 'Activity Level'];
-  const dbTitle = ['weight', 'goal_w', 'weekly_goal', 'activity_lvl'];
+  const titles = [['Current Weight', 'Weekly Goal'], ['Goal Weight', 'Activity Level']];
+  const dbTitles = [['weight', 'weekly_goal'], ['goal_w', 'activity_lvl']];
   return (
     <View style={styles.fitnessGoals}>
-      { title.map((title, index) => (
-        <View style={styles.row} key={index}>
-          <Text>{title}</Text>
-          <Text>{profile[dbTitle[index]]}</Text>
+      { titles.map((title, index) => (
+        <View style={styles.column} key={index}>
+          <View style={styles.entry}>
+            <Text style={styles.itemsTitle}>{title[0]}</Text>
+            <Text style={styles.itemsText}>{profile[dbTitles[index][0]]}</Text>
+          </View>
+          <View style={styles.entry}>
+            <Text style={styles.itemsTitle}>{title[1]}</Text>
+            <Text style={styles.itemsText}>{profile[dbTitles[index][1]]}</Text>
+          </View>
         </View>
       ))}
     </View>
@@ -20,19 +26,30 @@ const FitnessGoals = ({ profile }) => {
 
 const styles = StyleSheet.create({
   fitnessGoals: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
-    backgroundColor: 'rgb(132,148,164)',
-    padding: 10,
-    width: '90%',
-    borderRadius: 700 / 150,
-    flexWrap: 'wrap'
-  },
-  row: {
+    backgroundColor: 'rgb(62,69,73)',
+    paddingHorizontal: 50,
+    paddingBottom: 15,
+    paddingTop: 20,
+    width: '100%',
     flexDirection: 'row',
+    justifyContent: 'center',
+    borderBottomColor: 'rgb(230,94,80)',
+    borderBottomWidth: 1  
+  },
+  column: {
     justifyContent: 'space-between',
-    width: '60%'
+    paddingHorizontal: 20,
+  },
+  entry: {
+  },
+  itemsTitle: {
+    color: 'rgb(190,190,190)'
+  },
+  itemsText: {
+    color: 'rgb(240,240,240)',
+    paddingTop: 8,
+    paddingBottom: 15,
+    marginLeft: 3
   }
 });
 export default FitnessGoals;
