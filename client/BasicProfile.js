@@ -22,7 +22,7 @@ const BasicProfile = ({ profile }) => {
     loadmyFont();
   }, []);
 
-  const clicktoEditPhoto = (name) => {
+  const clicktoEditPhoto = name => {
     console.log(name);
     clickToShowModal(!showEditPhotoModal);
   };
@@ -43,24 +43,27 @@ const BasicProfile = ({ profile }) => {
           </View>
         ) : null}
       </View>
-      <TouchableOpacity
-        style={styles.editCoverPhotoContainer}
-        onPress={() => clicktoEditPhoto('cover')}
-      >
-        <View style={styles.editCoverPhotoBackground}>
+      <View style={styles.editCoverPhotoContainer}>
+        <TouchableOpacity
+          style={styles.editCoverPhotoBackground}
+          onPress={() => clicktoEditPhoto("cover")}
+        >
           <Icon name="camera" size={20} color="black" />
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
+        </TouchableOpacity>
+      </View>
+      <View
         style={styles.editProfilePicContainer}
-        name='profile'
-        onPress={() => clicktoEditPhoto('profile')}
+        name="profile"
+        onPress={() => clicktoEditPhoto("profile")}
       >
-        <View style={styles.editProfilePicBackground}>
+        <TouchableOpacity
+          style={styles.editProfilePicBackground}
+          onPress={() => clicktoEditPhoto("cover")}
+        >
           <Icon name="camera" size={20} color="black" />
-        </View>
-      </TouchableOpacity>
-      { showEditPhotoModal && <EditPhoto clicktoEditPhoto={clicktoEditPhoto}/> }
+        </TouchableOpacity>
+      </View>
+      {showEditPhotoModal && <EditPhoto clicktoEditPhoto={clicktoEditPhoto} />}
     </View>
   );
 };
