@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   workoutPlans: {
     backgroundColor: 'rgb(62,69,73)',
     paddingHorizontal: 50,
-    paddingBottom: 15,
+    paddingBottom: 20,
     paddingTop: 20,
     width: '100%',
     flexDirection: 'row',

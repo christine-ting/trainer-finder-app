@@ -78,7 +78,7 @@ const Profile = ({ profile }) => {
               </View>
               <WorkoutPlans profile={profile}/>
             </View>
-            <View style={styles.verticalLine}></View>
+            <View style={styles.shortVerticalLine}></View>
           </View>
         </View>
       ) : null
@@ -119,13 +119,13 @@ const styles = StyleSheet.create({
   verticalLine: {
     backgroundColor: 'rgb(92,99,103)',
     width: 2,
-    height: '87%',
+    height: '79%',
     position: 'absolute',
     marginLeft: 30
   },
   sectionTitle: {
     paddingLeft: 16,
-    paddingBottom: 10,
+    paddingBottom: 15,
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 15,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    paddingLeft: 2,
+    paddingLeft: 1,
     paddingTop: 3
   },
   headerText: {
@@ -146,6 +146,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'pixel-font',
     marginLeft: 10,
+  },
+  shortVerticalLine: {
+    backgroundColor: 'rgb(92,99,103)',
+    width: 2,
+    height: '70%',
+    position: 'absolute',
+    marginLeft: 30
   }
 });
 
