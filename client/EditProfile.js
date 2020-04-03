@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
-import ProfileNavigator from './navigation/ProfileNavigator';
 
-const App = () => {
+const EditProfile = () => {
   return (
-    <ProfileNavigator/>
-  );
+    <View>
+      <Text>edit</Text>
+    </View>
+  )
 }
 
-
-export default App;
-
+export default EditProfile;

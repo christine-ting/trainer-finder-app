@@ -2,9 +2,9 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://9s-6is.anonymous.trainer-finder-app.exp.direct",
   "packagerNgrokUrl": "https://packager.9s-6is.anonymous.trainer-finder-app.exp.direct",
-  "ngrokPid": 10240,
+  "ngrokPid": 84077,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 10211,
+  "packagerPid": 84061,
   "webpackServerPort": null
 }

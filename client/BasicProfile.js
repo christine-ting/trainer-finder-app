@@ -31,7 +31,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
   };
 
   const changeCoverPhoto = (uri) => {
-    updateCoverPhoto({ uri })
+    updateCoverPhoto({ uri });
   }
 
   return (
@@ -66,7 +66,6 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
       </View>
       {showEditPhotoModal && (
         <EditPhoto
-          profile={profile}
           changeProfilePic={changeProfilePic}
           changeCoverPhoto={changeCoverPhoto}
           photoType={photoType}

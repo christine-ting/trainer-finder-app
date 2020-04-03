@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 
-const EditPhoto = ({ photoType, profile, changeProfilePic, changeCoverPhoto, setShowModal }) => {
+const EditPhoto = ({ photoType, changeProfilePic, changeCoverPhoto, setShowModal }) => {
   const [showModal, setModalVisibility] = useState(true);
  
   const hideModal = () => {
@@ -87,7 +87,7 @@ const EditPhoto = ({ photoType, profile, changeProfilePic, changeCoverPhoto, set
   const updateDatabase = (uri) => {
     axios
     .put('http://192.168.1.14:8070/upload', { photoType, uri })
-    .then(() => console.log('profile picture updated'))
+    .then(() => console.log('picture updated'))
     .catch(err => console.error(err));
   }
 
