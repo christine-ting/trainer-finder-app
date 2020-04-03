@@ -1,34 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
-import axios from 'axios';
-import Profile from './Profile';
-import Footer from './Footer';
-import EditProfile from './EditProfile';
-import Icon from 'react-native-vector-icons/Feather';
-import EditPhoto from './EditPhoto';
-import Colors from './constants/Colors';
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ScrollView,
+  TouchableOpacity
+} from "react-native";
+import axios from "axios";
+import Profile from "./Profile";
+import Footer from "./Footer";
+import EditProfile from "./EditProfile";
+import Icon from "react-native-vector-icons/Feather";
+import EditPhoto from "./EditPhoto";
+import Colors from "./constants/Colors";
 
 
+let accessNavigation;
 const ProfilePage = ({ navigation }) => {
   // const [name, setName] = useState('useEffect() in hooks');
-  const [fontLoaded, loadFont] = useState(false);
+  // const [fontLoaded, loadFont] = useState(false);
   const profile = {
     id: 0,
-    email: 'christine@yahoo.com',
-    first_name: 'Christine',
-    last_name: 'Ting',
-    height: '5\'5"',
-    weight: '130 lbs',
+    email: "christine@yahoo.com",
+    first_name: "Christine",
+    last_name: "Ting",
+    height: "5'5\"",
+    weight: "130 lbs",
     age: 27,
-    gender: 'Female',
-    dateOfBirth: '12/25/1992',
+    gender: "Female",
+    dateOfBirth: "12/25/1992",
     zip: 90045,
-    goal_w: '120 lbs',
-    weekly_goal: 'Lose 0.5 lbs per week',
-    activity_lvl: 'Active',
+    goal_w: "120 lbs",
+    weekly_goal: "Lose 0.5 lbs per week",
+    activity_lvl: "Active",
     workouts_per_wk: 3,
     min_per_workout: 60,
-    image: { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583774057211.JPG' }
+    image: {
+      uri:
+        "https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583774057211.JPG"
+    }
   };
   // useEffect(() => {
   //   // Using an IIFE
@@ -37,24 +48,22 @@ const ProfilePage = ({ navigation }) => {
   //       'pixel-font': require('../assets/fonts/Allan\-Regular.ttf'),
   //     });
   //   }
-      
+
   //   loadFont(true);
   //   }, []);
 
-  async function loadmyFont() {
-    let response = await Expo.Font.loadAsync({
-      'pixel-font': require('../assets/fonts/Muli\-Bold.ttf'),
-    });
-    loadFont(true);
-  };
+  // async function loadmyFont() {
+  //   let response = await Expo.Font.loadAsync({
+  //     "pixel-font": require("../assets/fonts/Muli-Bold.ttf")
+  //   });
+  //   loadFont(true);
+  // }
 
   useEffect(() => {
-    loadmyFont();
+    // loadmyFont();
+    accessNavigation = navigation;
   }, []);
 
-  const clickToEdit = () => {
-    navigation.navigate({ routeName: 'EditMode' });
-  }
   // useEffect(() => {
   //   loadData();
   // }, [])
@@ -88,17 +97,16 @@ const ProfilePage = ({ navigation }) => {
   // }
   return (
     <View style={styles.profilePage}>
-        {
-          fontLoaded ? (
-            <View style={styles.headerView}>
-              <Text style={styles.headerText}>{profile.first_name} {profile.last_name}</Text>
-              <Icon name="edit" size={25} color="black" style={styles.editIcon} onPress={() => clickToEdit()}/>
-            </View>
-          ) : null
-        }
+      {/* {fontLoaded ? (
+        <View style={styles.headerView}>
+          <Text style={styles.headerText}>
+            {profile.first_name} {profile.last_name}
+          </Text>
+        </View>
+      ) : null} */}
       <View style={styles.scrollProfile}>
         <ScrollView>
-          <Profile profile={profile}/>
+          <Profile profile={profile} />
         </ScrollView>
       </View>
       <View style={styles.footerContainer}>
@@ -106,58 +114,68 @@ const ProfilePage = ({ navigation }) => {
       </View>
     </View>
   );
-}
+};
 
 ProfilePage.navigationOptions = {
-  headerTitle: 'Profile',
+  headerTitle: "Profile",
   headerStyle: {
     backgroundColor: Colors.headerFooter,
+    shadowColor: 'transparent'
   },
   headerRight: () => (
-    <Button title="button" />
+    <Icon
+      name="edit"
+      size={25}
+      style={styles.editIcon}
+      onPress={() => accessNavigation.navigate({ routeName: "EditMode" })}
+    />
   ),
-  headerTintColor: Colors.lightGrey
-}
+  headerTintColor: Colors.lightGrey,
+  headerTitleStyle: {
+    fontSize: 20
+  }
+};
 
 const styles = StyleSheet.create({
   profilePage: {
-    flexDirection: 'column',
-    height: '100%',
-    backgroundColor: 'rgb(37,44,48)'
+    flexDirection: "column",
+    height: "100%",
+    backgroundColor: Colors.background,
+    flex: 1
   },
   scrollProfile: {
-    flex: 20
+    flex: 0.9
   },
-  headerView: {
-    flex: 3,
-    flexDirection: 'row',
-    // paddingTop: 50,
-    // paddingBottom: 3,
-    // paddingLeft: 20,
-    width: '100%',
-    // justifyContent: 'center',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgb(32,39,43)'
-  },
-  headerText: {
-    fontSize: 22,
-    color: 'rgb(240,240,240)',
-    fontWeight: 'bold',
-    fontFamily: 'pixel-font',
-    marginLeft: 20,
-    marginBottom: 10
-  },
+  // headerView: {
+  //   flex: 3,
+  //   flexDirection: "row",
+  //   // paddingTop: 50,
+  //   // paddingBottom: 3,
+  //   // paddingLeft: 20,
+  //   width: "100%",
+  //   // justifyContent: 'center',
+  //   alignItems: "flex-end",
+  //   justifyContent: "space-between",
+  //   backgroundColor: "rgb(32,39,43)"
+  // },
+  // headerText: {
+  //   fontSize: 22,
+  //   color: "rgb(240,240,240)",
+  //   fontWeight: "bold",
+  //   fontFamily: "pixel-font",
+  //   marginLeft: 20,
+  //   marginBottom: 10
+  // },
   editIcon: {
-    color: 'rgb(220,220,220)',
+    color: Colors.mediumGrey,
     marginRight: 10,
     marginBottom: 10
   },
   footerContainer: {
-    flex: 2.5,
+    flex: 0.1,
     // justifyContent: 'center'
-    backgroundColor: 'rgb(32,39,43)',
-    paddingTop: 7 
+    backgroundColor: Colors.headerFooter,
+    paddingTop: 7
   }
 });
 
