@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import zipcodes from 'zipcodes';
 import Icon from "react-native-vector-icons/AntDesign";
-
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import ProfilePic from "./ProfilePic";
-import { grey, blue } from "color-name";
 import EditPhoto from "./EditPhoto";
 
-const BasicProfile = ({ profile }) => {
+const BasicProfile = ({ profile, updateCoverPhoto }) => {
   const [fontLoaded, loadFont] = useState(false);
-  const [showEditPhotoModal, clickToShowModal] = useState(false);
+  const [showEditPhotoModal, setShowModal] = useState(false);
+  const [photoType, setPhotoType] = useState("");
+  const [profilePic, updateProfilePic] = useState(profile.image);
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
@@ -22,19 +21,25 @@ const BasicProfile = ({ profile }) => {
     loadmyFont();
   }, []);
 
-  const clicktoEditPhoto = name => {
-    console.log(name);
-    clickToShowModal(!showEditPhotoModal);
+  const clicktoEditPhoto = (photoType) => {
+    setShowModal(!showEditPhotoModal);
+    setPhotoType(photoType);
   };
+
+  const changeProfilePic = (uri) => {
+    updateProfilePic({ uri });
+  };
+
+  const changeCoverPhoto = (uri) => {
+    updateCoverPhoto({ uri })
+  }
 
   return (
     <View style={styles.basicProfile}>
-      {/* <Icon name='camera' size={18} color='rgb(190,190,190)' /> */}
       <View>
         <View style={styles.profilePicContainer}>
-          <ProfilePic profile={profile} />
+          <ProfilePic profile={profile} profilePic={profilePic}/>
         </View>
-        {/* <Icon name="edit" size={25} color="black" /> */}
         {fontLoaded ? (
           <View style={styles.profileView}>
             <Text style={styles.profileName}>
@@ -51,19 +56,23 @@ const BasicProfile = ({ profile }) => {
           <Icon name="camera" size={20} color="black" />
         </TouchableOpacity>
       </View>
-      <View
-        style={styles.editProfilePicContainer}
-        name="profile"
-        onPress={() => clicktoEditPhoto("profile")}
-      >
+      <View style={styles.editProfilePicContainer}>
         <TouchableOpacity
           style={styles.editProfilePicBackground}
-          onPress={() => clicktoEditPhoto("cover")}
+          onPress={() => clicktoEditPhoto("profile")}
         >
           <Icon name="camera" size={20} color="black" />
         </TouchableOpacity>
       </View>
-      {showEditPhotoModal && <EditPhoto clicktoEditPhoto={clicktoEditPhoto} />}
+      {showEditPhotoModal && (
+        <EditPhoto
+          profile={profile}
+          changeProfilePic={changeProfilePic}
+          changeCoverPhoto={changeCoverPhoto}
+          photoType={photoType}
+          setShowModal={setShowModal}
+        />
+      )}
     </View>
   );
 };

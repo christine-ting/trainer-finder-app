@@ -72,7 +72,11 @@ const Info = sequelize.define('Info', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  image: {
+  profile_pic: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  cover_photo: {
     type: DataTypes.STRING,
     allowNull: true
   }

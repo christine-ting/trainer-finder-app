@@ -6,7 +6,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "createDB": "psql -U postgres -a -f database/schema.sql",
+    "seed": "node database/seed.js"
   },
   "dependencies": {
     "aws-sdk": "^2.633.0",

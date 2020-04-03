@@ -12,8 +12,7 @@ const controllers = {
       });
   },
   put: (req, res) => {
-    console.log('req.body:', req.body)
-    models.put(req.body.uri)
+    models.put(req.body)
       .then(() => {
         res.status(202).send('updated');
       })

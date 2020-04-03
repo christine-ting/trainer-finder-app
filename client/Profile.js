@@ -8,10 +8,9 @@ import BMR from './BMR';
 import Lines from './Lines';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const image = { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-03-09+at+9.10.16+AM.png' };
-
 const Profile = ({ profile }) => {
   const [fontLoaded, loadFont] = useState(false);
+  const [coverPhoto, updateCoverPhoto] = useState({ uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-03-09+at+9.10.16+AM.png' });
   
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
@@ -30,10 +29,10 @@ const Profile = ({ profile }) => {
       fontLoaded ? (
         <View>
           <View style={styles.coverPotoView}>
-            <Image source={image} style={styles.coverPhoto} />
+            <Image source={coverPhoto} style={styles.coverPhoto} />
           </View>
           <View style={styles.basicProfile}>
-            <BasicProfile profile={profile}/>
+            <BasicProfile profile={profile} updateCoverPhoto={updateCoverPhoto}/>
           </View>
           <View style={styles.BMRContainer}>
             <BMR profile={profile}/>

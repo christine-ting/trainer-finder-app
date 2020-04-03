@@ -14,7 +14,8 @@ const example = [{
   activity_lvl: 'Active',
   workouts_per_wk: 3,
   min_per_workout: 60,
-  image: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583453260746.JPG'
+  profile_pic: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583453260746.JPG',
+  cover_photo: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-03-09+at+9.10.16+AM.png'
 }];
 
 const Info = require('./index.js').Info;

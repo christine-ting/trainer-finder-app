@@ -8,8 +8,12 @@ const models = {
     return Info.create(info);
   },
   put: (content) => {
-    console.log('content:', content)
-    return Info.update({ image: content }, { where: { id: 0 } });
+    if (content.photoType === 'profile') {
+      return Info.update({ profile_pic: content.uri }, { where: { id: 0 } });
+    }
+    if (content.photoType === 'cover') {
+      return Info.update({ cover_photo: content.uri }, { where: { id: 0 } });
+    }
   },
   delete: (id) => {
     return Info.destroy({ where: { id } });

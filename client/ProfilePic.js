@@ -8,62 +8,12 @@ import key from '../server/env/key';
 
 
 
-const ProfilePic = ({ profile }) => {
-  const [selectedImage, editImage] = useState(profile.image);
-  const [imageDetails, editImageDetails] = useState(null);
-
-  const openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert('Permission to access camera roll is required!');
-      return;
-    }
-
-    let pickerResult = await ImagePicker.launchCameraAsync({allowsEditing: true});
-    if (pickerResult.cancelled === true) {
-      return;
-    }
-    editImageDetails(pickerResult);
-    editImage({ uri: pickerResult.uri });
-  };
-
-  const imageUpload = () => {
-    const imageArray = imageDetails.uri.split('/');
-    const imageName = imageArray[imageArray.length - 1];
-    const file = {
-      name: imageName,
-      type: "image/jpeg",
-      uri: imageDetails.uri
-    };
-    const options = {
-      keyPrefix: "uploads/",
-      bucket: key.Bucket,
-      region: "us-west-1",
-      accessKey: key.accessKeyId,
-      secretKey: key.secretAccessKey,
-      successActionStatus: 201      
-    };
-    RNS3.put(file, options)
-      .then(response => {
-        if (response.status !== 201)
-          throw new Error("Failed to upload image to S3");
-        const imageLocationS3 = response.body.postResponse.location;
-        updateDatabase(imageLocationS3);
-      });
-  }
-
-  const updateDatabase = (uri) => {
-    axios
-    .put('http://192.168.1.14:8070/upload', { uri })
-    .then(() => console.log('profile picture updated'))
-    .catch(err => console.error(err));
-  }
+const ProfilePic = ({ profile, profilePic }) => {
 
   return (
     <View style={styles.profilePicContainer}>
       <View style={styles.profilePicBackground}>
-        <Image source={selectedImage} style={styles.profilePic}/>
+        <Image source={profilePic} style={styles.profilePic}/>
       </View>
       {/* <Button title="edit" onPress={openImagePickerAsync}/>
       <Button title="upload" onPress={imageUpload}/> */}
