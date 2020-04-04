@@ -15,8 +15,8 @@ import Icon from "react-native-vector-icons/Feather";
 import EditPhoto from "./EditPhoto";
 import Colors from "./constants/Colors";
 
-
 let accessNavigation;
+let profileInfo;
 const ProfilePage = ({ navigation }) => {
   // const [name, setName] = useState('useEffect() in hooks');
   // const [fontLoaded, loadFont] = useState(false);
@@ -62,6 +62,7 @@ const ProfilePage = ({ navigation }) => {
   useEffect(() => {
     // loadmyFont();
     accessNavigation = navigation;
+    profileInfo = profile;
   }, []);
 
   // useEffect(() => {
@@ -120,14 +121,21 @@ ProfilePage.navigationOptions = {
   headerTitle: "Profile",
   headerStyle: {
     backgroundColor: Colors.headerFooter,
-    shadowColor: 'transparent'
+    shadowColor: "transparent"
   },
   headerRight: () => (
     <Icon
       name="edit"
       size={25}
       style={styles.editIcon}
-      onPress={() => accessNavigation.navigate({ routeName: "EditMode" })}
+      onPress={() =>
+        accessNavigation.navigate({
+          routeName: "EditMode",
+          params: {
+            profile: profileInfo
+          }
+        })
+      }
     />
   ),
   headerTintColor: Colors.lightGrey,

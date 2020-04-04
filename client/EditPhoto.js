@@ -16,6 +16,7 @@ const EditPhoto = ({ photoType, changeProfilePic, changeCoverPhoto, setShowModal
  
   const hideModal = () => {
     setModalVisibility(false);
+    setShowModal(false);
   }
 
   const takePicture = async() => {

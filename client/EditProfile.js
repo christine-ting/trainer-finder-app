@@ -2,26 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import Colors from './constants/Colors';
 import Footer from './Footer';
+import EditAccount from './EditAccount';
+import EditPersonalDetails from './EditPersonalDetails';
+import EditFitnessGoals from './EditFitnessGoals';
+import EditWorkoutPlans from './EditWorkoutPlans';
 
 let accessNavigation;
 
 const EditProfile = ({ navigation }) => {
-
+  // const { profileInfo } = route;
+  const profile = navigation.getParam('profile');
   useEffect(() => {
-    // loadmyFont();
     accessNavigation = navigation;
   }, []);
 
   return (
     <View style={styles.editProfile}>
       <View style={styles.scrollProfile}>
-        <ScrollView >
-          <Text>details</Text>
+        <ScrollView>
+          <EditAccount profile={profile}/>
+          <EditPersonalDetails profile={profile}/>
+          <EditFitnessGoals profile={profile}/>
+          <EditWorkoutPlans profile={profile}/>
+          <View style={styles.appNameView}>
+            <Text style={styles.appName}>Trainer Finder</Text>
+          </View>
         </ScrollView>
-      </View>
-      <View style={styles.footerContainer}>
-        <Footer />
-      </View>    
+      </View>   
     </View>
   )
 }
@@ -35,7 +42,7 @@ EditProfile.navigationOptions = {
   headerRight: () => (
     <Button
       title="Save"
-      color={Colors.lightGrey}
+      color={Colors.orangePink}
       onPress={() => accessNavigation.navigate({ routeName: "Profile" })}
     />
   ),
@@ -50,17 +57,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     height: "100%",
     backgroundColor: Colors.background,
-    flex: 1
+    flex: 1,
+    paddingBottom: 20
   },
-  scrollProfile: {
-    flex: 0.9
-  },  
-  footerContainer: {
-    flex: 0.1,
-    // justifyContent: 'center'
-    backgroundColor: Colors.headerFooter,
-    paddingTop: 7,
-    bottom: 0
+  appNameView: {
+    paddingVertical: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  appName: {
+    color: Colors.mediumGrey,
+    fontSize: 17
   }
 });
 export default EditProfile;
