@@ -23,25 +23,18 @@ const EditPersonalDetails = ({ profile }) => {
     "Zip Code"
   ];
   const dbTitles = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
+  const { height, weight, age, gender, dateOfBirth, zip } = profile;
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
-      height: profile.height,
-      weight: profile.weight,
-      age: profile.age,
-      gender: profile.gender,
-      dateOfBirth: profile.dateOfBirth,
-      zip: profile.zip
+      height,
+      weight,
+      age,
+      gender,
+      dateOfBirth,
+      zip
     }
   );
-  const inputs = [
-    userInput.height,
-    userInput.weight,
-    userInput.age,
-    userInput.gender,
-    userInput.dateOfBirth,
-    userInput.zip
-  ];
 
   const changeHandler = (text, title) => {
     setUserInput({ [title]: text });
@@ -51,11 +44,11 @@ const EditPersonalDetails = ({ profile }) => {
     <View style={styles.editPersonalDetails}>
       <Text style={styles.title}>PERSONAL DETAILS</Text>
       <View style={styles.details}>
-        {titles.map((title, index) => {
-          if (title === "Gender") {
-            return (
-              <View style={styles.row}>
-                <Text style={styles.item}>Gender</Text>
+        {titles.map((title, index) => (
+          <View key={index}>
+            <View style={styles.row}>
+              <Text style={styles.item}>{title}</Text>
+              {title === "Gender" ? (
                 <View style={styles.inputView}>
                   <RNPickerSelect
                     onValueChange={value => console.log(value)}
@@ -78,27 +71,21 @@ const EditPersonalDetails = ({ profile }) => {
                     color={Colors.mediumGrey}
                   />
                 </View>
-              </View>
-            );
-          }
-          return (
-            <View>
-              <View style={styles.row}>
-                <Text style={styles.item}>{title}</Text>
+              ) : (
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.info}
-                    value={inputs[index].toString()}
+                    value={userInput[dbTitles[index]].toString()}
                     onChangeText={text => changeHandler(text, dbTitles[index])}
                   />
                   <Text>&nbsp;</Text>
                   <EditIcon name="edit-2" size={15} color={Colors.mediumGrey} />
                 </View>
-              </View>
-              <View style={styles.line} />
+              )}
             </View>
-          );
-        })}
+            <View style={styles.line} />
+          </View>
+        ))}
       </View>
     </View>
   );
