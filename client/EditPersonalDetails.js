@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import {
   StyleSheet,
   Text,
@@ -23,9 +23,28 @@ const EditPersonalDetails = ({ profile }) => {
     "Zip Code"
   ];
   const dbTitles = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
-  const [ inputHeight, changeHeight ] = useState(profile.height);
-  const editEntry = (text, title) => {
-    console.log(text, title);
+  const [userInput, setUserInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      height: profile.height,
+      weight: profile.weight,
+      age: profile.age,
+      gender: profile.gender,
+      dateOfBirth: profile.dateOfBirth,
+      zip: profile.zip
+    }
+  );
+  const inputs = [
+    userInput.height,
+    userInput.weight,
+    userInput.age,
+    userInput.gender,
+    userInput.dateOfBirth,
+    userInput.zip
+  ];
+
+  const changeHandler = (text, title) => {
+    setUserInput({ [title]: text });
   };
 
   return (
@@ -41,8 +60,8 @@ const EditPersonalDetails = ({ profile }) => {
                   <RNPickerSelect
                     onValueChange={value => console.log(value)}
                     items={[
-                      { label: "Female", value: "female", color: "white" },
-                      { label: "Male", value: "male", color: "white" }
+                      { label: "Female", value: "female" },
+                      { label: "Male", value: "male" }
                     ]}
                     placeholder={{
                       value: `${profile.gender}`,
@@ -69,8 +88,8 @@ const EditPersonalDetails = ({ profile }) => {
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.info}
-                    value={profile[dbTitles[index]].toString()}
-                    onChangeText={text => editEntry(text, dbTitles[index])}
+                    value={inputs[index].toString()}
+                    onChangeText={text => changeHandler(text, dbTitles[index])}
                   />
                   <Text>&nbsp;</Text>
                   <EditIcon name="edit-2" size={15} color={Colors.mediumGrey} />
