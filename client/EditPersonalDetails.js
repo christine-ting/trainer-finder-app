@@ -68,7 +68,7 @@ const EditPersonalDetails = ({ profile }) => {
                   <ArrowIcon
                     name="triangle-down"
                     size={15}
-                    color={Colors.mediumGrey}
+                    color={Colors.orangePink}
                   />
                 </View>
               ) : (
@@ -79,7 +79,7 @@ const EditPersonalDetails = ({ profile }) => {
                     onChangeText={text => changeHandler(text, dbTitles[index])}
                   />
                   <Text>&nbsp;</Text>
-                  <EditIcon name="edit-2" size={15} color={Colors.mediumGrey} />
+                  <EditIcon name="edit-2" size={15} color={Colors.orangePink} />
                 </View>
               )}
             </View>

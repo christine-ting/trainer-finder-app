@@ -18,7 +18,7 @@ const EditAccount = ({ profile }) => {
           <View style={styles.inputView}>
             <TextInput style={styles.info} value={firstName} onChangeText={text => editFirstName(text)}/>
             <Text>&nbsp;</Text>
-            <Icon name="edit-2" size={15} color={Colors.mediumGrey} />
+            <Icon name="edit-2" size={15} color={Colors.orangePink} />
           </View>
         </View>
         <View style={styles.line}/>
@@ -27,7 +27,7 @@ const EditAccount = ({ profile }) => {
           <View style={styles.inputView}>
             <TextInput style={styles.info} value={lastName} onChangeText={text => editLastName(text)}/>
             <Text>&nbsp;</Text>
-            <Icon name="edit-2" size={15} color={Colors.mediumGrey} />
+            <Icon name="edit-2" size={15} color={Colors.orangePink} />
           </View>
         </View>
           <View style={styles.line}/>
@@ -36,7 +36,7 @@ const EditAccount = ({ profile }) => {
           <View style={styles.inputView}>
             <TextInput style={styles.info} value={email} onChangeText={text => editEmail(text)}/>
             <Text>&nbsp;</Text>
-            <Icon name="edit-2" size={15} color={Colors.mediumGrey} />
+            <Icon name="edit-2" size={15} color={Colors.orangePink} />
           </View>
         </View>
       </View>

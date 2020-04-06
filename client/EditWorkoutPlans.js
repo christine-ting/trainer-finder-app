@@ -53,7 +53,7 @@ const EditWorkoutPlans = ({ profile }) => {
                 <ArrowIcon
                   name="triangle-down"
                   size={15}
-                  color={Colors.mediumGrey}
+                  color={Colors.orangePink}
                 />
               </View>
             </View>
