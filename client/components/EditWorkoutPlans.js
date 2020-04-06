@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Colors from "./constants/Colors";
+import Colors from "../constants/Colors";
 import ArrowIcon from "react-native-vector-icons/Octicons";
 
 import RNPickerSelect from "react-native-picker-select";
@@ -27,7 +27,7 @@ const selections = [weeklyWorkoutsSelection, workoutMinSelection];
 const titles = ["Workouts/Week", "Minutes/Workout"];
 const dbTitles = ["workouts_per_wk", "min_per_workout"];
 
-const EditWorkoutPlans = ({ profile }) => {
+const EditWorkoutPlans = ({ profile, changeHandler }) => {
 
   return (
     <View style={styles.editWorkoutPlans}>
@@ -39,7 +39,7 @@ const EditWorkoutPlans = ({ profile }) => {
               <Text style={styles.item}>{title}</Text>
               <View style={styles.inputView}>
                 <RNPickerSelect
-                  onValueChange={value => console.log(value)}
+                  onValueChange={value => changeHandler(value, dbTitles[index])}
                   items={selections[index]}
                   placeholder={{
                     value: `${profile[dbTitles[index]]}`,

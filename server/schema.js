@@ -12,10 +12,10 @@ const Profile = new GraphQLObjectType({
           return profile.id;
         }
       },
-      username: {
+      email: {
         type: GraphQLString,
         resolve(profile) {
-          return profile.username;
+          return profile.email;
         }
       },
       first_name: {
@@ -54,7 +54,7 @@ const Profile = new GraphQLObjectType({
           return profile.gender;
         }
       },
-      dob: {
+      dateOfBirth: {
         type: GraphQLString,
         resolve(profile) {
           return profile.dob;
@@ -64,12 +64,6 @@ const Profile = new GraphQLObjectType({
         type: GraphQLInt,
         resolve(profile) {
           return profile.zip;
-        }
-      },
-      current_w: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.current_w;
         }
       },
       goal_w: {
@@ -143,6 +137,15 @@ const Mutation = new GraphQLObjectType({
           id: {
             type: new GraphQLNonNull(GraphQLInt)
           },
+          email: {
+            type: GraphQLString
+          },
+          first_name: {
+            type: GraphQLString
+          },
+          last_name: {
+            type: GraphQLString
+          },
           height: {
             type: GraphQLString
           },
@@ -155,7 +158,7 @@ const Mutation = new GraphQLObjectType({
           gender: {
             type: GraphQLString
           },
-          dob: {
+          dateOfBirth: {
             type: GraphQLString
           },
           zip: {

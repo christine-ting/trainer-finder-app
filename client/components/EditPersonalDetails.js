@@ -7,38 +7,39 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Colors from "./constants/Colors";
+import Colors from "../constants/Colors";
 import EditIcon from "react-native-vector-icons/Feather";
 import ArrowIcon from "react-native-vector-icons/Octicons";
 
 import RNPickerSelect from "react-native-picker-select";
 
-const EditPersonalDetails = ({ profile }) => {
-  const titles = [
-    "Height",
-    "Weight",
-    "Age",
-    "Gender",
-    "Date of Birth",
-    "Zip Code"
-  ];
-  const dbTitles = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
-  const { height, weight, age, gender, dateOfBirth, zip } = profile;
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      height,
-      weight,
-      age,
-      gender,
-      dateOfBirth,
-      zip
-    }
-  );
+const titles = [
+  "Height",
+  "Weight",
+  "Age",
+  "Gender",
+  "Date of Birth",
+  "Zip Code"
+];
+const dbTitles = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
 
-  const changeHandler = (text, title) => {
-    setUserInput({ [title]: text });
-  };
+const EditPersonalDetails = ({ profile, userInput, changeHandler }) => {
+  // const { height, weight, age, gender, dateOfBirth, zip } = profile;
+  // const [userInput, setUserInput] = useReducer(
+  //   (state, newState) => ({ ...state, ...newState }),
+  //   {
+  //     height,
+  //     weight,
+  //     age,
+  //     gender,
+  //     dateOfBirth,
+  //     zip
+  //   }
+  // );
+
+  // const changeHandler = (text, title) => {
+  //   setUserInput({ [title]: text });
+  // };
 
   return (
     <View style={styles.editPersonalDetails}>
@@ -51,10 +52,10 @@ const EditPersonalDetails = ({ profile }) => {
               {title === "Gender" ? (
                 <View style={styles.inputView}>
                   <RNPickerSelect
-                    onValueChange={value => console.log(value)}
+                    onValueChange={value => changeHandler(value, 'gender')}
                     items={[
-                      { label: "Female", value: "female" },
-                      { label: "Male", value: "male" }
+                      { label: "Female", value: "Female" },
+                      { label: "Male", value: "Male" }
                     ]}
                     placeholder={{
                       value: `${profile.gender}`,

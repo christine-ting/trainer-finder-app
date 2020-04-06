@@ -13,7 +13,7 @@ import Footer from "./Footer";
 import EditProfile from "./EditProfile";
 import Icon from "react-native-vector-icons/Feather";
 import EditPhoto from "./EditPhoto";
-import Colors from "./constants/Colors";
+import Colors from "../constants/Colors";
 
 let accessNavigation;
 let profileInfo;

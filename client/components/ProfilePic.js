@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-n
 import * as ImagePicker from 'expo-image-picker';
 import { Platform } from '@unimodules/core';
 import { RNS3 } from 'react-native-aws3';
-import key from '../server/env/key';
+import key from '../../server/env/key';
 
 
 

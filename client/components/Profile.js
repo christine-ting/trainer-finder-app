@@ -14,7 +14,7 @@ const Profile = ({ profile }) => {
   
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
-      'pixel-font': require('../assets/fonts/Muli\-Medium.ttf'),
+      'pixel-font': require('../../assets/fonts/Muli\-Medium.ttf'),
     });
     loadFont(true);
   };

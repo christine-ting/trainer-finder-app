@@ -5,7 +5,7 @@ import PhotoIcon from 'react-native-vector-icons/FontAwesome';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import * as ImagePicker from 'expo-image-picker';
 import { RNS3 } from 'react-native-aws3';
-import key from '../server/env/key';
+import key from '../../server/env/key';
 import axios from 'axios';
 
 

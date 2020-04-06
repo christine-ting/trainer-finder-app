@@ -12,7 +12,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
-      "pixel-font": require("../assets/fonts/Muli-Bold.ttf")
+      "pixel-font": require("../../assets/fonts/Muli-Bold.ttf")
     });
     loadFont(true);
   }

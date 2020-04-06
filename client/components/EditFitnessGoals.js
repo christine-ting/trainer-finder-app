@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import Colors from "./constants/Colors";
+import Colors from "../constants/Colors";
 import EditIcon from "react-native-vector-icons/Feather";
 import ArrowIcon from "react-native-vector-icons/Octicons";
 import RNPickerSelect from "react-native-picker-select";
@@ -32,21 +32,7 @@ const titles = [
 ];
 const dbTitles = ["weight", "goal_w", "weekly_goal", "activity_lvl"];
 
-const EditFitnessGoals = ({ profile }) => {
-  const { weight, goal_w, weekly_goal, activity_lvl } = profile;
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      weight,
-      goal_w,
-      weekly_goal,
-      activity_lvl
-    }
-  );
-
-  const changeHandler = (text, title) => {
-    setUserInput({ [title]: text });
-  };
+const EditFitnessGoals = ({ profile, userInput, changeHandler }) => {
 
   return (
     <View style={styles.editFitnessGoals}>
@@ -69,7 +55,7 @@ const EditFitnessGoals = ({ profile }) => {
               ) : title === "Weekly Goal" ? (
                 <View style={styles.inputView}>
                   <RNPickerSelect
-                    onValueChange={value => console.log(value)}
+                    onValueChange={value => changeHandler(value, 'weekly_goal')}
                     items={goalsSelection}
                     placeholder={{
                       value: `${profile.weekly_goal}`,
@@ -89,7 +75,7 @@ const EditFitnessGoals = ({ profile }) => {
               ) : (
                 <View style={styles.inputView}>
                   <RNPickerSelect
-                    onValueChange={value => console.log(value)}
+                    onValueChange={value => changeHandler(value, 'activity_lvl')}
                     items={levelsSelection}
                     placeholder={{
                       value: `${profile.activity_lvl}`,
