@@ -7,6 +7,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { RNS3 } from 'react-native-aws3';
 import key from '../../server/env/key';
 import axios from 'axios';
+import { editPhotoStyle } from '../styles';
 
 
 
@@ -36,7 +37,7 @@ const EditPhoto = ({ photoType, changeProfilePic, changeCoverPhoto, setShowModal
     setModalVisibility(false);
   }
 
-  selectFromCameraRoll = async() => {
+  const selectFromCameraRoll = async() => {
     let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
 
     if (permissionResult.granted === false) {
@@ -121,31 +122,6 @@ const EditPhoto = ({ photoType, changeProfilePic, changeCoverPhoto, setShowModal
   )
 }
 
-const styles = StyleSheet.create({
-  editPhotoContainer: {
-    position: 'relative'
-  },
-  editPhotoBox: {
-    backgroundColor: 'white',
-    height: '20%',
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    borderRadius: 10,
-    alignItems: 'center'
-  },
-  selection: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 13,
-    flexDirection: 'row'
-  },
-  line: {
-    height: 1,
-    backgroundColor: 'silver',
-    width: '100%',
-  }
-})
+const styles = StyleSheet.create(editPhotoStyle);
 
 export default EditPhoto;

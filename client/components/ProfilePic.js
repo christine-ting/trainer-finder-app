@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Platform } from '@unimodules/core';
 import { RNS3 } from 'react-native-aws3';
 import key from '../../server/env/key';
+import { profilePicStyle } from '../styles';
 
 
 
@@ -108,27 +109,6 @@ const ProfilePic = ({ profile, profilePic }) => {
 //   }
 // }
 
-const styles = StyleSheet.create({
-  profilePicContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  profilePicBackground: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 165,
-    width: 165,
-    borderRadius: 700/ 6,
-    backgroundColor: 'rgb(62,69,73)',
-    borderColor: 'rgb(220,220,220)',
-    borderWidth: 2,
-    marginTop: -80
-  },
-  profilePic: {
-    height: 150,
-    width: 150,
-    borderRadius: 700/ 7
-  }
-});
+const styles = StyleSheet.create(profilePicStyle);
 
 export default ProfilePic;

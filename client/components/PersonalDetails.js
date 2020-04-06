@@ -8,12 +8,14 @@ import {
   ImageBackground
 } from "react-native";
 
+import { blockStyle } from '../styles';
+
 const PersonalDetails = ({ profile }) => {
   const titles = [['Height', 'Gender'], ['Weight', 'Date of Birth'], ['Age', 'Zip Code']];
   const dbTitles = [['height', 'gender'], ['weight', 'dateOfBirth'], ['age', 'zip']];
 
   return (
-    <View style={styles.personalDetails}>
+    <View style={styles.main}>
       { titles.map((title, index) => (
         <View style={styles.column} key={index}>
           <View style={styles.entry}>
@@ -30,37 +32,6 @@ const PersonalDetails = ({ profile }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  personalDetails: {
-    backgroundColor: 'rgb(62,69,73)',
-    paddingHorizontal: 50,
-    paddingBottom: 15,
-    paddingTop: 20,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderBottomColor: 'rgb(230,94,80)',
-    borderBottomWidth: 1
-  },
-  column: {
-    // backgroundColor: 'blue',
-    justifyContent: 'space-between',
-    // alignItems: 'flex-start',
-    // padding: 10,
-    paddingHorizontal: 20,
-  },
-  entry: {
-    // paddingTop: 5
-  },
-  itemsTitle: {
-    color: 'rgb(190,190,190)'
-  },
-  itemsText: {
-    color: 'rgb(240,240,240)',
-    paddingTop: 8,
-    paddingBottom: 15,
-    marginLeft: 3
-  }
-});
+const styles = StyleSheet.create(blockStyle);
 
 export default PersonalDetails;

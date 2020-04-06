@@ -13,7 +13,8 @@ import Footer from "./Footer";
 import EditProfile from "./EditProfile";
 import Icon from "react-native-vector-icons/Feather";
 import EditPhoto from "./EditPhoto";
-import Colors from "../constants/Colors";
+import { profilePageStyle } from '../styles'
+import Colors from '../styles/colors';
 
 let accessNavigation;
 let profileInfo;
@@ -144,71 +145,6 @@ ProfilePage.navigationOptions = {
   }
 };
 
-const styles = StyleSheet.create({
-  profilePage: {
-    flexDirection: "column",
-    height: "100%",
-    backgroundColor: Colors.background,
-    flex: 1
-  },
-  scrollProfile: {
-    flex: 0.9
-  },
-  // headerView: {
-  //   flex: 3,
-  //   flexDirection: "row",
-  //   // paddingTop: 50,
-  //   // paddingBottom: 3,
-  //   // paddingLeft: 20,
-  //   width: "100%",
-  //   // justifyContent: 'center',
-  //   alignItems: "flex-end",
-  //   justifyContent: "space-between",
-  //   backgroundColor: "rgb(32,39,43)"
-  // },
-  // headerText: {
-  //   fontSize: 22,
-  //   color: "rgb(240,240,240)",
-  //   fontWeight: "bold",
-  //   fontFamily: "pixel-font",
-  //   marginLeft: 20,
-  //   marginBottom: 10
-  // },
-  editIcon: {
-    color: Colors.mediumGrey,
-    marginRight: 10,
-    marginBottom: 10
-  },
-  footerContainer: {
-    flex: 0.1,
-    // justifyContent: 'center'
-    backgroundColor: Colors.headerFooter,
-    paddingTop: 7
-  }
-});
+const styles = StyleSheet.create(profilePageStyle);
 
 export default ProfilePage;
-// export default class App extends React.Component {
-//   state = {
-//     fontLoaded: false,
-//   }
-//   async componentWillMount() {
-//     await Expo.Font.loadAsync({
-//       'pixel-font': require('../assets/fonts/Allan\-Regular.ttf'),
-//     });
-//     this.setState({ fontLoaded: true });
-//   }
-//   render() {
-//     return (
-//       <View>
-//         {
-//           this.state.fontLoaded ? (
-//             <Text style={{ fontFamily: 'pixel-font', fontSize: 56 }}>
-//               Hello, world!
-//             </Text>
-//           ) : null
-//         }
-//       </View>
-//     )
-//   }
-// }

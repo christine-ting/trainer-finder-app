@@ -7,6 +7,7 @@ import WorkoutPlans from './WorkoutPlans';
 import BMR from './BMR';
 import Lines from './Lines';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { profileStyle } from '../styles';
 
 const Profile = ({ profile }) => {
   const [fontLoaded, loadFont] = useState(false);
@@ -85,74 +86,6 @@ const Profile = ({ profile }) => {
     </View>
   )
 }
-const styles = StyleSheet.create({
-  profile: {    
-    justifyContent: 'space-evenly',
-    paddingBottom: 30
-  },
-  coverPotoView: {
-    alignItems: 'center',
-    backgroundColor: 'rgb(62,69,73)'
-  },
-  coverPhoto: {
-    width: '92%',
-    height: 180,
-    borderRadius: 600 / 70,
-  },
-  basicProfile: {
-  },
-  BMRContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 30,
-    paddingBottom: 15
-  },
-  sectionContainer: {
-    // justifyContent: 'center',
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    position: 'relative',
-    // marginBottom: 20
-    width: '100%'
-  },
-  verticalLine: {
-    backgroundColor: 'rgb(92,99,103)',
-    width: 2,
-    height: '79%',
-    position: 'absolute',
-    marginLeft: 30
-  },
-  sectionTitle: {
-    paddingLeft: 16,
-    paddingBottom: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: 15,
-    width: '100%'
-  },
-  iconBackground: {
-    backgroundColor: 'rgb(92,99,103)',
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
-    paddingLeft: 1,
-    paddingTop: 3
-  },
-  headerText: {
-    color: 'rgb(190,190,190)',
-    fontSize: 20,
-    fontFamily: 'pixel-font',
-    marginLeft: 10,
-  },
-  shortVerticalLine: {
-    backgroundColor: 'rgb(92,99,103)',
-    width: 2,
-    height: '70%',
-    position: 'absolute',
-    marginLeft: 30
-  }
-});
+const styles = StyleSheet.create(profileStyle);
 
 export default Profile;

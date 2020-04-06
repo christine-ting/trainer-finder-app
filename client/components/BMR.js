@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'react-native';
+import { BMRStyle } from '../styles';
 
 const BMR = ({ profile }) => {
   const [BMRvalue, updateBMR] = useState(0);
@@ -88,21 +89,6 @@ const BMR = ({ profile }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  BMR: {
-    paddingVertical: 20,
-    paddingHorizontal: 30,
-    width: '100%',
-    backgroundColor: 'rgb(62,69,73)'
-  },
-  BMRstatement: {
-    color: 'rgb(240,240,240)',
-    lineHeight: 20
-  },
-  number: {
-    color: 'rgb(230,94,80)',
-    fontWeight: 'bold'
-  }
-});
+const styles = StyleSheet.create(BMRStyle);
 
 export default BMR;

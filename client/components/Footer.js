@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, ImageBackground, Picker } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { footerStyle } from '../styles';
 
 const Footer = () => {
   return (
@@ -21,16 +22,6 @@ const Footer = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
-  }, 
-  icon: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+const styles = StyleSheet.create(footerStyle);
 
 export default Footer;

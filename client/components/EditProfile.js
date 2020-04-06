@@ -7,12 +7,13 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Colors from "../constants/Colors";
+import Colors from '../styles/colors';
 import EditAccount from "./EditAccount";
 import EditPersonalDetails from "./EditPersonalDetails";
 import EditFitnessGoals from "./EditFitnessGoals";
 import EditWorkoutPlans from "./EditWorkoutPlans";
 import axios from "axios";
+import { editProfileStyle } from '../styles';
 
 let accessNavigation;
 let newDetails = {};
@@ -160,22 +161,6 @@ EditProfile.navigationOptions = {
   }
 };
 
-const styles = StyleSheet.create({
-  editProfile: {
-    flexDirection: "column",
-    height: "100%",
-    backgroundColor: Colors.background,
-    flex: 1,
-    paddingBottom: 20
-  },
-  appNameView: {
-    paddingVertical: 30,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  appName: {
-    color: Colors.mediumGrey,
-    fontSize: 17
-  }
-});
+const styles = StyleSheet.create(editProfileStyle);
+
 export default EditProfile;

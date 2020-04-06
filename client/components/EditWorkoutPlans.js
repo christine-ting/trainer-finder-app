@@ -7,8 +7,10 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Colors from "../constants/Colors";
+import Colors from '../styles/colors';
 import ArrowIcon from "react-native-vector-icons/Octicons";
+import { editContainerStyle } from '../styles';
+import { pickerStyle } from '../styles/common';
 
 import RNPickerSelect from "react-native-picker-select";
 
@@ -30,7 +32,7 @@ const dbTitles = ["workouts_per_wk", "min_per_workout"];
 const EditWorkoutPlans = ({ profile, changeHandler }) => {
 
   return (
-    <View style={styles.editWorkoutPlans}>
+    <View style={styles.main}>
       <Text style={styles.title}>WORKOUT PLANS</Text>
       <View style={styles.details}>
         {titles.map((title, index) => (
@@ -65,54 +67,6 @@ const EditWorkoutPlans = ({ profile, changeHandler }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  editWorkoutPlans: {
-    width: "100%"
-  },
-  title: {
-    color: Colors.mediumGrey,
-    fontWeight: "bold",
-    paddingTop: 20,
-    paddingBottom: 10,
-    paddingLeft: 15
-  },
-  details: {
-    backgroundColor: Colors.sectionBackground
-  },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    flex: 1
-  },
-  item: {
-    color: Colors.lightGrey,
-    justifyContent: "center",
-    flex: 0.5
-  },
-  inputView: {
-    flexDirection: "row",
-    flex: 0.5,
-    justifyContent: "flex-end"
-  },
-  info: {
-    color: Colors.mediumGrey
-  },
-  line: {
-    backgroundColor: Colors.background,
-    height: 1
-  }
-});
-
-const pickerStyle = {
-  inputIOS: {
-    color: Colors.mediumGrey
-  },
-  inputAndroid: {
-    color: Colors.mediumGrey
-  },
-  placeholderColor: Colors.mediumGrey
-};
+const styles = StyleSheet.create(editContainerStyle);
 
 export default EditWorkoutPlans;
