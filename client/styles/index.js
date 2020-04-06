@@ -4,8 +4,7 @@ export const profilePageStyle = {
   profilePage: {
     flexDirection: 'column',
     height: '100%',
-    backgroundColor: Colors.background,
-    flex: 1
+    backgroundColor: Colors.background
   },
   scrollProfile: {
     flex: 0.9

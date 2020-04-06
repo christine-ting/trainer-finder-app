@@ -54,10 +54,10 @@ const Profile = new GraphQLObjectType({
           return profile.gender;
         }
       },
-      dateOfBirth: {
+      date_of_birth: {
         type: GraphQLString,
         resolve(profile) {
-          return profile.dob;
+          return profile.date_of_birth;
         }
       },
       zip: {
@@ -96,10 +96,16 @@ const Profile = new GraphQLObjectType({
           return profile.min_per_workout;
         }
       },
-      image: {
+      profile_pic: {
         type: GraphQLString,
         resolve(profile) {
-          return profile.image;
+          return profile.profile_pic;
+        }
+      },
+      cover_photo: {
+        type: GraphQLString,
+        resolve(profile) {
+          return profile.cover_photo;
         }
       }
     };
@@ -158,7 +164,7 @@ const Mutation = new GraphQLObjectType({
           gender: {
             type: GraphQLString
           },
-          dateOfBirth: {
+          date_of_birth: {
             type: GraphQLString
           },
           zip: {

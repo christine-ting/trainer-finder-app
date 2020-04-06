@@ -16,7 +16,7 @@ const Info = sequelize.define('Info', {
     allowNull: false,
     primaryKey: true
   },
-  username: {
+  email: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -44,7 +44,7 @@ const Info = sequelize.define('Info', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  dob: {
+  date_of_birth: {
     type: DataTypes.STRING,
     allowNull: false
   },

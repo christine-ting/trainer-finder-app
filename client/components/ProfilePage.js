@@ -1,128 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  Button,
   ScrollView,
-  TouchableOpacity
-} from "react-native";
-import axios from "axios";
-import Profile from "./Profile";
-import Footer from "./Footer";
-import EditProfile from "./EditProfile";
-import Icon from "react-native-vector-icons/Feather";
-import EditPhoto from "./EditPhoto";
-import { profilePageStyle } from '../styles'
+  ActivityIndicator
+} from 'react-native';
+import axios from 'axios';
+import Profile from './Profile';
+import Footer from './Footer';
+import Icon from 'react-native-vector-icons/Feather';
+import { profilePageStyle } from '../styles';
 import Colors from '../styles/colors';
 
+const query = `
+  {
+    profiles(id:0) {
+      email
+      first_name
+      last_name
+      height
+      weight
+      age
+      gender
+      date_of_birth
+      zip
+      goal_w
+      weekly_goal
+      activity_lvl
+      workouts_per_wk
+      min_per_workout
+      profile_pic
+      cover_photo
+    }
+  }`;
 let accessNavigation;
 let profileInfo;
+
 const ProfilePage = ({ navigation }) => {
-  // const [name, setName] = useState('useEffect() in hooks');
-  // const [fontLoaded, loadFont] = useState(false);
-  const profile = {
-    id: 0,
-    email: "christine@yahoo.com",
-    first_name: "Christine",
-    last_name: "Ting",
-    height: "5'5\"",
-    weight: "130 lbs",
-    age: 27,
-    gender: "Female",
-    dateOfBirth: "12/25/1992",
-    zip: 90045,
-    goal_w: "120 lbs",
-    weekly_goal: "Lose 0.5 lbs per week",
-    activity_lvl: "Active",
-    workouts_per_wk: 3,
-    min_per_workout: 60,
-    image: {
-      uri:
-        "https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583774057211.JPG"
-    }
-  };
-  // useEffect(() => {
-  //   // Using an IIFE
-  //   const someFunc = async () => {
-  //     const result = await Expo.Font.loadAsync({
-  //       'pixel-font': require('../assets/fonts/Allan\-Regular.ttf'),
-  //     });
-  //   }
-
-  //   loadFont(true);
-  //   }, []);
-
-  // async function loadmyFont() {
-  //   let response = await Expo.Font.loadAsync({
-  //     "pixel-font": require("../assets/fonts/Muli-Bold.ttf")
-  //   });
-  //   loadFont(true);
-  // }
+  const [isLoading, setLoading] = useState(true);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    // loadmyFont();
     accessNavigation = navigation;
     profileInfo = profile;
+    axios
+      .post('http://192.168.1.20:8070/ct/graphql', { query })
+      .then(result => setProfile(result.data.data.profiles[0]))
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
-  // useEffect(() => {
-  //   loadData();
-  // }, [])
-
-  // const loadData = () => {
-  //   const query = `
-  //   {
-  //     profiles(id:0) {
-  //       username
-  //       first_name
-  //       last_name
-  //       height
-  //       weight
-  //       age
-  //       gender
-  //       dob
-  //       zip
-  //       current_w
-  //       goal_w
-  //       weekly_goal
-  //       activity_lvl
-  //       workouts_per_wk
-  //       min_per_workout
-  //       image
-  //     }
-  //   }`;
-  //   axios
-  //     .post('http://192.168.1.14:8070/ct/graphql', { query })
-  //     .then((result) => setName(result.data.data.profiles[0].first_name))
-  //     .catch(err => console.error(err));
-  // }
   return (
-    <View style={styles.profilePage}>
-      {/* {fontLoaded ? (
-        <View style={styles.headerView}>
-          <Text style={styles.headerText}>
-            {profile.first_name} {profile.last_name}
-          </Text>
+    <View>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <View style={styles.profilePage}>
+          <View style={styles.scrollProfile}>
+            <ScrollView>
+              <Profile profile={profile} />
+            </ScrollView>
+          </View>
+          <View style={styles.footerContainer}>
+            <Footer />
+          </View>
         </View>
-      ) : null} */}
-      <View style={styles.scrollProfile}>
-        <ScrollView>
-          <Profile profile={profile} />
-        </ScrollView>
-      </View>
-      <View style={styles.footerContainer}>
-        <Footer />
-      </View>
+      )}
     </View>
   );
 };
 
 ProfilePage.navigationOptions = {
-  headerTitle: "Profile",
+  headerTitle: 'Profile',
   headerStyle: {
     backgroundColor: Colors.headerFooter,
-    shadowColor: "transparent"
+    shadowColor: 'transparent'
   },
   headerRight: () => (
     <Icon
@@ -131,7 +83,7 @@ ProfilePage.navigationOptions = {
       style={styles.editIcon}
       onPress={() =>
         accessNavigation.navigate({
-          routeName: "EditMode",
+          routeName: 'EditMode',
           params: {
             profile: profileInfo
           }

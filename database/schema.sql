@@ -8,14 +8,14 @@ DROP TABLE IF EXISTS info;
 
 CREATE TABLE info (
   id SERIAL,
-  username VARCHAR NOT NULL,
+  email VARCHAR NOT NULL,
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
   height VARCHAR NOT NULL,
   weight VARCHAR NOT NULL,
   age INT NOT NULL,
   gender VARCHAR NOT NULL,
-  dob VARCHAR NOT NULL,
+  date_of_birth VARCHAR NOT NULL,
   zip INT NOT NULL,
   goal_w VARCHAR NOT NULL,
   weekly_goal VARCHAR NOT NULL,

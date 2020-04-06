@@ -56,7 +56,7 @@ const BMR = ({ profile }) => {
       <Text style={styles.BMRstatement}>
         "In order to&nbsp;
         <Text style={styles.number}>
-          {profile.weekly_goal[0].toLowerCase()}{profile.weekly_goal.slice(1)}
+          {profile.weekly_goal.toLowerCase()}{profile.weekly_goal.slice(1)}
         </Text>,&nbsp;
         { verb === 'maintain' ? (
           <Text>

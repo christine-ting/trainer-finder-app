@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     // Rules here will override the 'hackreactor' configuration
     // http://eslint.org/docs/rules/
-    "no-use-before-define": {"variables": false}
+    "no-use-before-define": 0,
+    "camelcase": 0
   }
 };
