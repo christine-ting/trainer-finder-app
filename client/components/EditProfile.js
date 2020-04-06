@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import Colors from './constants/Colors';
-import Footer from './Footer';
 import EditAccount from './EditAccount';
 import EditPersonalDetails from './EditPersonalDetails';
 import EditFitnessGoals from './EditFitnessGoals';
@@ -10,7 +9,6 @@ import EditWorkoutPlans from './EditWorkoutPlans';
 let accessNavigation;
 
 const EditProfile = ({ navigation }) => {
-  // const { profileInfo } = route;
   const profile = navigation.getParam('profile');
   useEffect(() => {
     accessNavigation = navigation;
