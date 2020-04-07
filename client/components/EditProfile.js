@@ -141,7 +141,10 @@ EditProfile.navigationOptions = {
       title='Save'
       color={Colors.orangePink}
       // onPress={() => accessNavigation.navigate({ routeName: 'Profile' })}
-      onPress={() => updateDatabase()}
+      onPress={() => {
+        updateDatabase();
+        accessNavigation.navigate({ routeName: 'Profile' });
+      }}
     />
   ),
   headerTintColor: Colors.mediumGrey,

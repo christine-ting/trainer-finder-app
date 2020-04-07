@@ -36,7 +36,16 @@ const ProfilePage = ({ navigation }) => {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
+    navigation.addListener(
+      'didFocus',
+      payload => {
+        getUserProfile();
+      }
+    );
     accessNavigation = navigation;
+  }, []);
+  
+  const getUserProfile = () => {
     axios
       .post('http://192.168.1.20:8070/ct/graphql', { query })
       .then(result => { 
@@ -45,7 +54,7 @@ const ProfilePage = ({ navigation }) => {
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
-  }, []);
+  };
 
   return (
     <View>
