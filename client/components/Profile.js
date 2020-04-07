@@ -12,7 +12,6 @@ import PersonalDetails from "./PersonalDetails";
 import FitnessGoals from "./FitnessGoals";
 import WorkoutPlans from "./WorkoutPlans";
 import BMR from "./BMR";
-import Lines from "./Lines";
 import Icon from "react-native-vector-icons/Ionicons";
 import { profileStyle } from "../styles";
 
