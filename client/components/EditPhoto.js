@@ -85,7 +85,7 @@ const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal
     mutation updateProfile {
     updateProfile(
       id:0,
-      ${photoType}: '${uri}'
+      ${photoType}: "${uri}"
       ) { id } 
     }`;
     axios
