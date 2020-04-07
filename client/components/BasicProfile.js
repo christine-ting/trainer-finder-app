@@ -8,15 +8,15 @@ import { basicProfileStyle } from '../styles';
 const BasicProfile = ({ profile, updateCoverPhoto }) => {
   const [fontLoaded, loadFont] = useState(false);
   const [showEditPhotoModal, setShowModal] = useState(false);
-  const [photoType, setPhotoType] = useState("");
+  const [photoType, setPhotoType] = useState('');
   const [profilePic, updateProfilePic] = useState(profile.image);
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
-      "pixel-font": require("../../assets/fonts/Muli-Bold.ttf")
+      'pixel-font': require('../../assets/fonts/Muli-Bold.ttf')
     });
     loadFont(true);
-  }
+  };
 
   useEffect(() => {
     loadmyFont();
@@ -33,13 +33,13 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
 
   const changeCoverPhoto = (uri) => {
     updateCoverPhoto({ uri });
-  }
+  };
 
   return (
     <View style={styles.basicProfile}>
       <View>
         <View style={styles.profilePicContainer}>
-          <ProfilePic profile={profile} profilePic={profilePic}/>
+          <ProfilePic profile={profile} profilePic={profilePic} />
         </View>
         {fontLoaded ? (
           <View style={styles.profileView}>
@@ -52,17 +52,17 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
       <View style={styles.editCoverPhotoContainer}>
         <TouchableOpacity
           style={styles.editCoverPhotoBackground}
-          onPress={() => clicktoEditPhoto("cover")}
+          onPress={() => clicktoEditPhoto('cover')}
         >
-          <Icon name="camera" size={20} color="black" />
+          <Icon name='camera' size={20} color='black' />
         </TouchableOpacity>
       </View>
       <View style={styles.editProfilePicContainer}>
         <TouchableOpacity
           style={styles.editProfilePicBackground}
-          onPress={() => clicktoEditPhoto("profile")}
+          onPress={() => clicktoEditPhoto('profile')}
         >
-          <Icon name="camera" size={20} color="black" />
+          <Icon name='camera' size={20} color='black' />
         </TouchableOpacity>
       </View>
       {showEditPhotoModal && (
