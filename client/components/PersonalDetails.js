@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  ImageBackground
-} from "react-native";
-
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { blockStyle } from '../styles';
 
 const PersonalDetails = ({ profile }) => {
-  const titles = [['Height', 'Gender'], ['Weight', 'Date of Birth'], ['Age', 'Zip Code']];
-  const dbTitles = [['height', 'gender'], ['weight', 'dateOfBirth'], ['age', 'zip']];
+  const titles = [
+    ['Height', 'Gender'],
+    ['Weight', 'Date of Birth'],
+    ['Age', 'Zip Code']
+  ];
+  const dbTitles = [
+    ['height', 'gender'],
+    ['weight', 'dateOfBirth'],
+    ['age', 'zip']
+  ];
 
   return (
     <View style={styles.main}>
-      { titles.map((title, index) => (
+      {titles.map((title, index) => (
         <View style={styles.column} key={index}>
           <View style={styles.entry}>
             <Text style={styles.itemsTitle}>{title[0]}</Text>
