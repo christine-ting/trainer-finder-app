@@ -6,8 +6,6 @@ const path = require('path');
 const port = 8070;
 const expressGraphQL = require('express-graphql');
 const Schema = require('./schema.js');
-const fileUpload = require('./fileUpload.js');
-const controllers = require('./controllers.js');
 const app = express();
 
 app.use(bodyParser.json());
@@ -15,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
 
-app.use('/upload', controllers.put);
 app.use('/ct/graphql', expressGraphQL({
   schema: Schema,
   pretty: true,

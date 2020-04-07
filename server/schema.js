@@ -1,9 +1,16 @@
 const db = require('../database/index.js').sequelize;
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, GraphQLSchema, GraphQLNonNull } = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLList,
+  GraphQLSchema,
+  GraphQLNonNull
+} = require('graphql');
 
 const Profile = new GraphQLObjectType({
   name: 'Profile',
-  description: 'This represents a Profile', 
+  description: 'This represents a Profile',
   fields: () => {
     return {
       id: {
@@ -125,7 +132,7 @@ const Query = new GraphQLObjectType({
           }
         },
         resolve(root, args) {
-          return db.models.Info.findAll({where: args});
+          return db.models.Info.findAll({ where: args });
         }
       }
     };
@@ -193,7 +200,7 @@ const Mutation = new GraphQLObjectType({
           }
         },
         resolve(_, args) {
-          return db.models.Info.update(args, {where: {id: args.id}});
+          return db.models.Info.update(args, { where: { id: args.id } });
         }
       }
     };
@@ -206,4 +213,3 @@ const Schema = new GraphQLSchema({
 });
 
 module.exports = Schema;
-
