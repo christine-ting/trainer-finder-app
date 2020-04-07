@@ -10,7 +10,7 @@ const PersonalDetails = ({ profile }) => {
   ];
   const dbTitles = [
     ['height', 'gender'],
-    ['weight', 'dateOfBirth'],
+    ['weight', 'date_of_birth'],
     ['age', 'zip']
   ];
 
