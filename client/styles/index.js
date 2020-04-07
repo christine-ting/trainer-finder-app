@@ -239,6 +239,10 @@ export const footerStyle = {
   icon: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  footerText: {
+    color: 'whitesmoke',
+    fontSize: 13
   }
 };
 
