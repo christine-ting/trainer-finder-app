@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import EditIcon from 'react-native-vector-icons/Feather';
 import Colors from '../styles/colors';
-
-import EditIcon from "react-native-vector-icons/Feather";
 import { editContainerStyle } from '../styles';
 
-const titles = ["First Name", "Last Name", "Email"];
-const dbTitles = ["first_name", "last_name", "email"];
+const titles = ['First Name', 'Last Name', 'Email'];
+const dbTitles = ['first_name', 'last_name', 'email'];
 
-const EditAccount = ({ profile, userInput, changeHandler }) => {
-  console.log('userInput:', userInput)
+const EditAccount = ({ userInput, changeHandler }) => {
   return (
     <View style={styles.main}>
       <Text style={styles.title}>ACCOUNT</Text>
@@ -25,7 +23,7 @@ const EditAccount = ({ profile, userInput, changeHandler }) => {
                   onChangeText={text => changeHandler(text, dbTitles[index])}
                 />
                 <Text>&nbsp;</Text>
-                <EditIcon name="edit-2" size={15} color={Colors.orangePink} />
+                <EditIcon name='edit-2' size={15} color={Colors.orangePink} />
               </View>
             </View>
             <View style={styles.line} />
@@ -37,4 +35,5 @@ const EditAccount = ({ profile, userInput, changeHandler }) => {
 };
 
 const styles = StyleSheet.create(editContainerStyle);
+
 export default EditAccount;
