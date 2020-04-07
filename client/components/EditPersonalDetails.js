@@ -1,49 +1,24 @@
-import React, { useEffect, useState, useReducer } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import EditIcon from 'react-native-vector-icons/Feather';
+import ArrowIcon from 'react-native-vector-icons/Octicons';
 import Colors from '../styles/colors';
-import EditIcon from "react-native-vector-icons/Feather";
-import ArrowIcon from "react-native-vector-icons/Octicons";
 import { editContainerStyle } from '../styles';
 import { pickerStyle } from '../styles/common'; 
-
-
-import RNPickerSelect from "react-native-picker-select";
+import RNPickerSelect from 'react-native-picker-select';
 
 
 const titles = [
-  "Height",
-  "Weight",
-  "Age",
-  "Gender",
-  "Date of Birth",
-  "Zip Code"
+  'Height',
+  'Weight',
+  'Age',
+  'Gender',
+  'Date of Birth',
+  'Zip Code'
 ];
-const dbTitles = ["height", "weight", "age", "gender", "date_of_birth", "zip"];
+const dbTitles = ['height', 'weight', 'age', 'gender', 'date_of_birth', 'zip'];
 
 const EditPersonalDetails = ({ profile, userInput, changeHandler }) => {
-  // const { height, weight, age, gender, dateOfBirth, zip } = profile;
-  // const [userInput, setUserInput] = useReducer(
-  //   (state, newState) => ({ ...state, ...newState }),
-  //   {
-  //     height,
-  //     weight,
-  //     age,
-  //     gender,
-  //     dateOfBirth,
-  //     zip
-  //   }
-  // );
-
-  // const changeHandler = (text, title) => {
-  //   setUserInput({ [title]: text });
-  // };
 
   return (
     <View style={styles.main}>
@@ -53,13 +28,13 @@ const EditPersonalDetails = ({ profile, userInput, changeHandler }) => {
           <View key={index}>
             <View style={styles.row}>
               <Text style={styles.item}>{title}</Text>
-              {title === "Gender" ? (
+              {title === 'Gender' ? (
                 <View style={styles.inputView}>
                   <RNPickerSelect
                     onValueChange={value => changeHandler(value, 'gender')}
                     items={[
-                      { label: "Female", value: "Female" },
-                      { label: "Male", value: "Male" }
+                      { label: 'Female', value: 'Female' },
+                      { label: 'Male', value: 'Male' }
                     ]}
                     placeholder={{
                       value: `${profile.gender}`,
