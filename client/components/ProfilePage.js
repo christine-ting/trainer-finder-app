@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  ActivityIndicator
-} from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Profile from './Profile';
 import Footer from './Footer';
@@ -78,7 +73,7 @@ ProfilePage.navigationOptions = {
   },
   headerRight: () => (
     <Icon
-      name="edit"
+      name='edit'
       size={25}
       style={styles.editIcon}
       onPress={() =>
