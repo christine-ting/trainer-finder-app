@@ -1,41 +1,33 @@
-import React, { useEffect, useState, useReducer } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableOpacity
-} from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import EditIcon from 'react-native-vector-icons/Feather';
+import ArrowIcon from 'react-native-vector-icons/Octicons';
+import RNPickerSelect from 'react-native-picker-select';
 import Colors from '../styles/colors';
-import EditIcon from "react-native-vector-icons/Feather";
-import ArrowIcon from "react-native-vector-icons/Octicons";
-import RNPickerSelect from "react-native-picker-select";
 import { editContainerStyle } from '../styles';
-import { pickerStyle } from '../styles/common'; 
+import { pickerStyle } from '../styles/common';
 
 const goals = [
-  "Lose 0.5 lbs per week",
-  "Lose 1 lb per week",
-  "Lose 1.5 lbs per week",
-  "Lose 2 lbs per week",
-  "Maintain weight",
-  "Gain 0.5 lbs per week",
-  "Gain 1 lb per week"
+  'Lose 0.5 lbs per week',
+  'Lose 1 lb per week',
+  'Lose 1.5 lbs per week',
+  'Lose 2 lbs per week',
+  'Maintain weight',
+  'Gain 0.5 lbs per week',
+  'Gain 1 lb per week'
 ];
 const goalsSelection = goals.map(goal => ({ label: goal, value: goal }));
-const levels = ["Not Very Active", "Lightly Active", "Active", "Very Active"];
+const levels = ['Not Very Active', 'Lightly Active', 'Active', 'Very Active'];
 const levelsSelection = levels.map(level => ({ label: level, value: level }));
 const titles = [
-  "Current Weight",
-  "Goal Weight",
-  "Weekly Goal",
-  "Activity Level"
+  'Current Weight',
+  'Goal Weight',
+  'Weekly Goal',
+  'Activity Level'
 ];
-const dbTitles = ["weight", "goal_w", "weekly_goal", "activity_lvl"];
+const dbTitles = ['weight', 'goal_w', 'weekly_goal', 'activity_lvl'];
 
 const EditFitnessGoals = ({ profile, userInput, changeHandler }) => {
-
   return (
     <View style={styles.main}>
       <Text style={styles.title}>FITNESS GOALS</Text>
@@ -44,7 +36,7 @@ const EditFitnessGoals = ({ profile, userInput, changeHandler }) => {
           <View key={index}>
             <View style={styles.row}>
               <Text style={styles.item}>{title}</Text>
-              {title === "Current Weight" || title === "Goal Weight" ? (
+              {title === 'Current Weight' || title === 'Goal Weight' ? (
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.info}
@@ -54,7 +46,7 @@ const EditFitnessGoals = ({ profile, userInput, changeHandler }) => {
                   <Text>&nbsp;</Text>
                   <EditIcon name="edit-2" size={15} color={Colors.orangePink} />
                 </View>
-              ) : title === "Weekly Goal" ? (
+              ) : title === 'Weekly Goal' ? (
                 <View style={styles.inputView}>
                   <RNPickerSelect
                     onValueChange={value => changeHandler(value, 'weekly_goal')}
@@ -77,7 +69,9 @@ const EditFitnessGoals = ({ profile, userInput, changeHandler }) => {
               ) : (
                 <View style={styles.inputView}>
                   <RNPickerSelect
-                    onValueChange={value => changeHandler(value, 'activity_lvl')}
+                    onValueChange={value =>
+                      changeHandler(value, 'activity_lvl')
+                    }
                     items={levelsSelection}
                     placeholder={{
                       value: `${profile.activity_lvl}`,
