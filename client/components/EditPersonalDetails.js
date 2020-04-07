@@ -25,7 +25,7 @@ const titles = [
   "Date of Birth",
   "Zip Code"
 ];
-const dbTitles = ["height", "weight", "age", "gender", "dateOfBirth", "zip"];
+const dbTitles = ["height", "weight", "age", "gender", "date_of_birth", "zip"];
 
 const EditPersonalDetails = ({ profile, userInput, changeHandler }) => {
   // const { height, weight, age, gender, dateOfBirth, zip } = profile;

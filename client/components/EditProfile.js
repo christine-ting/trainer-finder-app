@@ -1,25 +1,24 @@
-import React, { useEffect, useState, useReducer } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
+import React, { useEffect, useReducer } from 'react';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import EditAccount from './EditAccount';
+import EditPersonalDetails from './EditPersonalDetails';
+import EditFitnessGoals from './EditFitnessGoals';
+import EditWorkoutPlans from './EditWorkoutPlans';
+import axios from 'axios';
 import Colors from '../styles/colors';
-import EditAccount from "./EditAccount";
-import EditPersonalDetails from "./EditPersonalDetails";
-import EditFitnessGoals from "./EditFitnessGoals";
-import EditWorkoutPlans from "./EditWorkoutPlans";
-import axios from "axios";
 import { editProfileStyle } from '../styles';
 
 let accessNavigation;
 let newDetails = {};
+const editComponents = [
+  EditAccount,
+  EditPersonalDetails,
+  EditFitnessGoals,
+  EditWorkoutPlans
+];
 
 const EditProfile = ({ navigation }) => {
-  const profile = navigation.getParam("profile");
+  const profile = navigation.getParam('profile');
   useEffect(() => {
     accessNavigation = navigation;
   }, []);
@@ -32,7 +31,7 @@ const EditProfile = ({ navigation }) => {
     weight,
     age,
     gender,
-    dateOfBirth,
+    date_of_birth,
     zip,
     goal_w,
     weekly_goal,
@@ -40,6 +39,7 @@ const EditProfile = ({ navigation }) => {
     workouts_per_wk,
     min_per_workout
   } = profile;
+
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -50,7 +50,7 @@ const EditProfile = ({ navigation }) => {
       weight,
       age,
       gender,
-      dateOfBirth,
+      date_of_birth,
       zip,
       goal_w,
       weekly_goal,
@@ -61,33 +61,23 @@ const EditProfile = ({ navigation }) => {
   );
 
   const changeHandler = (text, title) => {
-    // console.log(text, title);
     newDetails = userInput;
     newDetails[title] = text;
     setUserInput({ [title]: text });
-    // console.log('userInput:', newDetails)
   };
 
   return (
     <View style={styles.editProfile}>
       <View style={styles.scrollProfile}>
         <ScrollView>
-          <EditAccount
-            profile={profile}
-            userInput={userInput}
-            changeHandler={changeHandler}
-          />
-          <EditPersonalDetails
-            profile={profile}
-            userInput={userInput}
-            changeHandler={changeHandler}
-          />
-          <EditFitnessGoals
-            profile={profile}
-            userInput={userInput}
-            changeHandler={changeHandler}
-          />
-          <EditWorkoutPlans profile={profile} changeHandler={changeHandler} />
+          { editComponents.map((Component, index) => (
+            <Component 
+              profile={profile}
+              userInput={userInput}
+              changeHandler={changeHandler}
+              key={index}
+            />
+          )) }
           <View style={styles.appNameView}>
             <Text style={styles.appName}>Trainer Finder</Text>
           </View>
@@ -98,7 +88,6 @@ const EditProfile = ({ navigation }) => {
 };
 
 const updateDatabase = () => {
-  console.log(newDetails);
   const {
     email,
     first_name,
@@ -107,7 +96,7 @@ const updateDatabase = () => {
     weight,
     age,
     gender,
-    dateOfBirth,
+    date_of_birth,
     zip,
     goal_w,
     weekly_goal,
@@ -125,7 +114,7 @@ const updateDatabase = () => {
     weight:"${weight}",
     age:${age},
     gender:"${gender}",
-    dateOfBirth:"${dateOfBirth}",
+    date_of_birth:"${date_of_birth}",
     zip:${zip},
     goal_w:"${goal_w}",
     weekly_goal:"${weekly_goal}",
@@ -134,24 +123,23 @@ const updateDatabase = () => {
     min_per_workout:${min_per_workout}
     ) { id } 
   }`;
-  console.log("mutation:", mutation);
   axios
-    .post("http://192.168.1.20:8070/ct/graphql", { query: mutation })
-    .then(() => console.log("database updated"))
+    .post('http://192.168.1.20:8070/ct/graphql', { query: mutation })
+    .then(() => console.log('database updated'))
     .catch(err => console.error(err));
 };
 
 EditProfile.navigationOptions = {
-  headerTitle: "Edit Profile",
+  headerTitle: 'Edit Profile',
   headerStyle: {
     backgroundColor: Colors.headerFooter,
-    shadowColor: "transparent"
+    shadowColor: 'transparent'
   },
   headerRight: () => (
     <Button
-      title="Save"
+      title='Save'
       color={Colors.orangePink}
-      // onPress={() => accessNavigation.navigate({ routeName: "Profile" })}
+      // onPress={() => accessNavigation.navigate({ routeName: 'Profile' })}
       onPress={() => updateDatabase()}
     />
   ),

@@ -9,6 +9,7 @@ const titles = ["First Name", "Last Name", "Email"];
 const dbTitles = ["first_name", "last_name", "email"];
 
 const EditAccount = ({ profile, userInput, changeHandler }) => {
+  console.log('userInput:', userInput)
   return (
     <View style={styles.main}>
       <Text style={styles.title}>ACCOUNT</Text>
