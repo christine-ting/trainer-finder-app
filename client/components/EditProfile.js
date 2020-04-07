@@ -23,41 +23,9 @@ const EditProfile = ({ navigation }) => {
     accessNavigation = navigation;
   }, []);
 
-  const {
-    email,
-    first_name,
-    last_name,
-    height,
-    weight,
-    age,
-    gender,
-    date_of_birth,
-    zip,
-    goal_w,
-    weekly_goal,
-    activity_lvl,
-    workouts_per_wk,
-    min_per_workout
-  } = profile;
-
   const [userInput, setUserInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
-    {
-      email,
-      first_name,
-      last_name,
-      height,
-      weight,
-      age,
-      gender,
-      date_of_birth,
-      zip,
-      goal_w,
-      weekly_goal,
-      activity_lvl,
-      workouts_per_wk,
-      min_per_workout
-    }
+    profile
   );
 
   const changeHandler = (text, title) => {
@@ -138,9 +106,8 @@ EditProfile.navigationOptions = {
   },
   headerRight: () => (
     <Button
-      title='Save'
+      title="Save"
       color={Colors.orangePink}
-      // onPress={() => accessNavigation.navigate({ routeName: 'Profile' })}
       onPress={() => {
         updateDatabase();
         accessNavigation.navigate({ routeName: 'Profile' });
