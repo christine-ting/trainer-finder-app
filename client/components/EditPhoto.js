@@ -11,7 +11,6 @@ import { editPhotoStyle } from '../styles';
 
 const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal }) => {
   const [showModal, setModalVisibility] = useState(true);
-
   const hideModal = () => {
     setModalVisibility(false);
     setShowModal(false);
@@ -19,12 +18,10 @@ const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal
 
   const takePicture = async () => {
     let permissionResult = await ImagePicker.requestCameraPermissionsAsync();
-
     if (permissionResult.granted === false) {
       alert('Permission to access camera roll is required!');
       return;
     }
-
     let pickerResult = await ImagePicker.launchCameraAsync({
       allowsEditing: true
     });
@@ -37,12 +34,10 @@ const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal
 
   const selectFromCameraRoll = async () => {
     let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
-
     if (permissionResult.granted === false) {
       alert('Permission to access camera roll is required!');
       return;
     }
-
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true
     });
@@ -90,7 +85,7 @@ const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal
     mutation updateProfile {
     updateProfile(
       id:0,
-      ${photoType}: "${uri}"
+      ${photoType}: '${uri}'
       ) { id } 
     }`;
     axios
