@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { BMRStyle } from '../styles';
 
 const BMR = ({ profile }) => {
@@ -12,11 +12,14 @@ const BMR = ({ profile }) => {
   }, []);
 
   const calculateBMR = () => {
-    let BMR, target;
+    let BMR;
+    let target;
     let W = Number(profile.weight.split(' ')[0]) * 0.453592;
     let HeightFt = profile.height.split("'")[0];
     let HeightIn = profile.height.split("'")[1];
-    let H = Number(HeightFt) * 30.48 + Number(HeightIn.slice(0, HeightIn.length - 1)) * 2.54;
+    let H =
+      Number(HeightFt) * 30.48 +
+      Number(HeightIn.slice(0, HeightIn.length - 1)) * 2.54;
     let keyword = profile.weekly_goal.split(' ')[0];
     let diff = Number(profile.weekly_goal.split(' ')[1]);
     if (profile.gender === 'Female') {
@@ -50,40 +53,35 @@ const BMR = ({ profile }) => {
       updateVerb('maintain');
     }
     updateBMR(BMR);
-  }
+  };
+
   return (
     <View style={styles.BMR}>
       <Text style={styles.BMRstatement}>
-        "In order to&nbsp;
+        'In order to&nbsp;
         <Text style={styles.number}>
-          {profile.weekly_goal.toLowerCase()}{profile.weekly_goal.slice(1)}
-        </Text>,&nbsp;
-        { verb === 'maintain' ? (
+          {profile.weekly_goal[0].toLowerCase()}
+          {profile.weekly_goal.slice(1)}
+        </Text>
+        ,&nbsp;
+        {verb === 'maintain' ? (
           <Text>
             your daily calorie intake will be&nbsp;
-              <Text style={styles.number}>
-                {BMRvalue}
-              </Text> 
-              &nbsp;calories per day."
+            <Text style={styles.number}>{BMRvalue}</Text>
+            &nbsp;calories per day.'
           </Text>
         ) : (
           <Text>
             you will need to&nbsp;
-            <Text style={styles.number}>
-              {verb} 
-            </Text>
-            &nbsp;your daily calorie intake 
-            from your normal maintenance level of&nbsp;
-            <Text style={styles.number}>
-              {BMRvalue} 
-            </Text>
+            <Text style={styles.number}>{verb}</Text>
+            &nbsp;your daily calorie intake from your normal maintenance level
+            of&nbsp;
+            <Text style={styles.number}>{BMRvalue}</Text>
             &nbsp;calories per day, to&nbsp;
-            <Text style={styles.number}>
-              {targetValue} 
-            </Text>
-            &nbsp;calories per day."
+            <Text style={styles.number}>{targetValue}</Text>
+            &nbsp;calories per day.'
           </Text>
-        ) }
+        )}
       </Text>
     </View>
   );
