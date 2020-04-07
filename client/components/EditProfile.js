@@ -111,6 +111,7 @@ const updateDatabase = () => {
     email:"${email}"
     first_name:"${first_name}",
     last_name:"${last_name}",
+    height:"${height}",
     weight:"${weight}",
     age:${age},
     gender:"${gender}",

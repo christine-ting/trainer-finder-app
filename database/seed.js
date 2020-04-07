@@ -3,7 +3,7 @@ const example = [{
   email: 'christine@yahoo.com',
   first_name: 'Christine',
   last_name: 'Ting',
-  height: '5\'5"',
+  height: '5ft5in',
   weight: '130 lbs',
   age: 27,
   gender: 'Female',

@@ -15,11 +15,10 @@ const BMR = ({ profile }) => {
     let BMR;
     let target;
     let W = Number(profile.weight.split(' ')[0]) * 0.453592;
-    let HeightFt = profile.height.split("'")[0];
-    let HeightIn = profile.height.split("'")[1];
+    const [ HeightFt, HeightIn ] = profile.height.split('ft');
     let H =
       Number(HeightFt) * 30.48 +
-      Number(HeightIn.slice(0, HeightIn.length - 1)) * 2.54;
+      Number(HeightIn.slice(0, HeightIn.length - 2)) * 2.54;
     let keyword = profile.weekly_goal.split(' ')[0];
     let diff = Number(profile.weekly_goal.split(' ')[1]);
     if (profile.gender === 'Female') {
