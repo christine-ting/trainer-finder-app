@@ -1,22 +1,19 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import { workoutPlansStyle } from '../styles';
+
+const titles = ['Workouts/Week', 'Minutes/Workout'];
+const dbTitles = ['workouts_per_wk', 'min_per_workout'];
 
 const WorkoutPlans = ({ profile }) => {
   return (
     <View style={styles.workoutPlans}>
-        <View style={styles.entry}>
-          <Text style={styles.itemsTitle}>Workouts/Week</Text>
-          <Text style={styles.itemsText}>{profile.workouts_per_wk}</Text>
-      </View>
-        <View style={styles.entry}>
-          <Text style={styles.itemsTitle}>Minutes/Workout</Text>
-          <Text style={styles.itemsText}>{profile.min_per_workout}</Text>
-      </View>
+      { titles.map((title, index) => (
+        <View style={styles.entry} key={index}>
+          <Text style={styles.itemsTitle}>{title}</Text>
+          <Text style={styles.itemsText}>{profile[dbTitles[index]]}</Text>
+        </View>
+      )) }
     </View>
   );
 };
