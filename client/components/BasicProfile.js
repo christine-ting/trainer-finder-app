@@ -27,9 +27,9 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
     setPhotoType(photoType);
   };
 
-  const changeProfilePic = (uri) => {
-    updateProfilePic({ uri });
-  };
+  // const changeProfilePic = (uri) => {
+  //   updateProfilePic({ uri });
+  // };
 
   const changeCoverPhoto = (uri) => {
     updateCoverPhoto({ uri });
@@ -52,7 +52,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
       <View style={styles.editCoverPhotoContainer}>
         <TouchableOpacity
           style={styles.editCoverPhotoBackground}
-          onPress={() => clicktoEditPhoto('cover')}
+          onPress={() => clicktoEditPhoto('cover_photo')}
         >
           <Icon name='camera' size={20} color='black' />
         </TouchableOpacity>
@@ -60,14 +60,14 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
       <View style={styles.editProfilePicContainer}>
         <TouchableOpacity
           style={styles.editProfilePicBackground}
-          onPress={() => clicktoEditPhoto('profile')}
+          onPress={() => clicktoEditPhoto('profile_pic')}
         >
           <Icon name='camera' size={20} color='black' />
         </TouchableOpacity>
       </View>
       {showEditPhotoModal && (
         <EditPhoto
-          changeProfilePic={changeProfilePic}
+          updateProfilePic={updateProfilePic}
           changeCoverPhoto={changeCoverPhoto}
           photoType={photoType}
           setShowModal={setShowModal}
