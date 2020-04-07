@@ -9,7 +9,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
   const [fontLoaded, loadFont] = useState(false);
   const [showEditPhotoModal, setShowModal] = useState(false);
   const [photoType, setPhotoType] = useState('');
-  const [profilePic, updateProfilePic] = useState(profile.image);
+  const [profilePic, updateProfilePic] = useState({ uri: profile.profile_pic });
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
@@ -39,7 +39,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
     <View style={styles.basicProfile}>
       <View>
         <View style={styles.profilePicContainer}>
-          <ProfilePic profile={profile} profilePic={profilePic} />
+          <ProfilePic profilePic={profilePic} />
         </View>
         {fontLoaded ? (
           <View style={styles.profileView}>
