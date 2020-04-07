@@ -1,18 +1,10 @@
-import React, { useEffect, useState, useReducer } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  ScrollView,
-  TouchableOpacity
-} from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../styles/colors';
-import ArrowIcon from "react-native-vector-icons/Octicons";
+import ArrowIcon from 'react-native-vector-icons/Octicons';
 import { editContainerStyle } from '../styles';
 import { pickerStyle } from '../styles/common';
-
-import RNPickerSelect from "react-native-picker-select";
+import RNPickerSelect from 'react-native-picker-select';
 
 const weekly_workouts = [...Array(29).keys()];
 const weeklyWorkoutsSelection = weekly_workouts.map(workout => ({
@@ -25,12 +17,10 @@ const workoutMinSelection = workout_min.map(min => ({
   value: min.toString()
 }));
 const selections = [weeklyWorkoutsSelection, workoutMinSelection];
-
-const titles = ["Workouts/Week", "Minutes/Workout"];
-const dbTitles = ["workouts_per_wk", "min_per_workout"];
+const titles = ['Workouts/Week', 'Minutes/Workout'];
+const dbTitles = ['workouts_per_wk', 'min_per_workout'];
 
 const EditWorkoutPlans = ({ profile, changeHandler }) => {
-
   return (
     <View style={styles.main}>
       <Text style={styles.title}>WORKOUT PLANS</Text>
