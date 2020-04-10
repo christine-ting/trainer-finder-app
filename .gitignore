@@ -5,4 +5,4 @@
 node_modules
 
 ## security key ##
-server/env/key.js
+client/env/key.js
