@@ -5,6 +5,7 @@ import ProfilePage from '../components/profile/ProfilePage';
 import EditProfile from '../components/profile/EditProfile';
 import Home from '../components/home/Home';
 import Search from '../components/search/Search';
+import Authentication from '../components/profile/Authentication';
 import Colors from '../styles/profile/colors';
 import Icon from 'react-native-vector-icons/AntDesign';
 import React from 'react';
@@ -25,11 +26,16 @@ const HomeSearchProfileNavigator = createBottomTabNavigator({
       return (<Icon name="search1" size={25} color={tabInfo.tintColor} />);
     }
   }},
-  Profile: {screen: ProfileNavigator, navigationOptions: {
+  Profile: {screen: Authentication, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
     }
   }}
+  // Profile: {screen: ProfileNavigator, navigationOptions: {
+  //   tabBarIcon: (tabInfo) => {
+  //     return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
+  //   }
+  // }}
 }, {
   tabBarOptions: {
     activeTintColor: Colors.orangePink,

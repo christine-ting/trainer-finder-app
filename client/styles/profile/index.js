@@ -317,7 +317,7 @@ export const profilePicStyle = {
     alignItems: 'center',
     height: 165,
     width: 165,
-    borderRadius: 700/ 6,
+    borderRadius: 700 / 6,
     backgroundColor: Colors.sectionBackground,
     borderColor: Colors.mediumGrey,
     borderWidth: 2,
@@ -326,6 +326,108 @@ export const profilePicStyle = {
   profilePic: {
     height: 150,
     width: 150,
-    borderRadius: 700/ 7
+    borderRadius: 700 / 7
+  }
+};
+
+export const authenticationStyle = {
+  authentication: {
+    backgroundColor: Colors.sectionBackground,
+    flex: 1,
+    paddingBottom: 20
+  },
+  header: {
+    backgroundColor: Colors.headerFooter,
+    flex: 0.12,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  headerText: {
+    color: Colors.lightGrey,
+    fontSize: 20,
+    marginTop: 30
+  },
+  authView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 0.88
+  },
+  authBox: {
+    backgroundColor: Colors.lightGrey,
+    justifyContent: 'center',
+    width: '75%',
+    paddingHorizontal: 15,
+    paddingTop: 5,
+    paddingBottom: 10,
+    borderRadius: 5
+  },
+  title: {
+    paddingTop: 20
+  },
+  authInput: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    padding: 5,
+    color: Colors.sectionBackground
+  },
+  buttonView: {
+    paddingTop: 25,
+    paddingBottom: 10,
+    justifyContent: 'space-between',
+    height: 120
+  },
+  loginButton: {
+    backgroundColor: 'grey',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 3
+  },
+  signUpButton: {
+    backgroundColor: Colors.orangePink,
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderRadius: 3
+  },
+  buttonText: {
+    color: Colors.lightGrey,
+    fontSize: 16
+  }
+};
+
+export const homeStyle = {
+  home: {
+    backgroundColor: Colors.sectionBackground,
+    flex: 1,
+    paddingBottom: 20
+  },
+  header: {
+    backgroundColor: Colors.headerFooter,
+    flex: 0.12,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  headerText: {
+    color: Colors.lightGrey,
+    fontSize: 20,
+    marginTop: 30
+  }
+};
+
+export const searchStyle = {
+  search: {
+    backgroundColor: Colors.sectionBackground,
+    flex: 1,
+    paddingBottom: 20
+  },
+  header: {
+    backgroundColor: Colors.headerFooter,
+    flex: 0.12,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  headerText: {
+    color: Colors.lightGrey,
+    fontSize: 20,
+    marginTop: 30
   }
 }
