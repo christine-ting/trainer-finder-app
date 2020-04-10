@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://if-xcs.anonymous.trainer-finder-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.if-xcs.anonymous.trainer-finder-app.exp.direct",
+  "ngrokPid": 62288,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 62274,
   "webpackServerPort": null
 }
