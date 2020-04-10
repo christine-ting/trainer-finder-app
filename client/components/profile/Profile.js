@@ -6,8 +6,8 @@ import FitnessGoals from './FitnessGoals';
 import WorkoutPlans from './WorkoutPlans';
 import BMR from './BMR';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { profileStyle } from '../styles';
-import Colors from '../styles/colors';
+import { profileStyle } from '../../styles/profile';
+import Colors from '../../styles/profile/colors';
 
 const mainComponents = [ PersonalDetails, FitnessGoals, WorkoutPlans ];
 const mainTitles = ['Personal Details', 'Fitness Goals', 'Workout Plans'];
@@ -18,7 +18,7 @@ const Profile = ({ profile }) => {
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
-      'pixel-font': require('../../assets/fonts/Muli-Medium.ttf')
+      'pixel-font': require('../../../assets/fonts/Muli-Medium.ttf')
     });
     loadFont(true);
   }

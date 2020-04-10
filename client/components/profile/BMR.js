@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BMRStyle } from '../styles';
+import { BMRStyle } from '../../styles/profile';
 
 const BMR = ({ profile }) => {
   const [BMRvalue, updateBMR] = useState(0);

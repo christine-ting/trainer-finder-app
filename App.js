@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileNavigator from './client/navigation/ProfileNavigator';
+import ProfileNavigator from './client/navigation/FitnessNavigator';
 
 const App = () => {
   return (

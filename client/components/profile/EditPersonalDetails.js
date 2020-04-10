@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import EditIcon from 'react-native-vector-icons/Feather';
 import ArrowIcon from 'react-native-vector-icons/Octicons';
-import Colors from '../styles/colors';
-import { editContainerStyle } from '../styles';
-import { pickerStyle } from '../styles/common'; 
+import Colors from '../../styles/profile/colors';
+import { editContainerStyle } from '../../styles/profile';
+import { pickerStyle } from '../../styles/profile/common'; 
 import RNPickerSelect from 'react-native-picker-select';
 
 

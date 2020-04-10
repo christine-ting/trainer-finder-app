@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Colors from '../styles/colors';
+import Colors from '../../styles/profile/colors';
 import ArrowIcon from 'react-native-vector-icons/Octicons';
-import { editContainerStyle } from '../styles';
-import { pickerStyle } from '../styles/common';
+import { editContainerStyle } from '../../styles/profile';
+import { pickerStyle } from '../../styles/profile/common';
 import RNPickerSelect from 'react-native-picker-select';
 
 const weekly_workouts = [...Array(29).keys()];

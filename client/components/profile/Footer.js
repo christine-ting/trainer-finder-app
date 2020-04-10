@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { footerStyle } from '../styles';
+import { footerStyle } from '../../styles/profile';
 
 const Footer = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { blockStyle } from '../styles';
+import { blockStyle } from '../../styles/profile';
 
 const FitnessGoals = ({ profile }) => {
   const titles = [

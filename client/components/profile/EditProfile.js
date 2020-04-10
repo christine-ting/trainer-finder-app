@@ -5,8 +5,8 @@ import EditPersonalDetails from './EditPersonalDetails';
 import EditFitnessGoals from './EditFitnessGoals';
 import EditWorkoutPlans from './EditWorkoutPlans';
 import axios from 'axios';
-import Colors from '../styles/colors';
-import { editProfileStyle } from '../styles';
+import Colors from '../../styles/profile/colors';
+import { editProfileStyle } from '../../styles/profile';
 
 let accessNavigation;
 let newDetails = {};

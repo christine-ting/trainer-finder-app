@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import EditIcon from 'react-native-vector-icons/Feather';
-import Colors from '../styles/colors';
-import { editContainerStyle } from '../styles';
+import Colors from '../../styles/profile/colors';
+import { editContainerStyle } from '../../styles/profile';
 
 const titles = ['First Name', 'Last Name', 'Email'];
 const dbTitles = ['first_name', 'last_name', 'email'];

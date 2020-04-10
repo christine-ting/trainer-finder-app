@@ -4,8 +4,8 @@ import axios from 'axios';
 import Profile from './Profile';
 import Footer from './Footer';
 import Icon from 'react-native-vector-icons/Feather';
-import { profilePageStyle } from '../styles';
-import Colors from '../styles/colors';
+import { profilePageStyle } from '../../styles/profile';
+import Colors from '../../styles/profile/colors';
 
 const query = `
   {

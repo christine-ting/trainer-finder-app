@@ -5,9 +5,9 @@ import PhotoIcon from 'react-native-vector-icons/FontAwesome';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import * as ImagePicker from 'expo-image-picker';
 import { RNS3 } from 'react-native-aws3';
-import key from '../env/key';
+import key from '../../env/key';
 import axios from 'axios';
-import { editPhotoStyle } from '../styles';
+import { editPhotoStyle } from '../../styles/profile';
 
 const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal }) => {
   const [showModal, setModalVisibility] = useState(true);

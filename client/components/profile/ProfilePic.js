@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { profilePicStyle } from '../styles';
+import { profilePicStyle } from '../../styles/profile';
 
 
 

@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import ProfilePic from './ProfilePic';
 import EditPhoto from './EditPhoto';
-import { basicProfileStyle } from '../styles';
+import { basicProfileStyle } from '../../styles/profile';
 
 const BasicProfile = ({ profile, updateCoverPhoto }) => {
   const [fontLoaded, loadFont] = useState(false);
@@ -13,7 +13,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
 
   async function loadmyFont() {
     let response = await Expo.Font.loadAsync({
-      'pixel-font': require('../../assets/fonts/Muli-Bold.ttf')
+      'pixel-font': require('../../../assets/fonts/Muli-Bold.ttf')
     });
     loadFont(true);
   };

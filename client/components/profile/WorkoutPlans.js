@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { workoutPlansStyle } from '../styles';
+import { workoutPlansStyle } from '../../styles/profile';
 
 const titles = ['Workouts/Week', 'Minutes/Workout'];
 const dbTitles = ['workouts_per_wk', 'min_per_workout'];
