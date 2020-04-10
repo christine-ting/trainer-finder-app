@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Profile from './Profile';
-import Footer from './Footer';
 import Icon from 'react-native-vector-icons/Feather';
 import { profilePageStyle } from '../../styles/profile';
 import Colors from '../../styles/profile/colors';
@@ -66,9 +65,6 @@ const ProfilePage = ({ navigation }) => {
             <ScrollView>
               <Profile profile={profile} />
             </ScrollView>
-          </View>
-          <View style={styles.footerContainer}>
-            <Footer />
           </View>
         </View>
       )}

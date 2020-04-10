@@ -7,17 +7,12 @@ export const profilePageStyle = {
     backgroundColor: Colors.background
   },
   scrollProfile: {
-    flex: 0.9
+    flex: 1
   },
   editIcon: {
     color: Colors.mediumGrey,
     marginRight: 10,
     marginBottom: 10
-  },
-  footerContainer: {
-    flex: 0.1,
-    backgroundColor: Colors.headerFooter,
-    paddingTop: 7
   }
 };
 
