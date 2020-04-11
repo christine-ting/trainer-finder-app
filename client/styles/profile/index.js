@@ -391,6 +391,13 @@ export const authenticationStyle = {
   buttonText: {
     color: Colors.lightGrey,
     fontSize: 16
+  },
+  showPwdView: {
+    alignItems: 'flex-end'
+  },
+  showPwdText: {
+    fontSize: 13,
+    color: 'rgb(122,129,133)'
   }
 };
 
