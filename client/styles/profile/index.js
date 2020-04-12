@@ -15,7 +15,7 @@ export const profilePageStyle = {
     marginBottom: 10
   },
   logoutIcon: {
-    color: Colors.mediumGrey,
+    color: Colors.orangePink,
     marginLeft: 10,
     marginBottom: 10
   }

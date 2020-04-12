@@ -60,7 +60,10 @@ const Authentication = ({ navigation }) => {
       .then(result => {
         if (method === 'login') {
           navigation.navigate({
-            routeName: 'Profile'
+            routeName: 'Profile',
+            params: {
+              email: result.data.email
+            }
           });
         }
       })

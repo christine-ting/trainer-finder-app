@@ -127,8 +127,8 @@ const Query = new GraphQLObjectType({
       profiles: {
         type: new GraphQLList(Profile),
         args: {
-          id: {
-            type: GraphQLInt
+          email: {
+            type: GraphQLString
           }
         },
         resolve(root, args) {

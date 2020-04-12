@@ -7,31 +7,11 @@ import LogoutIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { profilePageStyle } from '../../styles/profile';
 import Colors from '../../styles/profile/colors';
 
-const query = `
-  {
-    profiles(id:0) {
-      email
-      first_name
-      last_name
-      height
-      weight
-      age
-      gender
-      date_of_birth
-      zip
-      goal_w
-      weekly_goal
-      activity_lvl
-      workouts_per_wk
-      min_per_workout
-      profile_pic
-      cover_photo
-    }
-  }`;
 let accessNavigation;
 let profileInfo;
 
 const ProfilePage = ({ navigation }) => {
+  const email = navigation.getParam('email');
   const [isLoading, setLoading] = useState(true);
   const [profile, setProfile] = useState({});
 
@@ -46,6 +26,27 @@ const ProfilePage = ({ navigation }) => {
   }, []);
   
   const getUserProfile = () => {
+    const query = `
+    {
+      profiles(email:"${email}") {
+        email
+        first_name
+        last_name
+        height
+        weight
+        age
+        gender
+        date_of_birth
+        zip
+        goal_w
+        weekly_goal
+        activity_lvl
+        workouts_per_wk
+        min_per_workout
+        profile_pic
+        cover_photo
+      }
+    }`;
     axios
       .post('http://192.168.1.20:8070/ct/graphql', { query })
       .then(result => { 
@@ -101,7 +102,7 @@ ProfilePage.navigationOptions = {
   headerLeft: () => (
     <LogoutIcon
       name='logout'
-      size={25}
+      size={20}
       style={styles.logoutIcon}
       onPress={() => 
         accessNavigation.navigate({
