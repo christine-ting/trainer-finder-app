@@ -13,6 +13,11 @@ export const profilePageStyle = {
     color: Colors.mediumGrey,
     marginRight: 10,
     marginBottom: 10
+  },
+  logoutIcon: {
+    color: Colors.mediumGrey,
+    marginLeft: 10,
+    marginBottom: 10
   }
 };
 

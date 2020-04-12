@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -12,34 +12,36 @@ import {
 import { authenticationStyle } from '../../styles/profile';
 import key from '../../env/key';
 import axios from 'axios';
+import Colors from '../../styles/profile/colors';
 
 const APIKey = key.firebaseAPIKey;
 
-const Authentication = () => {
+const Authentication = ({ navigation }) => {
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [hiddenPassword, setHiddenPassword] = useState('');
+  const [hidePassword, setHidePassword] = useState(true);
+
+  useEffect(() => {
+    navigation.addListener(
+      'didFocus',
+      payload => {
+        changeHandler('', 'email');
+        changeHandler('', 'password');
+        setHidePassword(true);
+      }
+    );
+  }, []);
 
   const changeHandler = (text, type) => {
     if (type === 'email') {
       setEmail(text);
     }
     if (type === 'password') {
-      if (!showPassword) {
-        setPassword(inputPassword + text[text.length - 1]);
-        let count = '';
-        for (var char of text) {
-          count += '*';
-        }
-        setHiddenPassword(count);
-      } else {
-        setPassword(text);
-      }
+      setPassword(text);
     }
   };
 
-  const authenticate = (method) => {
+  const authenticate = method => {
     let url;
     let message;
     if (method === 'login') {
@@ -55,8 +57,14 @@ const Authentication = () => {
     };
     axios
       .post(url, body)
-      .then(result => console.log('result:', result))
-      .catch((error) => {
+      .then(result => {
+        if (method === 'login') {
+          navigation.navigate({
+            routeName: 'Profile'
+          });
+        }
+      })
+      .catch(error => {
         const response = error.response.data.error.message;
         message = checkError(response);
         Alert.alert(
@@ -72,7 +80,7 @@ const Authentication = () => {
       });
   };
 
-  const checkError = (response) => {
+  const checkError = response => {
     let message;
     if (response === 'INVALID_PASSWORD') {
       message = 'Invalid password.';
@@ -97,50 +105,65 @@ const Authentication = () => {
 
   return (
     <View style={styles.authentication}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Authentication</Text>
-      </View>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.authView}>
-          <View style={styles.authBox}>
-            <Text style={styles.title}>EMAIL</Text>
-            <TextInput
-              style={styles.authInput}
-              onChangeText={text => changeHandler(text, 'email')}
-            />
-            <Text style={styles.title}>PASSWORD</Text>
-            <TextInput
-              style={styles.authInput}
-              value={showPassword ? inputPassword : hiddenPassword}
-              onChangeText={text => changeHandler(text, 'password')}
-            />
-            <TouchableOpacity
-              style={styles.showPwdView}
-              onPress={() => setShowPassword(!showPassword)}
-            >
-              <Text style={styles.showPwdText}>
-                {showPassword ? 'hide' : 'show'} password
-              </Text>
-            </TouchableOpacity>
-            <View style={styles.buttonView}>
+      <View style={styles.authentication}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.authView}>
+            <View style={styles.authBox}>
+              <Text style={styles.title}>EMAIL</Text>
+              <TextInput
+                style={styles.authInput}
+                autoCorrect={false}
+                value={inputEmail}
+                onChangeText={text => changeHandler(text, 'email')}
+              />
+              <Text style={styles.title}>PASSWORD</Text>
+              <TextInput
+                style={styles.authInput}
+                autoCorrect={false}
+                secureTextEntry={hidePassword}
+                value={inputPassword}
+                onChangeText={text => changeHandler(text, 'password')}
+              />
               <TouchableOpacity
-                style={styles.loginButton}
-                onPress={() => authenticate('login')}
+                style={styles.showPwdView}
+                onPress={() => setHidePassword(!hidePassword)}
               >
-                <Text style={styles.buttonText}>LOGIN</Text>
+                <Text style={styles.showPwdText}>
+                  {hidePassword ? 'show' : 'hide'} password
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.signUpButton}
-                onPress={() => authenticate('signUp')}
-              >
-                <Text style={styles.buttonText}>SIGN UP</Text>
-              </TouchableOpacity>
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={styles.loginButton}
+                  onPress={() => authenticate('login')}
+                >
+                  <Text style={styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.signUpButton}
+                  onPress={() => authenticate('signUp')}
+                >
+                  <Text style={styles.buttonText}>SIGN UP</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
+      </View>
     </View>
   );
+};
+
+Authentication.navigationOptions = {
+  headerTitle: 'Authentication',
+  headerStyle: {
+    backgroundColor: Colors.headerFooter,
+    shadowColor: 'transparent'
+  },
+  headerTintColor: Colors.lightGrey,
+  headerTitleStyle: {
+    fontSize: 20
+  }
 };
 
 const styles = StyleSheet.create(authenticationStyle);

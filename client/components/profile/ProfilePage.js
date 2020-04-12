@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import Profile from './Profile';
-import Icon from 'react-native-vector-icons/Feather';
+import EditIcon from 'react-native-vector-icons/Feather';
+import LogoutIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { profilePageStyle } from '../../styles/profile';
 import Colors from '../../styles/profile/colors';
 
@@ -78,8 +79,12 @@ ProfilePage.navigationOptions = {
     backgroundColor: Colors.headerFooter,
     shadowColor: 'transparent'
   },
+  headerTintColor: Colors.lightGrey,
+  headerTitleStyle: {
+    fontSize: 20
+  },
   headerRight: () => (
-    <Icon
+    <EditIcon
       name='edit'
       size={25}
       style={styles.editIcon}
@@ -93,10 +98,18 @@ ProfilePage.navigationOptions = {
       }
     />
   ),
-  headerTintColor: Colors.lightGrey,
-  headerTitleStyle: {
-    fontSize: 20
-  }
+  headerLeft: () => (
+    <LogoutIcon
+      name='logout'
+      size={25}
+      style={styles.logoutIcon}
+      onPress={() => 
+        accessNavigation.navigate({
+          routeName: 'Auth'
+        })
+      }
+    /> 
+  )
 };
 
 const styles = StyleSheet.create(profilePageStyle);

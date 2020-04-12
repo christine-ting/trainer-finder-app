@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import React from 'react';
 
 const ProfileNavigator = createStackNavigator({
+  Auth: Authentication,
   Profile: ProfilePage,
   EditMode: EditProfile
 });
@@ -26,16 +27,16 @@ const HomeSearchProfileNavigator = createBottomTabNavigator({
       return (<Icon name="search1" size={25} color={tabInfo.tintColor} />);
     }
   }},
-  Profile: {screen: Authentication, navigationOptions: {
-    tabBarIcon: (tabInfo) => {
-      return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
-    }
-  }}
-  // Profile: {screen: ProfileNavigator, navigationOptions: {
+  // Profile: {screen: Authentication, navigationOptions: {
   //   tabBarIcon: (tabInfo) => {
   //     return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
   //   }
   // }}
+  Profile: {screen: ProfileNavigator, navigationOptions: {
+    tabBarIcon: (tabInfo) => {
+      return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
+    }
+  }}
 }, {
   tabBarOptions: {
     activeTintColor: Colors.orangePink,
@@ -56,10 +57,6 @@ const HomeSearchProfileNavigator = createBottomTabNavigator({
     style: {
       backgroundColor: Colors.headerFooter,
       borderTopColor: 'transparent'
-    },
-    indicatorStyle: {
-      borderBottomColor: 'yellow',
-      borderBottomWidth: 2
     }
   }
 });
