@@ -142,68 +142,80 @@ const Query = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   description: 'Functions to update profile',
-  fields() {
-    return {
-      updateProfile: {
-        type: Profile,
-        args: {
-          id: {
-            type: new GraphQLNonNull(GraphQLInt)
-          },
-          email: {
-            type: GraphQLString
-          },
-          first_name: {
-            type: GraphQLString
-          },
-          last_name: {
-            type: GraphQLString
-          },
-          height: {
-            type: GraphQLString
-          },
-          weight: {
-            type: GraphQLString
-          },
-          age: {
-            type: GraphQLInt
-          },
-          gender: {
-            type: GraphQLString
-          },
-          date_of_birth: {
-            type: GraphQLString
-          },
-          zip: {
-            type: GraphQLInt
-          },
-          goal_w: {
-            type: GraphQLString
-          },
-          weekly_goal: {
-            type: GraphQLString
-          },
-          activity_lvl: {
-            type: GraphQLString
-          },
-          workouts_per_wk: {
-            type: GraphQLInt
-          },
-          min_per_workout: {
-            type: GraphQLInt
-          },
-          profile_pic: {
-            type: GraphQLString
-          },
-          cover_photo: {
-            type: GraphQLString
-          }
+  fields: {
+    updateProfile: {
+      type: Profile,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLInt)
         },
-        resolve(_, args) {
-          return db.models.Info.update(args, { where: { id: args.id } });
+        email: {
+          type: GraphQLString
+        },
+        first_name: {
+          type: GraphQLString
+        },
+        last_name: {
+          type: GraphQLString
+        },
+        height: {
+          type: GraphQLString
+        },
+        weight: {
+          type: GraphQLString
+        },
+        age: {
+          type: GraphQLInt
+        },
+        gender: {
+          type: GraphQLString
+        },
+        date_of_birth: {
+          type: GraphQLString
+        },
+        zip: {
+          type: GraphQLInt
+        },
+        goal_w: {
+          type: GraphQLString
+        },
+        weekly_goal: {
+          type: GraphQLString
+        },
+        activity_lvl: {
+          type: GraphQLString
+        },
+        workouts_per_wk: {
+          type: GraphQLInt
+        },
+        min_per_workout: {
+          type: GraphQLInt
+        },
+        profile_pic: {
+          type: GraphQLString
+        },
+        cover_photo: {
+          type: GraphQLString
         }
+      },
+      resolve(_, args) {
+        return db.models.Info.update(args, { where: { id: args.id } });
       }
-    };
+    },
+    addUser: {
+      type: Profile,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLInt)
+        },
+        email: {
+          type: GraphQLString
+        }
+      },
+      resolve(_, args) {
+        return db.models.Info.create(args);
+      }
+    }
   }
 });
 
