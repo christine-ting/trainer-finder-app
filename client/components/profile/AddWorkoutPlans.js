@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity
 } from 'react-native';
 import Colors from '../../styles/profile/colors';
@@ -14,6 +13,8 @@ import VoidCircle from 'react-native-vector-icons/FontAwesome';
 import ArrowIcon from 'react-native-vector-icons/Octicons';
 import { pickerStyle } from '../../styles/profile/common';
 import RNPickerSelect from 'react-native-picker-select';
+import axios from 'axios';
+
 
 const steps = [...Array(4).keys()];
 const weekly_workouts = [...Array(29).keys()];
@@ -47,12 +48,54 @@ const AddWorkoutPlans = ({ navigation }) => {
   const nextClickHandler = () => {
     const profile = { ...prevProfile, ...userInput };
     console.log(profile);
-    // navigation.navigate({
-    //   routeName: 'WorkoutPlans',
-    //   params: {
-    //     profile
-    //   }
-    // });
+    const {
+      email,
+      first_name,
+      last_name,
+      height,
+      weight,
+      age,
+      gender,
+      date_of_birth,
+      zip,
+      goal_w,
+      weekly_goal,
+      activity_lvl,
+      workouts_per_wk,
+      min_per_workout
+    } = profile;
+    const mutation = `
+    mutation addUser {
+      addUser(
+      email:"${email}"
+      first_name:"${first_name}",
+      last_name:"${last_name}",
+      height:"${height}",
+      weight:"${weight}",
+      age:${age},
+      gender:"${gender}",
+      date_of_birth:"${date_of_birth}",
+      zip:${zip},
+      goal_w:"${goal_w}",
+      weekly_goal:"${weekly_goal}",
+      activity_lvl:"${activity_lvl}",
+      workouts_per_wk:${workouts_per_wk},
+      min_per_workout:${min_per_workout}
+      profile_pic: "https://mvpuploadimg.s3-us-west-1.amazonaws.com/question-mark-background-bigalbaloo-stock.jpg",
+      cover_photo: "https://mvpuploadimg.s3-us-west-1.amazonaws.com/question-mark-background-bigalbaloo-stock.jpg"
+      ) { email } 
+    }`;
+    axios
+      .post('http://192.168.1.20:8070/ct/graphql', { query: mutation })
+      .then(() => {
+        navigation.navigate({
+          routeName: 'Profile',
+          params: {
+            email
+          }
+        });
+      })
+      .catch(err => console.error(err));
   };
 
   return (
@@ -107,7 +150,7 @@ const AddWorkoutPlans = ({ navigation }) => {
           style={styles.nextButton}
           onPress={() => nextClickHandler()}
         >
-          <Text style={{ color: Colors.orangePink }}>Next&nbsp;</Text>
+          <Text style={{ color: Colors.orangePink }}>Submit&nbsp;</Text>
           <Icon
             name="ios-arrow-forward"
             size={15}

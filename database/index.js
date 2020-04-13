@@ -11,11 +11,6 @@ sequelize
   });
 
 const Info = sequelize.define('Info', {
-  id: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    primaryKey: true
-  },
   email: {
     type: DataTypes.STRING,
     allowNull: false

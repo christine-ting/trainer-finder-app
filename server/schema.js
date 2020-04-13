@@ -13,12 +13,6 @@ const Profile = new GraphQLObjectType({
   description: 'This represents a Profile',
   fields: () => {
     return {
-      id: {
-        type: GraphQLInt,
-        resolve(profile) {
-          return profile.id;
-        }
-      },
       email: {
         type: GraphQLString,
         resolve(profile) {
@@ -146,9 +140,6 @@ const Mutation = new GraphQLObjectType({
     updateProfile: {
       type: Profile,
       args: {
-        id: {
-          type: new GraphQLNonNull(GraphQLInt)
-        },
         email: {
           type: GraphQLString
         },
@@ -199,16 +190,58 @@ const Mutation = new GraphQLObjectType({
         }
       },
       resolve(_, args) {
-        return db.models.Info.update(args, { where: { id: args.id } });
+        return db.models.Info.update(args, { where: { email: args.email } });
       }
     },
     addUser: {
       type: Profile,
       args: {
-        id: {
-          type: new GraphQLNonNull(GraphQLInt)
-        },
         email: {
+          type: GraphQLString
+        },
+        first_name: {
+          type: GraphQLString
+        },
+        last_name: {
+          type: GraphQLString
+        },
+        height: {
+          type: GraphQLString
+        },
+        weight: {
+          type: GraphQLString
+        },
+        age: {
+          type: GraphQLInt
+        },
+        gender: {
+          type: GraphQLString
+        },
+        date_of_birth: {
+          type: GraphQLString
+        },
+        zip: {
+          type: GraphQLInt
+        },
+        goal_w: {
+          type: GraphQLString
+        },
+        weekly_goal: {
+          type: GraphQLString
+        },
+        activity_lvl: {
+          type: GraphQLString
+        },
+        workouts_per_wk: {
+          type: GraphQLInt
+        },
+        min_per_workout: {
+          type: GraphQLInt
+        },
+        profile_pic: {
+          type: GraphQLString
+        },
+        cover_photo: {
           type: GraphQLString
         }
       },
