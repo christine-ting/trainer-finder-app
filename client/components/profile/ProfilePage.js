@@ -50,8 +50,8 @@ const ProfilePage = ({ navigation }) => {
     axios
       .post('http://192.168.1.20:8070/ct/graphql', { query })
       .then(result => { 
-        setProfile(result.data.data.profiles[0]);
         profileInfo = result.data.data.profiles[0];
+        setProfile(profileInfo);
       })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
