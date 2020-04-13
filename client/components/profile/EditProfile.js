@@ -19,6 +19,7 @@ const editComponents = [
 
 const EditProfile = ({ navigation }) => {
   const profile = navigation.getParam('profile');
+  
   useEffect(() => {
     accessNavigation = navigation;
   }, []);

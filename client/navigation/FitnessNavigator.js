@@ -6,6 +6,10 @@ import EditProfile from '../components/profile/EditProfile';
 import Home from '../components/home/Home';
 import Search from '../components/search/Search';
 import Authentication from '../components/profile/Authentication';
+import AddAccount from '../components/profile/AddAccount';
+import AddFitnessGoals from '../components/profile/AddFitnessGoals';
+import AddPersonalDetails from '../components/profile/AddPersonalDetails';
+import AddWorkoutPlans from '../components/profile/AddWorkoutPlans';
 import Colors from '../styles/profile/colors';
 import Icon from 'react-native-vector-icons/AntDesign';
 import React from 'react';
@@ -13,11 +17,15 @@ import React from 'react';
 const ProfileNavigator = createStackNavigator({
   Auth: Authentication,
   Profile: ProfilePage,
-  EditMode: EditProfile
+  EditMode: EditProfile,
+  Account: AddAccount,
+  PersonalDetails: AddPersonalDetails,
+  FitnessGoals: AddFitnessGoals,
+  WorkoutPlans: AddWorkoutPlans
 });
 
 const HomeSearchProfileNavigator = createBottomTabNavigator({
-  Home: { screen: Home, navigationOptions: {
+  Home: { screen: AddAccount, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="home" size={23} color={tabInfo.tintColor} />);
     }
@@ -27,11 +35,6 @@ const HomeSearchProfileNavigator = createBottomTabNavigator({
       return (<Icon name="search1" size={25} color={tabInfo.tintColor} />);
     }
   }},
-  // Profile: {screen: Authentication, navigationOptions: {
-  //   tabBarIcon: (tabInfo) => {
-  //     return (<Icon name="user" size={25} color={tabInfo.tintColor} />);
-  //   }
-  // }}
   Profile: {screen: ProfileNavigator, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="user" size={25} color={tabInfo.tintColor} />);

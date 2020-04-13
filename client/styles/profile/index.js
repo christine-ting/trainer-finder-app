@@ -442,4 +442,52 @@ export const searchStyle = {
     fontSize: 20,
     marginTop: 30
   }
-}
+};
+
+export const addAccountStyle = {
+  addAccount: {
+    backgroundColor: Colors.background,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  steps: {
+    flexDirection: 'row',
+    paddingBottom: 10
+  },
+  addAccountBox: {
+    backgroundColor: Colors.sectionBackground,
+    width: '80%',
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    justifyContent: 'center',
+    borderRadius: 2
+  },
+  rowView: {
+    flexDirection: 'row',
+    paddingVertical: 10
+  },
+  addText: {
+    color: Colors.lightGrey
+  },
+  inputView: {
+    borderBottomColor: Colors.headerFooter,
+    borderBottomWidth: 1,    
+    flex: 1
+  },
+  pickerView: {
+    flexDirection: 'row',
+  },
+  addInfoInput: {
+    color: Colors.mediumGrey,
+    paddingLeft: 10
+  },
+  nextView: {
+    alignItems: 'flex-end',
+    paddingTop: 10,
+    width: '70%'
+  },
+  nextButton: {
+    flexDirection: 'row'
+  }
+};

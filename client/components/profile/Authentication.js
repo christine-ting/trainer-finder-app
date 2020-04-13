@@ -66,6 +66,14 @@ const Authentication = ({ navigation }) => {
             }
           });
         }
+        if (method === 'signUp') {
+          navigation.navigate({
+            routeName: 'Account',
+            params: {
+              email: result.data.email
+            }
+          });
+        }
       })
       .catch(error => {
         const response = error.response.data.error.message;
