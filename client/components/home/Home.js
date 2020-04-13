@@ -10,22 +10,43 @@ import {
 import { homeStyle } from '../../styles/home';
 import { Linking } from 'expo';
 
-const findAGymImg = {
-  uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/gym3.jpg'
+const categories = {
+  search: {
+    image: { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/gym3.jpg' }
+  },
+  full: {
+    image: {
+      uri:
+        'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-13+at+12.15.30+PM.png'
+    },
+    link: 'https://www.youtube.com/watch?v=9TDuy9Tw9pA'
+  },
+  weight: {
+    image: {
+      uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/weightTraining.jpg'
+    },
+    link: 'https://www.youtube.com/watch?v=TdUlF4F2nto'
+  },
+  abs: {
+    image: {
+      uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/absWorkout.jpg'
+    },
+    link: 'https://www.youtube.com/watch?v=8AAmaSOSyIA'
+  },
+  diet: {
+    image: { uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/diet.jpg' },
+    link:
+      'https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20045506'
+  }
 };
-const ultimateWorkoutImg = {
-  uri:
-    'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-13+at+12.15.30+PM.png'
-};
-const weightImg = {
-  uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/weightTraining.jpg'
-};
-const absImg = {
-  uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/absWorkout.jpg'
-};
-const dietImg = {
-  uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/diet.jpg'
-};
+
+const titles = [
+  'Find A Gym',
+  'Full Body Workout',
+  'Weight Training',
+  'Abs Workout',
+  'Workout Diet'
+];
 
 const Home = ({ navigation }) => {
   const clickHandler = term => {
@@ -33,20 +54,9 @@ const Home = ({ navigation }) => {
       navigation.navigate({
         routeName: 'Search'
       });
-    }
-    if (term === 'full') {
-      Linking.openURL('https://www.youtube.com/watch?v=9TDuy9Tw9pA');
-    }
-    if (term === 'weight') {
-      Linking.openURL('https://www.youtube.com/watch?v=TdUlF4F2nto');
-    }
-    if (term === 'abs') {
-      Linking.openURL('https://www.youtube.com/watch?v=8AAmaSOSyIA');
-    }
-    if (term === 'diet') {
-      Linking.openURL(
-        'https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20045506'
-      );
+    } else {
+      let url = categories[term].link;
+      Linking.openURL(url);
     }
   };
 
@@ -56,46 +66,20 @@ const Home = ({ navigation }) => {
         <Text style={styles.headerText}>Trainer Finder</Text>
       </View>
       <ScrollView style={styles.scroll}>
-        <TouchableOpacity
-          style={styles.sectionView}
-          onPress={() => clickHandler('search')}
-        >
-          <ImageBackground source={findAGymImg} style={styles.image}>
-            <Text style={styles.title}>Find a Gym</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sectionView}
-          onPress={() => clickHandler('full')}
-        >
-          <ImageBackground source={ultimateWorkoutImg} style={styles.image}>
-            <Text style={styles.title}>Full Body Workout</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sectionView}
-          onPress={() => clickHandler('weight')}
-        >
-          <ImageBackground source={weightImg} style={styles.image}>
-            <Text style={styles.title}>Weight Training</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sectionView}
-          onPress={() => clickHandler('abs')}
-        >
-          <ImageBackground source={absImg} style={styles.image}>
-            <Text style={styles.title}>Abs Workout</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sectionView}
-          onPress={() => clickHandler('diet')}
-        >
-          <ImageBackground source={dietImg} style={styles.image}>
-            <Text style={styles.title}>Workout Diet</Text>
-          </ImageBackground>
-        </TouchableOpacity>
+        {Object.keys(categories).map((key, index) => (
+          <TouchableOpacity
+            style={styles.sectionView}
+            onPress={() => clickHandler(key)}
+            key={index}
+          >
+            <ImageBackground
+              source={categories[key].image}
+              style={styles.image}
+            >
+              <Text style={styles.title}>{titles[index]}</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
