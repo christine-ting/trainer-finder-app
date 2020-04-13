@@ -41,7 +41,6 @@ const AddPersonalDetails = ({ navigation }) => {
   );
 
   const changeHandler = (text, title) => {
-    console.log(title, text)
     setUserInput({ [title]: text });
   };
 
