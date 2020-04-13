@@ -71,6 +71,7 @@ const BasicProfile = ({ profile, updateCoverPhoto }) => {
           changeCoverPhoto={changeCoverPhoto}
           photoType={photoType}
           setShowModal={setShowModal}
+          profile={profile}
         />
       )}
     </View>

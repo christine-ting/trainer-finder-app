@@ -76,7 +76,6 @@ const updateDatabase = () => {
   const mutation = `
   mutation updateProfile {
   updateProfile(
-    id:0,
     email:"${email}"
     first_name:"${first_name}",
     last_name:"${last_name}",
@@ -91,7 +90,7 @@ const updateDatabase = () => {
     activity_lvl:"${activity_lvl}",
     workouts_per_wk:${workouts_per_wk},
     min_per_workout:${min_per_workout}
-    ) { id } 
+    ) { email } 
   }`;
   axios
     .post('http://192.168.1.20:8070/ct/graphql', { query: mutation })

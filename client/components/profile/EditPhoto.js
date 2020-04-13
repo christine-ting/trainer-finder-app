@@ -9,7 +9,7 @@ import key from '../../env/key';
 import axios from 'axios';
 import { editPhotoStyle } from '../../styles/profile';
 
-const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal }) => {
+const EditPhoto = ({ profile, photoType, updateProfilePic, changeCoverPhoto, setShowModal }) => {
   const [showModal, setModalVisibility] = useState(true);
   const hideModal = () => {
     setModalVisibility(false);
@@ -84,9 +84,9 @@ const EditPhoto = ({ photoType, updateProfilePic, changeCoverPhoto, setShowModal
     const mutation = `
     mutation updateProfile {
     updateProfile(
-      id:0,
+      email: "${profile.email}"
       ${photoType}: "${uri}"
-      ) { id } 
+      ) { email } 
     }`;
     axios
       .post('http://192.168.1.20:8070/ct/graphql', { query: mutation })
