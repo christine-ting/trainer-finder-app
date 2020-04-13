@@ -16,6 +16,7 @@ const steps = [...Array(4).keys()];
 let profile;
 
 const AddAccount = ({ navigation }) => {
+  const email = navigation.getParam('email');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
 
@@ -31,7 +32,8 @@ const AddAccount = ({ navigation }) => {
   const nextClickHandler = () => {
     profile = {
       first_name,
-      last_name
+      last_name,
+      email
     };
     navigation.navigate({
       routeName: 'PersonalDetails',

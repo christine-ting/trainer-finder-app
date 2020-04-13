@@ -47,7 +47,6 @@ const AddWorkoutPlans = ({ navigation }) => {
 
   const nextClickHandler = () => {
     const profile = { ...prevProfile, ...userInput };
-    console.log(profile);
     const {
       email,
       first_name,
