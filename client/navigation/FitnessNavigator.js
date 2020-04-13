@@ -25,7 +25,7 @@ const ProfileNavigator = createStackNavigator({
 });
 
 const HomeSearchProfileNavigator = createBottomTabNavigator({
-  Home: { screen: AddAccount, navigationOptions: {
+  Home: { screen: Home, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="home" size={23} color={tabInfo.tintColor} />);
     }
