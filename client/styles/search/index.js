@@ -8,7 +8,7 @@ export const searchStyle = {
   },
   header: {
     backgroundColor: Colors.headerFooter,
-    flex: 0.12,
+    flex: 0.2,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -17,7 +17,15 @@ export const searchStyle = {
     fontSize: 20,
     marginTop: 30
   },
+  headerImg: {
+    width: '100%', 
+    height: 200
+  },
   searchBar: {
-    width: '100%'
+    // backgroundColor: 'white',
+    // borderWidth: 0, //no effect
+    // shadowColor: 'white', //no effect
+    borderBottomColor: 'transparent',
+    borderTopColor: 'transparent'
   }
 };
