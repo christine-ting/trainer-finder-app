@@ -3,7 +3,7 @@ const zipcodes = require('zipcodes');
 var hills = zipcodes.lookup(91765);
 var data;
 // console.log(hills);
-// axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${hills.latitude},${hills.longitude}&radius=8000&type=gym&key=AIzaSyALtgBPcAqpiLiHpqjm9kQnf4jTkl_mjuI`)
+// axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${hills.latitude},${hills.longitude}&radius=8000&type=gym&key=`)
 //   .then((response) => {
 //     data = response.data.results;
 //     console.log(JSON.stringify(data))
