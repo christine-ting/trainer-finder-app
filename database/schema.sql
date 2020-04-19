@@ -1,13 +1,13 @@
-DROP DATABASE IF EXISTS profile;
+DROP DATABASE IF EXISTS findtrainer;
 
-CREATE DATABASE profile;
+CREATE DATABASE findtrainer;
 
-\c profile;
+\c findtrainer;
 
 DROP TABLE IF EXISTS info;
-DROP TABLE IF EXISTS gym;
 DROP TABLE IF EXISTS trainer;
 DROP TABLE IF EXISTS hour;
+DROP TABLE IF EXISTS gym;
 
 CREATE TABLE info (
   id SERIAL,
@@ -34,9 +34,12 @@ CREATE TABLE gym (
   name VARCHAR NOT NULL,
   address VARCHAR NOT NULL,
   zip INT NOT NULL,
-  website VARCHAR NOT NULL,
+  website VARCHAR,
+  image VARCHAR,
   phone VARCHAR NOT NULL,
-  rating INT NOT NULL
+  hours VARCHAR NOT NULL,
+  num_of_rating DECIMAL NOT NULL,
+  rating DECIMAL NOT NULL
 );
 
 CREATE TABLE trainer (
@@ -45,13 +48,8 @@ CREATE TABLE trainer (
   first_name VARCHAR NOT NULL,
   last_name VARCHAR NOT NULL,
   specialties VARCHAR NOT NULL,
-  rating INT NOT NULL,
+  image VARCHAR,
+  num_of_rating INT NOT NULL,
+  rating DECIMAL NOT NULL,
   FOREIGN KEY (trainer_id) REFERENCES gym (id)
 );
-
-CREATE TABLE hour (
-  id SERIAL,
-  hour_id INT NOT NULL,
-  hours VARCHAR NOT NULL,
-  FOREIGN KEY (hour_id) REFERENCES gym (id)
-)

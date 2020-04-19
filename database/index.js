@@ -1,5 +1,15 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('postgres://postgres:@localhost:5432/profile');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('postgres://postgres:@localhost:5432/findtrainer');
+
+const db = {};
+
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+
+db.info = require('./models/Info.js')(sequelize, Sequelize);
+db.gym = require('./models/Gym.js')(sequelize, Sequelize);
+db.trainer = require('./models/Trainer.js')(sequelize, Sequelize);
+db.gym.hasMany(db.trainer);
 
 sequelize
   .authenticate()
@@ -10,75 +20,4 @@ sequelize
     console.error('\u001B[31mUnable to connect to the database:', err);
   });
 
-const Info = sequelize.define('Info', {
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  first_name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  height: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  weight: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  age: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  gender: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  date_of_birth: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  zip: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  goal_w: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  weekly_goal: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  activity_lvl: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  workouts_per_wk: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  min_per_workout: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
-  profile_pic: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  cover_photo: {
-    type: DataTypes.STRING,
-    allowNull: true
-  }
-}, {
-  tableName: 'info',
-  timestamps: false // opt out of timestamps
-});
-
-const db = { Info, sequelize };
 module.exports = db;
