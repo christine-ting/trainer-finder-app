@@ -1,84 +1,85 @@
-const axios = require('axios');
+const faker = require('faker');
 const zipcodes = require('zipcodes');
-var hills = zipcodes.lookup(91765);
-var data;
-// console.log(hills);
-// axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${hills.latitude},${hills.longitude}&radius=8000&type=gym&key=`)
-//   .then((response) => {
-//     data = response.data.results;
-//     console.log(JSON.stringify(data))
-//   })
-//   .catch((err) => console.error(err));
-
-const infoData = [{
-  id: 0,
-  email: 'christine@yahoo.com',
-  first_name: 'Christine',
-  last_name: 'Ting',
-  height: '5ft5in',
-  weight: '130 lbs',
-  age: 27,
-  gender: 'Female',
-  date_of_birth: '12/25/1992',
-  zip: 90045,
-  goal_w: '120 lbs',
-  weekly_goal: 'Lose 0.5 lbs per week',
-  activity_lvl: 'Active',
-  workouts_per_wk: 3,
-  min_per_workout: 60,
-  profile_pic: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/IMG_3501-1583453260746.JPG',
-  cover_photo: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-03-09+at+9.10.16+AM.png'
-}];
-
-const gymData = [{
-  name: 'LA Fitness',
-  address: '20801 Golden Springs Dr, Diamond Bar, CA 91789',
-  zip: 91765,
-  website: 'lafitness.com',
-  hours: 'Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm',
-  image: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-17+at+1.02.13+PM.png',
-  phone: '(909) 595-0045',
-  num_of_rating: 15,
-  rating: 3.5
-},
-{
-  name: 'Results Unlimited Inc',
-  address: '21050 Golden Springs Dr, Diamond Bar, CA 91789',
-  zip: 91765,
-  website: '',
-  hours: 'Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm',
-  image: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-18+at+4.45.15+PM.png',
-  phone: '(909) 594-1249',
-  num_of_rating: 7,
-  rating: 4.2
-}];
-
-const trainerData = [{
-  trainer_id: 1,
-  first_name: 'Lauren',
-  last_name: 'Greens',
-  specialties: 'yoga | boxing',
-  image: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-17+at+1.07.23+PM.png',
-  num_of_rating: 5,
-  rating: 4.6
-},
-{
-  trainer_id: 2,
-  first_name: 'Ben',
-  last_name: 'David',
-  specialties: 'karate | boxing',
-  image: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-04-17+at+1.07.56+PM.png',
-  num_of_rating: 7,
-  rating: 4.2
-}];
-
-
+const key = require('./env/key').googleAPI;
+const axios = require('axios');
+const gymNames = require('./data/gymNames');
+const example = require('./data/exampleData');
 const Info = require('./').info;
 const Gym = require('./').gym;
 const Trainer = require('./').trainer;
-Info.create(infoData[0]);
-gymData.forEach(data => Gym.create(data));
-trainerData.forEach(data => Trainer.create(data));
+
+const hours = 'Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm';
+
+// seed profile info data
+Info.create(example.infoData[0]);
+
+// generate and seed gym data
+const storeRealGymData = (data, zipcode) => {
+  let result = [];
+  for (const obj of data) {
+    let gym = {
+      name: obj.name,
+      address: obj.vicinity,
+      zip: zipcode,
+      website: `${obj.name.split(' ').join('').toLowerCase()}.com`,
+      hours,
+      image: faker.image.sports(),
+      phone: faker.phone.phoneNumberFormat(1),
+      num_of_rating: obj.user_ratings_total || 0,
+      rating: obj.rating || 0
+    };
+    result.push(gym);
+  }
+  return result;
+};
+
+const generateFakeData = (data, zipcode) => {
+  const length = data.length;
+  const place = zipcodes.lookup(zipcode);
+  if (length < 20) {
+    const remain = 20 - length;
+    for (var i = 0; i < remain; i++) {
+      let gym = {
+        name: gymNames[i],
+        address: `${faker.address.streetAddress()}, ${place.city}, ${place.state} ${zipcode}`,
+        zip: zipcode,
+        website: `${gymNames[i].split(' ').join('').toLowerCase()}.com`,
+        hours,
+        image: faker.image.sports(),
+        phone: faker.phone.phoneNumberFormat(1),
+        num_of_rating: faker.random.number({min: 0, max: 20}),
+        rating: Number(faker.finance.amount(0, 5, 1))
+      };
+      if (gym.num_of_rating === 0) {
+        gym.rating = 0;
+      }
+      data.push(gym);
+    }
+  }
+  return data;
+};
+
+const getDataAndSeed = (zipcode) => {
+  const place = zipcodes.lookup(zipcode);
+  axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${place.latitude},${place.longitude}&radius=3000&type=gym&key=${key}`)
+    .then((response) => {
+      const realData = response.data.results;
+      let data = storeRealGymData(realData, 91765);
+      data = generateFakeData(data, 91765);
+      return data;
+    })
+    .then((gymData) => {
+      gymData.forEach(data => Gym.create(data));
+    })
+    .catch((err) => console.error(err));
+};
+
+const places = [91765, 90014, 10001, 94008];
+places.forEach((zipcode) => getDataAndSeed(zipcode));
+
+// generate and seed trainer data
+const numOfGyms = [...Array(80).keys()];
+
 
 
 

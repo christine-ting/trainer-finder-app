@@ -6,3 +6,4 @@ node_modules
 
 ## security key ##
 client/env/key.js
+database/env/key.js

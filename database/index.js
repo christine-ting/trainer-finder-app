@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('postgres://postgres:@localhost:5432/findtrainer');
 
-const db = {};
+
+let db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
