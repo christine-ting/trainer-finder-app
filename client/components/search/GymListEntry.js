@@ -20,7 +20,8 @@ const GymListEntry = ({ gym, navigation }) => {
     navigation.navigate({
       routeName: 'GymDetails',
       params: {
-        gymId: id
+        gymId: id,
+        gym
       }
     });
   };
