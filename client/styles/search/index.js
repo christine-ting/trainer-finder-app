@@ -2,9 +2,8 @@ import Colors from '../profile/colors';
 
 export const searchStyle = {
   search: {
-    backgroundColor: Colors.sectionBackground,
-    flex: 1,
-    paddingBottom: 20
+    backgroundColor: Colors.background,
+    flex: 1
   },
   header: {
     backgroundColor: Colors.headerFooter,
@@ -21,11 +20,33 @@ export const searchStyle = {
     width: '100%', 
     height: 200
   },
+  searchView: {
+    // flex: 1,
+    // flexDirection: 'row',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // justifyContent: 'space-between',
+    // backgroundColor: 'yellow',
+    // paddingRight: 10
+  },
   searchBar: {
-    // backgroundColor: 'white',
-    // borderWidth: 0, //no effect
-    // shadowColor: 'white', //no effect
+    // flex: 0.95,
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent'
-  }
+  },
 };
+
+export const gymListEntryStyle = {
+  listView: {
+    backgroundColor: Colors.sectionBackground,
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    marginVertical: 10
+  },
+  gymImg: {
+    width: '100%',
+    height: 200
+  },
+
+}

@@ -53,12 +53,11 @@ const generateFakeData = (data, zipcode) => {
 
 const getGymDataAndSeed = (zipcode) => {
   const place = zipcodes.lookup(zipcode);
-  console.log(place)
   axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${place.latitude},${place.longitude}&radius=3000&type=gym&key=${key}`)
     .then((response) => {
       const realData = response.data.results;
-      let data = storeRealGymData(realData, 91765);
-      data = generateFakeData(data, 91765);
+      let data = storeRealGymData(realData, zipcode);
+      data = generateFakeData(data, zipcode);
       return data;
     })
     .then((gymData) => {
