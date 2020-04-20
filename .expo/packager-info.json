@@ -1,10 +1,10 @@
 {
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://je-u6t.anonymous.trainer-finder-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.je-u6t.anonymous.trainer-finder-app.exp.direct",
-  "ngrokPid": 47847,
+  "expoServerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 47828,
+  "packagerPort": null,
+  "packagerPid": null,
   "webpackServerPort": null
 }

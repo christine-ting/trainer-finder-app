@@ -1,4 +1,10 @@
 const dbInfo = require('../database/index.js').info.sequelize;
+const dbGym = require('../database/index.js').gym.sequelize;
+const dbTrainer = require('../database/index.js').trainer.sequelize;
+const Profile = require('./schema/Profile');
+const Gym = require('./schema/Gym');
+const Trainer = require('./schema/Trainer');
+const args = require('./arguments');
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -6,111 +12,6 @@ const {
   GraphQLList,
   GraphQLSchema
 } = require('graphql');
-
-const Profile = new GraphQLObjectType({
-  name: 'Profile',
-  description: 'This represents a Profile',
-  fields: () => {
-    return {
-      email: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.email;
-        }
-      },
-      first_name: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.first_name;
-        }
-      },
-      last_name: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.last_name;
-        }
-      },
-      height: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.height;
-        }
-      },
-      weight: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.weight;
-        }
-      },
-      age: {
-        type: GraphQLInt,
-        resolve(profile) {
-          return profile.age;
-        }
-      },
-      gender: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.gender;
-        }
-      },
-      date_of_birth: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.date_of_birth;
-        }
-      },
-      zip: {
-        type: GraphQLInt,
-        resolve(profile) {
-          return profile.zip;
-        }
-      },
-      goal_w: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.goal_w;
-        }
-      },
-      weekly_goal: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.weekly_goal;
-        }
-      },
-      activity_lvl: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.activity_lvl;
-        }
-      },
-      workouts_per_wk: {
-        type: GraphQLInt,
-        resolve(profile) {
-          return profile.workouts_per_wk;
-        }
-      },
-      min_per_workout: {
-        type: GraphQLInt,
-        resolve(profile) {
-          return profile.min_per_workout;
-        }
-      },
-      profile_pic: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.profile_pic;
-        }
-      },
-      cover_photo: {
-        type: GraphQLString,
-        resolve(profile) {
-          return profile.cover_photo;
-        }
-      }
-    };
-  }
-});
 
 const Query = new GraphQLObjectType({
   name: 'Query',
@@ -127,61 +28,32 @@ const Query = new GraphQLObjectType({
         resolve(root, args) {
           return dbInfo.models.Info.findAll({ where: args });
         }
+      },
+      gyms: {
+        type: new GraphQLList(Gym),
+        args: {
+          zip: {
+            type: GraphQLInt
+          }
+        },
+        resolve(root, args) {
+          return dbGym.models.Gym.findAll({ where: args });
+        }
+      },
+      trainers: {
+        type: new GraphQLList(Trainer),
+        args: {
+          trainer_id: {
+            type: GraphQLInt
+          }
+        },
+        resolve(root, args) {
+          return dbTrainer.models.Trainer.findAll({ attributes: {exclude: ['GymId']}, where: args });
+        }
       }
     };
   }
 });
-
-const args = {
-  email: {
-    type: GraphQLString
-  },
-  first_name: {
-    type: GraphQLString
-  },
-  last_name: {
-    type: GraphQLString
-  },
-  height: {
-    type: GraphQLString
-  },
-  weight: {
-    type: GraphQLString
-  },
-  age: {
-    type: GraphQLInt
-  },
-  gender: {
-    type: GraphQLString
-  },
-  date_of_birth: {
-    type: GraphQLString
-  },
-  zip: {
-    type: GraphQLInt
-  },
-  goal_w: {
-    type: GraphQLString
-  },
-  weekly_goal: {
-    type: GraphQLString
-  },
-  activity_lvl: {
-    type: GraphQLString
-  },
-  workouts_per_wk: {
-    type: GraphQLInt
-  },
-  min_per_workout: {
-    type: GraphQLInt
-  },
-  profile_pic: {
-    type: GraphQLString
-  },
-  cover_photo: {
-    type: GraphQLString
-  }
-};
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',

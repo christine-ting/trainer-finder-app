@@ -20,7 +20,7 @@ const generateSpecialties = () => {
 const generateTrainerData = () => {
   let trainers = [];
   for (var i = 0; i < 40; i++) {
-    let randomNum = faker.random.number({min: 3, max: 10});
+    let randomNum = 3 + Math.floor(Math.random() * 8);
     for (var j = 0; j < randomNum; j++) {
       let trainer = {
         trainer_id: i,
