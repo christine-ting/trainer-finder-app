@@ -39,6 +39,12 @@ const Trainer = new GraphQLObjectType({
           return trainer.image;
         }
       },
+      price: {
+        type: GraphQLString,
+        resolve(trainer) {
+          return trainer.price;
+        }
+      },
       num_of_rating: {
         type: GraphQLInt,
         resolve(trainer) {

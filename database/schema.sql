@@ -38,6 +38,7 @@ CREATE TABLE gym (
   image VARCHAR,
   phone VARCHAR NOT NULL,
   hours VARCHAR NOT NULL,
+  price VARCHAR NOT NULL,
   num_of_rating DECIMAL NOT NULL,
   rating DECIMAL NOT NULL
 );
@@ -49,6 +50,7 @@ CREATE TABLE trainer (
   last_name VARCHAR NOT NULL,
   specialties VARCHAR NOT NULL,
   image VARCHAR,
+  price VARCHAR NOT NULL,
   num_of_rating INT NOT NULL,
   rating DECIMAL NOT NULL,
   FOREIGN KEY (trainer_id) REFERENCES gym (id)

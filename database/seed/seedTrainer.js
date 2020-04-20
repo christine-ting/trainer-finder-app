@@ -28,6 +28,7 @@ const generateTrainerData = () => {
         last_name: faker.name.lastName(),
         specialties: generateSpecialties(),
         image: faker.image.people(),
+        price: `$${faker.random.number({ min: 15, max: 100 }).toString()}/hour`,
         num_of_rating: faker.random.number({min: 0, max: 20}),
         rating: Number(faker.finance.amount(0, 5, 1))
       };

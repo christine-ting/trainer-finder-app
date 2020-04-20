@@ -57,6 +57,12 @@ const Gym = new GraphQLObjectType({
           return gym.phone;
         }
       },
+      price: {
+        type: GraphQLString,
+        resolve(gym) {
+          return gym.price;
+        }
+      },
       num_of_rating: {
         type: GraphQLInt,
         resolve(gym) {
