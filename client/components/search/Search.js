@@ -10,6 +10,7 @@ import {
   ActivityIndicator
 } from "react-native";
 import { SearchBar } from "react-native-elements";
+import Colors from '../../styles/profile/colors';
 import { searchStyle } from "../../styles/search";
 import axios from "axios";
 import keys from "../../env/key";
@@ -18,13 +19,14 @@ import GymList from "./GymList";
 
 const headerImg = {
   uri:
-    "https://mvpuploadimg.s3-us-west-1.amazonaws.com/Screen+Shot+2020-03-09+at+9.10.16+AM.png"
+    "https://mvpuploadimg.s3-us-west-1.amazonaws.com/searchimg.png"
 };
 
 const zipcodes = [91765, 90014, 10001, 94102];
 
 const example = [
   {
+    id: 1,
     address: "255 West 36th Street FL 7, New York",
     hours:
       "Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm",
@@ -36,6 +38,7 @@ const example = [
     website: "roninathletics-graciejiujitsu,kickboxing,mmanyc.com"
   },
   {
+    id: 2,
     address: "78 5th Avenue 4th Floor, New York",
     hours:
       "Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm",
@@ -48,7 +51,7 @@ const example = [
   }
 ];
 
-const Search = () => {
+const Search = ({ navigation }) => {
   const [text, searchText] = useState("");
   const [gyms, updateGyms] = useState(example);
   const [isLoading, loadData] = useState(true);
@@ -57,6 +60,7 @@ const Search = () => {
     const query = `
     {
       gyms(zip:${zip}) {
+        id
         name
         address
         website
@@ -89,9 +93,6 @@ const Search = () => {
 
   return (
     <View style={styles.search}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Find a Gym</Text>
-      </View>
       <Image style={styles.headerImg} source={headerImg} />
       <View style={styles.searchView}>
         <SearchBar
@@ -110,12 +111,24 @@ const Search = () => {
           onPress={() => Keyboard.dismiss()}
           accessible={false}
         >
-          <GymList gyms={gyms} />
+          <GymList gyms={gyms} navigation={navigation}/>
         </TouchableWithoutFeedback>
       </ScrollView>
       {/* )} */}
     </View>
   );
+};
+
+Search.navigationOptions = {
+  headerTitle: 'Find a Gym',
+  headerStyle: {
+    backgroundColor: Colors.headerFooter,
+    shadowColor: 'transparent'
+  },
+  headerTintColor: Colors.lightGrey,
+  headerTitleStyle: {
+    fontSize: 20
+  }
 };
 
 const styles = StyleSheet.create(searchStyle);

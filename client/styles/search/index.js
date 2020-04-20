@@ -5,20 +5,9 @@ export const searchStyle = {
     backgroundColor: Colors.background,
     flex: 1
   },
-  header: {
-    backgroundColor: Colors.headerFooter,
-    flex: 0.2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  headerText: {
-    color: Colors.lightGrey,
-    fontSize: 20,
-    marginTop: 30
-  },
   headerImg: {
     width: '100%', 
-    height: 200
+    height: 100
   },
   searchView: {
     // flex: 1,

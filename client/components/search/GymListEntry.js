@@ -14,12 +14,22 @@ import { gymListEntryStyle } from "../../styles/search";
 import Colors from "../../styles/profile/colors";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const GymListEntry = ({ gym }) => {
+const GymListEntry = ({ gym, navigation }) => {
+
+  const clickToViewGymDetails = (id) => {
+    navigation.navigate({
+      routeName: 'GymDetails',
+      params: {
+        gymId: id
+      }
+    });
+  };
+
   return (
-    <TouchableOpacity>
+    <View>
       <View style={styles.listView}>
         <Image style={styles.gymImg} source={{ uri: gym.image }} />
-        <View style={styles.description}>
+        <TouchableOpacity style={styles.description} onPress={() => clickToViewGymDetails(gym.id)}>
           <View style={styles.gymTextView}>
             <Text style={styles.name}>{gym.name}</Text>
             <Text style={styles.address}>{gym.address}</Text>
@@ -33,9 +43,9 @@ const GymListEntry = ({ gym }) => {
             />
             <Text style={styles.numRating}>&nbsp;{gym.num_of_rating}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 

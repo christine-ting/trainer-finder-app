@@ -10,6 +10,8 @@ import AddAccount from '../components/profile/AddAccount';
 import AddFitnessGoals from '../components/profile/AddFitnessGoals';
 import AddPersonalDetails from '../components/profile/AddPersonalDetails';
 import AddWorkoutPlans from '../components/profile/AddWorkoutPlans';
+import SearchGym from '../components/search/Search';
+import GymView from '../components/search/GymView';
 import Colors from '../styles/profile/colors';
 import Icon from 'react-native-vector-icons/AntDesign';
 import React from 'react';
@@ -24,13 +26,18 @@ const ProfileNavigator = createStackNavigator({
   WorkoutPlans: AddWorkoutPlans
 });
 
+const GymInfoNavigator = createStackNavigator({
+  Search: SearchGym,
+  GymDetails: GymView
+});
+
 const HomeSearchProfileNavigator = createBottomTabNavigator({
   Home: { screen: Home, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="home" size={23} color={tabInfo.tintColor} />);
     }
   }},
-  Search: {screen: Search, navigationOptions: {
+  Search: {screen: GymInfoNavigator, navigationOptions: {
     tabBarIcon: (tabInfo) => {
       return (<Icon name="search1" size={25} color={tabInfo.tintColor} />);
     }

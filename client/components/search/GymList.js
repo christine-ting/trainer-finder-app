@@ -6,11 +6,11 @@ import {
 } from "react-native";
 import GymListEntry from './GymListEntry';
 
-const GymList = ({ gyms }) => {
+const GymList = ({ gyms, navigation }) => {
   return (
     <View>
       { gyms.map((gym, index) => (
-        <GymListEntry key={index} gym={gym}/>
+        <GymListEntry key={index} gym={gym} navigation={navigation}/>
       )) }
     </View>
   );
