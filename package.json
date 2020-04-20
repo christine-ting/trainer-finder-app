@@ -8,7 +8,9 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "createDB": "psql -U postgres -a -f database/schema.sql",
-    "seed": "node database/seed.js"
+    "seedInfo": "node database/seed/seedInfo.js",
+    "seedGym": "node database/seed/seedGym.js",
+    "seedTrainer": "node database/seed/seedTrainer.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",

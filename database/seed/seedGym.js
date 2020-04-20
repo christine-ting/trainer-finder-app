@@ -1,19 +1,11 @@
 const faker = require('faker');
 const zipcodes = require('zipcodes');
-const key = require('./env/key').googleAPI;
+const key = require('../env/key').googleAPI;
 const axios = require('axios');
-const gymNames = require('./data/gymNames');
-const example = require('./data/exampleData');
-const Info = require('./').info;
-const Gym = require('./').gym;
-const Trainer = require('./').trainer;
-
+const gymNames = require('../data/gymNames');
+const Gym = require('../').gym;
 const hours = 'Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm';
 
-// seed profile info data
-Info.create(example.infoData[0]);
-
-// generate and seed gym data
 const storeRealGymData = (data, zipcode) => {
   let result = [];
   for (const obj of data) {
@@ -59,7 +51,7 @@ const generateFakeData = (data, zipcode) => {
   return data;
 };
 
-const getDataAndSeed = (zipcode) => {
+const getGymDataAndSeed = (zipcode) => {
   const place = zipcodes.lookup(zipcode);
   axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${place.latitude},${place.longitude}&radius=3000&type=gym&key=${key}`)
     .then((response) => {
@@ -75,12 +67,4 @@ const getDataAndSeed = (zipcode) => {
 };
 
 const places = [91765, 90014, 10001, 94008];
-places.forEach((zipcode) => getDataAndSeed(zipcode));
-
-// generate and seed trainer data
-const numOfGyms = [...Array(80).keys()];
-
-
-
-
-
+places.forEach((zipcode) => getGymDataAndSeed(zipcode));
