@@ -7,26 +7,37 @@ import {
   TouchableWithoutFeedback,
   Image,
   ScrollView,
-  ActivityIndicator,
+  ActivityIndicator
 } from "react-native";
+import { Rating } from "react-native-elements";
 import { gymListEntryStyle } from "../../styles/search";
-
+import Colors from "../../styles/profile/colors";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GymListEntry = ({ gym }) => {
   return (
-    <View>
+    <TouchableOpacity>
       <View style={styles.listView}>
         <Image style={styles.gymImg} source={{ uri: gym.image }} />
-        <View>
-          <Text>{gym.name}</Text>
-          <Text>{gym.address}</Text>
-          <Text>{gym.rating}</Text>
+        <View style={styles.description}>
+          <View style={styles.gymTextView}>
+            <Text style={styles.name}>{gym.name}</Text>
+            <Text style={styles.address}>{gym.address}</Text>
+          </View>
+          <View style={styles.ratingView}>
+            <Rating
+              imageSize={17}
+              readonly
+              startingValue={Number(gym.rating)}
+              tintColor={Colors.sectionBackground}
+            />
+            <Text style={styles.numRating}>&nbsp;{gym.num_of_rating}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
-
 
 const styles = StyleSheet.create(gymListEntryStyle);
 
