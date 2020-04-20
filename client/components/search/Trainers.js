@@ -28,6 +28,7 @@ const Trainers = ({ gymId }) => {
         last_name
         specialties
         image
+        price
         num_of_rating
         rating
       }

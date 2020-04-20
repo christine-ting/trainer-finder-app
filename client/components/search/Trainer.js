@@ -30,6 +30,9 @@ const Trainer = ({ trainer }) => {
         <Text style={styles.name}>
           {trainer.first_name} {trainer.last_name}
         </Text>
+        <Text style={styles.price}>
+          {trainer.price}
+        </Text>
         <Text style={styles.specialties}>{trainer.specialties}</Text>
       </View>
     </View>

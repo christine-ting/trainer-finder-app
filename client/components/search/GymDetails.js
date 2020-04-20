@@ -17,6 +17,7 @@ import LocIcon from "react-native-vector-icons/Entypo";
 import PhoneIcon from "react-native-vector-icons/FontAwesome";
 import WebIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import HoursIcon from "react-native-vector-icons/Feather";
+import PriceIcon from 'react-native-vector-icons/FontAwesome';
 
 const GymDetails = ({ gym }) => {
   return (
@@ -46,6 +47,15 @@ const GymDetails = ({ gym }) => {
             <Text style={styles.sectionTitle}>Website</Text>
           </View>
           <Text style={styles.text}>{gym.website}</Text>
+        </View>
+      </View>
+      <View style={styles.details}>
+        <PriceIcon name='dollar' size={15} style={styles.icons} />
+        <View style={styles.sectionView}>
+          <View style={styles.sectionTitleView}>
+            <Text style={styles.sectionTitle}>Price</Text>
+          </View>
+          <Text style={styles.text}>{gym.price}</Text>
         </View>
       </View>
       <View style={styles.details}>

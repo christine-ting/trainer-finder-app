@@ -161,7 +161,7 @@ export const trainerStyle = {
   },
   trainerDetails: {
     paddingLeft: 5,
-    paddingTop: 5
+    paddingTop: 8
   },
   ratingView: {
     flexDirection: 'row'
@@ -172,10 +172,17 @@ export const trainerStyle = {
   },
   name: {
     color: Colors.lightGrey,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    paddingTop: 3
+  },
+  price: {
+    color: Colors.mediumGrey,
+    fontSize: 12,
+    paddingTop: 3
   },
   specialties: {
     color: Colors.orangePink,
-    fontSize: 10
+    fontSize: 10,
+    paddingTop: 3
   }
 };

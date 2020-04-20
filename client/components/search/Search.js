@@ -34,6 +34,7 @@ const example = [
     name: "Ronin Athletics - Gracie Jiu Jitsu, Kickboxing, MMA NYC",
     num_of_rating: 125,
     phone: "(540) 675-6033",
+    price: "$30/month",
     rating: "4.9",
     website: "roninathletics-graciejiujitsu,kickboxing,mmanyc.com"
   },
@@ -46,6 +47,7 @@ const example = [
     name: "Pure Barre",
     num_of_rating: 15,
     phone: "(818) 220-7160",
+    price: "$50/month",
     rating: "4.3",
     website: "purebarre.com"
   }
@@ -67,12 +69,13 @@ const Search = ({ navigation }) => {
         hours
         image
         phone
+        price
         num_of_rating
         rating
       }
     }`;
     axios
-      .post("http://192.168.1.20:8070/ct/graphql", { query })
+      .post("http://192.168.1.3:8070/ct/graphql", { query })
       .then(result => {
         gymInfo = result.data.data.gyms;
         updateGyms(gymInfo);
