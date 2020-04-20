@@ -1,4 +1,4 @@
-const db = require('../database/index.js').sequelize;
+const dbInfo = require('../database/index.js').info.sequelize;
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -125,7 +125,7 @@ const Query = new GraphQLObjectType({
           }
         },
         resolve(root, args) {
-          return db.models.Info.findAll({ where: args });
+          return dbInfo.models.Info.findAll({ where: args });
         }
       }
     };
@@ -191,14 +191,14 @@ const Mutation = new GraphQLObjectType({
       type: Profile,
       args,
       resolve(_, args) {
-        return db.models.Info.update(args, { where: { email: args.email } });
+        return dbInfo.models.Info.update(args, { where: { email: args.email } });
       }
     },
     addUser: {
       type: Profile,
       args,
       resolve(_, args) {
-        return db.models.Info.create(args);
+        return dbInfo.models.Info.create(args);
       }
     }
   }
