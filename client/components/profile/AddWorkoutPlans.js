@@ -85,7 +85,7 @@ const AddWorkoutPlans = ({ navigation }) => {
       ) { email } 
     }`;
     axios
-      .post('http://192.168.1.20:8070/ct/graphql', { query: mutation })
+      .post('http://192.168.1.3:8070/ct/graphql', { query: mutation })
       .then(() => {
         navigation.navigate({
           routeName: 'Profile',

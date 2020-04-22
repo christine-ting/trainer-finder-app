@@ -48,7 +48,7 @@ const ProfilePage = ({ navigation }) => {
       }
     }`;
     axios
-      .post('http://192.168.1.20:8070/ct/graphql', { query })
+      .post('http://192.168.1.3:8070/ct/graphql', { query })
       .then(result => { 
         profileInfo = result.data.data.profiles[0];
         setProfile(profileInfo);
