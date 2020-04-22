@@ -62,11 +62,11 @@ const generateFakeData = (data, zipcode) => {
   return data;
 };
 
-const getGymDataAndSeed = zipcode => {
+const getGymDataAndSeed = (zipcode) => {
   const place = zipcodes.lookup(zipcode);
   axios
     .get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${place.latitude},${place.longitude}&radius=3000&type=gym&key=${key}`
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${place.latitude},${place.longitude}&radius=5000&type=gym&key=${key}`
     )
     .then(response => {
       const realData = response.data.results;
@@ -80,6 +80,5 @@ const getGymDataAndSeed = zipcode => {
     .catch(err => console.error(err));
 };
 
-// const places = [91765, 90014, 10001, 94102];
-const places = [94102, 10001];
+const places = [91765, 90014, 10001, 94102];
 places.forEach(zipcode => getGymDataAndSeed(zipcode));
