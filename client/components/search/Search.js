@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Keyboard,
-  TouchableWithoutFeedback,
   Image,
   ScrollView,
   ActivityIndicator
@@ -46,6 +45,7 @@ const Search = ({ navigation }) => {
       .then(result => {
         gymInfo = result.data.data.gyms;
         updateGyms(gymInfo);
+        Keyboard.dismiss();
       })
       .catch(err => console.error(err));
   };
@@ -77,12 +77,7 @@ const Search = ({ navigation }) => {
         <ActivityIndicator />
       ) : (
         <ScrollView>
-          <TouchableWithoutFeedback
-            onPress={() => Keyboard.dismiss()}
-            accessible={false}
-          >
-            <GymList gyms={gyms} navigation={navigation} />
-          </TouchableWithoutFeedback>
+          <GymList gyms={gyms} navigation={navigation} />
         </ScrollView>
       )}
     </View>
