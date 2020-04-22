@@ -1,17 +1,8 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ScrollView,
-  ActivityIndicator
-} from "react-native";
-import { Rating } from "react-native-elements";
-import { gymListEntryStyle } from "../../styles/search";
-import Colors from "../../styles/profile/colors";
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { Rating } from 'react-native-elements';
+import { gymListEntryStyle } from '../../styles/search';
+import Colors from '../../styles/profile/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GymListEntry = ({ gym, navigation }) => {
@@ -20,7 +11,6 @@ const GymListEntry = ({ gym, navigation }) => {
     navigation.navigate({
       routeName: 'GymDetails',
       params: {
-        gymId: id,
         gym
       }
     });
@@ -30,7 +20,10 @@ const GymListEntry = ({ gym, navigation }) => {
     <View>
       <View style={styles.listView}>
         <Image style={styles.gymImg} source={{ uri: gym.image }} />
-        <TouchableOpacity style={styles.description} onPress={() => clickToViewGymDetails(gym.id)}>
+        <TouchableOpacity
+          style={styles.description}
+          onPress={() => clickToViewGymDetails(gym.id)}
+        >
           <View style={styles.gymTextView}>
             <Text style={styles.name}>{gym.name}</Text>
             <Text style={styles.address}>{gym.address}</Text>

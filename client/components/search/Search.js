@@ -1,64 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Keyboard,
   TouchableWithoutFeedback,
   Image,
   ScrollView,
   ActivityIndicator
-} from "react-native";
-import { SearchBar } from "react-native-elements";
+} from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import Colors from '../../styles/profile/colors';
-import { searchStyle } from "../../styles/search";
-import axios from "axios";
-import keys from "../../env/key";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import GymList from "./GymList";
+import { searchStyle } from '../../styles/search';
+import axios from 'axios';
+import GymList from './GymList';
 
 const headerImg = {
-  uri:
-    "https://mvpuploadimg.s3-us-west-1.amazonaws.com/searchimg.png"
+  uri: 'https://mvpuploadimg.s3-us-west-1.amazonaws.com/searchimg.png'
 };
 
 const zipcodes = [91765, 90014, 10001, 94102];
 
-const example = [
-  {
-    id: 1,
-    address: "255 West 36th Street FL 7, New York",
-    hours:
-      "Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm",
-    image: "http://lorempixel.com/640/480/sports",
-    name: "Ronin Athletics - Gracie Jiu Jitsu, Kickboxing, MMA NYC",
-    num_of_rating: 125,
-    phone: "(540) 675-6033",
-    price: "$30/month",
-    rating: "4.9",
-    website: "roninathletics-graciejiujitsu,kickboxing,mmanyc.com"
-  },
-  {
-    id: 2,
-    address: "78 5th Avenue 4th Floor, New York",
-    hours:
-      "Mon 6am-10pm | Tue 6am-10pm | Wed 6am-10pm | Thu 6am-10pm | Fri 6am-10pm | Sat 6am-10pm | Sun 6-8pm",
-    image: "http://lorempixel.com/640/480/sports",
-    name: "Pure Barre",
-    num_of_rating: 15,
-    phone: "(818) 220-7160",
-    price: "$50/month",
-    rating: "4.3",
-    website: "purebarre.com"
-  }
-];
-
 const Search = ({ navigation }) => {
-  const [text, searchText] = useState("");
-  const [gyms, updateGyms] = useState(example);
+  const [text, searchText] = useState('');
+  const [gyms, updateGyms] = useState([]);
   const [isLoading, loadData] = useState(true);
 
-  const getGymDetails = zip => {
+  const getGymDetails = (zip) => {
     const query = `
     {
       gyms(zip:${zip}) {
@@ -75,7 +42,7 @@ const Search = ({ navigation }) => {
       }
     }`;
     axios
-      .post("http://192.168.1.3:8070/ct/graphql", { query })
+      .post('http://192.168.1.3:8070/ct/graphql', { query })
       .then(result => {
         gymInfo = result.data.data.gyms;
         updateGyms(gymInfo);
@@ -106,18 +73,18 @@ const Search = ({ navigation }) => {
           keyboardType='numeric'
         />
       </View>
-      {/* { isLoading && text !== '' ? (
-          <ActivityIndicator/>
-        ) : ( */}
-      <ScrollView>
-        <TouchableWithoutFeedback
-          onPress={() => Keyboard.dismiss()}
-          accessible={false}
-        >
-          <GymList gyms={gyms} navigation={navigation}/>
-        </TouchableWithoutFeedback>
-      </ScrollView>
-      {/* )} */}
+      {isLoading && text !== '' ? (
+        <ActivityIndicator />
+      ) : (
+        <ScrollView>
+          <TouchableWithoutFeedback
+            onPress={() => Keyboard.dismiss()}
+            accessible={false}
+          >
+            <GymList gyms={gyms} navigation={navigation} />
+          </TouchableWithoutFeedback>
+        </ScrollView>
+      )}
     </View>
   );
 };

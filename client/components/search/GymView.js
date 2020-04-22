@@ -1,28 +1,19 @@
-import React, { useState } from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  Keyboard,
-  TouchableWithoutFeedback,
   Image,
-  ScrollView,
-  ActivityIndicator
-} from "react-native";
+  ScrollView
+} from 'react-native';
 import GymDetails from './GymDetails';
 import Trainers from './Trainers';
-import { Rating } from "react-native-elements";
-import Colors from "../../styles/profile/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { gymViewStyle } from "../../styles/search";
-import LocIcon from "react-native-vector-icons/Entypo";
-import PhoneIcon from "react-native-vector-icons/FontAwesome";
-import WebIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import HoursIcon from "react-native-vector-icons/Feather";
+import { Rating } from 'react-native-elements';
+import Colors from '../../styles/profile/colors';
+import { gymViewStyle } from '../../styles/search';
 
 const GymView = ({ navigation }) => {
-  const gymId = navigation.getParam("gymId");
-  const gym = navigation.getParam("gym");
+  const gym = navigation.getParam('gym');
 
   return (
     <ScrollView style={styles.gymView}>
@@ -48,10 +39,10 @@ const GymView = ({ navigation }) => {
 };
 
 GymView.navigationOptions = {
-  headerTitle: "Gym Details",
+  headerTitle: 'Gym Details',
   headerStyle: {
     backgroundColor: Colors.headerFooter,
-    shadowColor: "transparent"
+    shadowColor: 'transparent'
   },
   headerTintColor: Colors.lightGrey,
   headerTitleStyle: {

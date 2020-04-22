@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Image,
-  ScrollView,
-  ActivityIndicator
-} from "react-native";
-import { Rating } from "react-native-elements";
-import { trainerStyle } from "../../styles/search";
-import Colors from "../../styles/profile/colors";
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { Rating } from 'react-native-elements';
+import { trainerStyle } from '../../styles/search';
+import Colors from '../../styles/profile/colors';
 
 const Trainer = ({ trainer }) => {
   return (
@@ -30,9 +21,7 @@ const Trainer = ({ trainer }) => {
         <Text style={styles.name}>
           {trainer.first_name} {trainer.last_name}
         </Text>
-        <Text style={styles.price}>
-          {trainer.price}
-        </Text>
+        <Text style={styles.price}>{trainer.price}</Text>
         <Text style={styles.specialties}>{trainer.specialties}</Text>
       </View>
     </View>

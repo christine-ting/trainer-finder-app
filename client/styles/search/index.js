@@ -10,16 +10,8 @@ export const searchStyle = {
     height: 100
   },
   searchView: {
-    // flex: 1,
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // justifyContent: 'space-between',
-    // backgroundColor: 'yellow',
-    // paddingRight: 10
   },
   searchBar: {
-    // flex: 0.95,
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent'
   },
@@ -77,12 +69,10 @@ export const gymViewStyle = {
     width: '100%'
   },
   topSection: {
-    // backgroundColor: 'blue',
     paddingVertical: 20,
     paddingHorizontal: 10
   },
   ratingView: {
-    // backgroundColor: 'white',
     flexDirection: 'row'
   },
   numRating: {

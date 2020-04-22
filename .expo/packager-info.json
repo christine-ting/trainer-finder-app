@@ -2,9 +2,9 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://eh-ywu.anonymous.trainer-finder-app.exp.direct",
   "packagerNgrokUrl": "https://packager.eh-ywu.anonymous.trainer-finder-app.exp.direct",
-  "ngrokPid": 29900,
+  "ngrokPid": 70581,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 29881,
+  "packagerPid": 70485,
   "webpackServerPort": null
 }
