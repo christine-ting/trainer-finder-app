@@ -5,3 +5,5 @@ Local gym finder mobile application displaying list of personal trainers with cu
 - Simplified data querying process by reducing the number of endpoints and defining query schema using GraphQL.
 
 ## Built with: React-Native | React Hooks | Node.js | Express | PostgreSQL | Sequelize | GraphQL | Firebase
+
+Click [here](http://www.christine-ting.com/) to see more about this application.
